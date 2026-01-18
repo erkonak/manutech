@@ -1,8 +1,9 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Bu satır, projeyi sunucu gerektirmeyen HTML dosyalarına dönüştürür
+  // output: 'export', // Geliştirme modu ve dinamik routelar için bu satırı devre dışı bırakıyoruz
   images: {
-    unoptimized: true, // Statik modda görsel optimizasyonunun sunucu yükü oluşturmasını engeller
+    unoptimized: true,
   },
 };
 
