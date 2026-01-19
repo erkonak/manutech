@@ -2,9 +2,11 @@
 'use client'
 import Link from 'next/link'
 import { useLanguage } from '@/context/LanguageContext'
+import { useSiteInfo } from '@/context/SiteInfoContext'
 
 export default function Footer1() {
 	const { locale } = useLanguage()
+	const { siteInfo } = useSiteInfo()
 
 	const translations = {
 		tr: {
@@ -58,24 +60,33 @@ export default function Footer1() {
 							<div className="row py-90">
 								<div className="col-lg-4 pe-10" data-aos="fade-zoom-in" data-aos-delay={100}>
 									<Link href="/">
-										<img src="/assets/imgs/logo/logo-white.svg" alt="Manutech Solutions" style={{ maxHeight: '50px' }} />
+										{siteInfo?.logo_dark ? (
+											<img src={siteInfo.logo_dark} alt={siteInfo.firma_adi || "Logo"} style={{ maxHeight: '50px', width: siteInfo.logo_w ? `${siteInfo.logo_w}px` : 'auto', height: siteInfo.logo_h ? `${siteInfo.logo_h}px` : 'auto' }} />
+										) : (
+											<img src="https://demo.eemre.tr/assets/img/site/logo/logo-dark.svg" width={200} height={60} alt="Logo" />
+										)}
 									</Link>
-									<p className="text-white fw-medium mt-3 mb-6 opacity-50">{t.description}</p>
+									<p className="text-white fw-medium mt-3 mb-6 opacity-50">
+										{siteInfo?.footer_metni || t.description}
+									</p>
 									<div className="d-flex social-icons">
-										<Link href="https://www.facebook.com/" className=" text-white border border-end-0 border-light border-opacity-10 icon-shape icon-md">
-											<svg xmlns="http://www.w3.org/2000/svg" width={10} height={17} viewBox="0 0 10 17" fill="none">
-												<path d="M8.84863 9.20312H6.5415V16.0938H3.46533V9.20312H0.942871V6.37305H3.46533V4.18896C3.46533 1.72803 4.94189 0.34375 7.1875 0.34375C8.26416 0.34375 9.40234 0.559082 9.40234 0.559082V2.98926H8.14111C6.91064 2.98926 6.5415 3.72754 6.5415 4.52734V6.37305H9.2793L8.84863 9.20312Z" fill="white" />
-											</svg>
-										</Link>
-										<Link href="https://twitter.com/" className=" text-white border border-end-0 border-light border-opacity-10 icon-shape icon-md">
-											<i className="bi bi-twitter-x" />
-										</Link>
-										<Link href="https://www.linkedin.com/" className=" text-white border border-light border-opacity-10 icon-shape icon-md">
-											<i className="bi bi-linkedin" />
-										</Link>
-										<Link href="https://www.instagram.com/" className=" text-white border border-start-0 border-light border-opacity-10 icon-shape icon-md">
-											<i className="bi bi-instagram" />
-										</Link>
+										{siteInfo?.facebook && (
+											<Link href={siteInfo.facebook} target="_blank" rel="noopener noreferrer" className=" text-white border border-end-0 border-light border-opacity-10 icon-shape icon-md">
+												<svg xmlns="http://www.w3.org/2000/svg" width={10} height={17} viewBox="0 0 10 17" fill="none">
+													<path d="M8.84863 9.20312H6.5415V16.0938H3.46533V9.20312H0.942871V6.37305H3.46533V4.18896C3.46533 1.72803 4.94189 0.34375 7.1875 0.34375C8.26416 0.34375 9.40234 0.559082 9.40234 0.559082V2.98926H8.14111C6.91064 2.98926 6.5415 3.72754 6.5415 4.52734V6.37305H9.2793L8.84863 9.20312Z" fill="white" />
+												</svg>
+											</Link>
+										)}
+										{siteInfo?.linkedin && (
+											<Link href={siteInfo.linkedin} target="_blank" rel="noopener noreferrer" className=" text-white border border-light border-opacity-10 icon-shape icon-md">
+												<i className="bi bi-linkedin" />
+											</Link>
+										)}
+										{siteInfo?.instagram && (
+											<Link href={siteInfo.instagram} target="_blank" rel="noopener noreferrer" className=" text-white border border-start-0 border-light border-opacity-10 icon-shape icon-md">
+												<i className="bi bi-instagram" />
+											</Link>
+										)}
 									</div>
 								</div>
 								<div className="col-lg-8">
@@ -109,7 +120,9 @@ export default function Footer1() {
 								</div>
 							</div>
 							<div className="row text-center py-4 border-top border-white border-opacity-10">
-								<span className="text-white opacity-50" data-aos="fade-zoom-in" data-aos-delay={200}>Copyright © {new Date().getFullYear()} Manutech Solutions. {t.rights}</span>
+								<span className="text-white opacity-50" data-aos="fade-zoom-in" data-aos-delay={200}>
+									Copyright © {new Date().getFullYear()} {siteInfo?.firma_adi || "Manutech Solutions"}. {t.rights}
+								</span>
 							</div>
 						</div>
 					</div>

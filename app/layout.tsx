@@ -14,6 +14,7 @@ import "@/node_modules/react-modal-video/css/modal-video.css"
 import type { Metadata } from "next"
 
 import { LanguageProvider } from "@/context/LanguageContext"
+import { SiteInfoProvider } from "@/context/SiteInfoContext"
 
 export const metadata: Metadata = {
     title: "Manutech Solutions",
@@ -29,7 +30,9 @@ export default function RootLayout({
         <html lang="tr">
             <body>
                 <LanguageProvider>
-                    {children}
+                    <SiteInfoProvider>
+                        {children}
+                    </SiteInfoProvider>
                 </LanguageProvider>
             </body>
         </html>

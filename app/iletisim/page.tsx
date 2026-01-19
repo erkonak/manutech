@@ -2,37 +2,59 @@
 "use client"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLanguage } from '@/context/LanguageContext'
-import { sendContactForm } from '@/util/api'
+import { sendContactForm, getSiteInfo } from '@/util/api'
 import './contact-styles.css'
 
 export default function ContactPage() {
     const { locale } = useLanguage()
+    const [siteInfo, setSiteInfo] = useState<any>(null)
     const [formData, setFormData] = useState({
         name: '',
         company: '',
         email: '',
         phone: '',
         subject: '',
-        message: ''
+        message: '',
+        firma: ''
     })
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState('')
 
+    useEffect(() => {
+        // Fetch site info on component mount
+        const fetchSiteInfo = async () => {
+            const response = await getSiteInfo()
+            if (response?.status && response?.data) {
+                setSiteInfo(response.data)
+            }
+        }
+        fetchSiteInfo()
+    }, [])
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
         setError('')
+        setSuccess(false)
 
         try {
-            // Map form data to API expected format if needed
-            // The API likely expects specific fields. Assuming standard ones or passing dynamic data map.
-            // Based on typically used Laravel contact forms.
-            const response = await sendContactForm(formData)
+            // Map frontend form fields to API expected field names
+            const apiData = {
+                ad_soyad: formData.name,
+                mail: formData.email,
+                telefon: formData.phone,
+                konu: formData.subject,
+                mesaj: formData.message,
+                firma: formData.company
+            }
 
-            if (response && (response.success || response.status === 'success' || response.message)) {
+            const response = await sendContactForm(apiData)
+
+            // Check if the response indicates success
+            if (response && response.status === true) {
                 setSuccess(true)
                 setFormData({
                     name: '',
@@ -40,13 +62,20 @@ export default function ContactPage() {
                     email: '',
                     phone: '',
                     subject: '',
-                    message: ''
+                    message: '',
+                    firma: ''
                 })
+                // Auto-hide success message after 5 seconds
+                setTimeout(() => setSuccess(false), 5000)
             } else {
-                setError('Bir hata oluştu. Lütfen tekrar deneyiniz.')
+                // Handle API error messages
+                const errorMessage = response?.message || response?.error || 'Bir hata oluştu. Lütfen tekrar deneyiniz.'
+                setError(errorMessage)
             }
-        } catch (err) {
-            setError('Bir hata oluştu. Lütfen tekrar deneyiniz.')
+        } catch (err: any) {
+            console.error('Contact form error:', err)
+            const errorMessage = err?.message || 'Bir hata oluştu. Lütfen tekrar deneyiniz.'
+            setError(errorMessage)
         } finally {
             setLoading(false)
         }
@@ -162,7 +191,7 @@ export default function ContactPage() {
                                 </div>
                                 <div className="ps-5">
                                     <h6 className="text-white">{tr.office}</h6>
-                                    <p className="text-white mb-0">{tr.address}</p>
+                                    <p className="text-white mb-0">{siteInfo?.adres || tr.address}</p>
                                 </div>
                             </div>
                             <div className="d-flex pt-3 pb-3 align-items-center">
@@ -173,7 +202,7 @@ export default function ContactPage() {
                                 </div>
                                 <div className="ps-5">
                                     <h6 className="text-white">{tr.email}</h6>
-                                    <p className="text-white mb-0">info@manutechsolutions.com</p>
+                                    <p className="text-white mb-0">{siteInfo?.mail || 'info@manutechsolutions.com'}</p>
                                 </div>
                             </div>
                             <div className="d-flex pt-3 pb-3 align-items-center">
@@ -185,7 +214,7 @@ export default function ContactPage() {
                                 <div className="ps-5">
                                     <h6 className="text-white">{tr.phone}</h6>
                                     <p className="text-white mb-0">
-                                        +90 212 000 00 00
+                                        {siteInfo?.telefon || '+90 212 000 00 00'}
                                     </p>
                                 </div>
                             </div>
@@ -249,8 +278,8 @@ export default function ContactPage() {
                                                     <div className="d-flex flex-wrap gap-3">
                                                         <button
                                                             type="button"
-                                                            onClick={() => setFormData({...formData, subject: 'software'})}
-                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'software' ? 'active text-primary fw-semibold' : ''}`}
+                                                            onClick={() => setFormData({...formData, subject: 'yazilim_cozumleri'})}
+                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'yazilim_cozumleri' ? 'active text-primary fw-semibold' : ''}`}
                                                         >
                                                             {tr.software}
                                                         </button>
@@ -314,15 +343,19 @@ export default function ContactPage() {
             <section className="section-map">
                 <div>
                     <div className="border shadow-sm" style={{ height: '400px' }}>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.6504900115626!2d29.02053177651817!3d40.99042897135252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab8631627c02b%3A0x8e831637e1087814!2zS2FkxLFrw7Y5LCDEsHN0YW5idWw!5e0!3m2!1str!2str!4v1705663673620!5m2!1str!2str"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
-                            allowFullScreen
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                        ></iframe>
+                        {siteInfo?.harita_iframe ? (
+                            <div dangerouslySetInnerHTML={{ __html: siteInfo.harita_iframe }} style={{ width: '100%', height: '100%' }} />
+                        ) : (
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.6504900115626!2d29.02053177651817!3d40.99042897135252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab8631627c02b%3A0x8e831637e1087814!2zS2FkxLFrw7Y5LCDEsHN0YW5idWw!5e0!3m2!1str!2str!4v1705663673620!5m2!1str!2str"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        )}
                     </div>
                 </div>
             </section>
