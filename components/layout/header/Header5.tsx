@@ -81,7 +81,7 @@ export default function Header5({ scroll, scrollDirection, isMobileMenu, handleM
 				</div>
 			</div>
 
-			<header className={!isHeaderVisible ? 'header-hidden' : ''} style={{ 
+			<header className={!isHeaderVisible ? 'header-hidden' : ''} style={{
 				transform: !isHeaderVisible ? 'translateY(-100%)' : 'translateY(0)',
 				transition: 'transform 0.3s ease-in-out',
 				position: scroll ? 'fixed' : 'relative',
@@ -102,7 +102,7 @@ export default function Header5({ scroll, scrollDirection, isMobileMenu, handleM
 						<div className="d-flex align-items-center pe-5 pe-lg-0 me-5 me-lg-0">
 							<LanguageSwitcher />
 							<ThemeSwitch />
-							<a href="/iletisim" className="btn btn-gradient d-none d-md-block ms-3">
+							<Link href="/iletisim" className="btn btn-gradient d-none d-md-block ms-3">
 								Teklif Alın
 								<svg className="ms-2" xmlns="http://www.w3.org/2000/svg" width={19} height={18} viewBox="0 0 19 18" fill="none">
 									<g clipPath="url(#clip0_474_2370)">
@@ -114,7 +114,7 @@ export default function Header5({ scroll, scrollDirection, isMobileMenu, handleM
 										</clipPath>
 									</defs>
 								</svg>
-							</a>
+							</Link>
 							<div className="burger-icon burger-icon-white border rounded-3" onClick={handleMobileMenu}>
 								<span className="burger-icon-top" />
 								<span className="burger-icon-mid" />

@@ -30,6 +30,20 @@ export default function ContactPage() {
         setError('')
         setSuccess(false)
 
+        // API Messages Translation Map
+        const getLocalizedApiMessage = (msg: string) => {
+            if (!msg) return null;
+            if (locale === 'en') {
+                const map: { [key: string]: string } = {
+                    'Lütfen formu eksiksiz doldurunuz.': 'Please fill in all required fields.',
+                    'Mesajınız başarıyla iletildi. En kısa sürede dönüş sağlanacaktır.': 'Your message has been sent successfully. We will get back to you as soon as possible.',
+                    'Mesaj iletilemedi.': 'Message could not be sent.'
+                };
+                return map[msg] || msg;
+            }
+            return msg;
+        }
+
         try {
             // Map frontend form fields to API expected field names
             const apiData = {
@@ -59,12 +73,13 @@ export default function ContactPage() {
                 setTimeout(() => setSuccess(false), 5000)
             } else {
                 // Handle API error messages
-                const errorMessage = response?.message || response?.error || 'Bir hata oluştu. Lütfen tekrar deneyiniz.'
+                const rawMsg = response?.message || response?.error;
+                const errorMessage = getLocalizedApiMessage(rawMsg) || (locale === 'en' ? 'An error occurred. Please try again.' : 'Bir hata oluştu. Lütfen tekrar deneyiniz.')
                 setError(errorMessage)
             }
         } catch (err: any) {
             console.error('Contact form error:', err)
-            const errorMessage = err?.message || 'Bir hata oluştu. Lütfen tekrar deneyiniz.'
+            const errorMessage = err?.message || (locale === 'en' ? 'An error occurred. Please try again.' : 'Bir hata oluştu. Lütfen tekrar deneyiniz.')
             setError(errorMessage)
         } finally {
             setLoading(false)
@@ -234,7 +249,7 @@ export default function ContactPage() {
                                                                 <path d="M6.84723 19.25H17.1522C18.2941 19.25 19.1737 18.2681 18.6405 17.2584C17.856 15.7731 16.0677 14 11.9997 14C7.93174 14 6.1434 15.7731 5.35897 17.2584C4.8257 18.2681 5.70531 19.25 6.84723 19.25Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                                             </svg>
                                                         </div>
-                                                        <input type="text" className="form-control ms-0 border border-white rounded-2 rounded-start-0 border-start-0 bg-transparent text-white placeholder-white" style={{color: 'white'}} name="name" placeholder={tr.name} value={formData.name} onChange={handleChange} required />
+                                                        <input type="text" className="form-control ms-0 border border-white rounded-2 rounded-start-0 border-start-0 bg-transparent text-white placeholder-white" style={{color: 'white'}} name="name" placeholder={tr.name} value={formData.name} onChange={handleChange} />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6 mb-4">
@@ -252,7 +267,7 @@ export default function ContactPage() {
                                                                 <path d="M8.89286 4.75H6.06818C5.34017 4.75 4.75 5.34017 4.75 6.06818C4.75 13.3483 10.6517 19.25 17.9318 19.25C18.6598 19.25 19.25 18.6598 19.25 17.9318V15.1071L16.1429 13.0357L14.5317 14.6468C14.2519 14.9267 13.8337 15.0137 13.4821 14.8321C12.8858 14.524 11.9181 13.9452 10.9643 13.0357C9.98768 12.1045 9.41548 11.1011 9.12829 10.494C8.96734 10.1537 9.06052 9.76091 9.32669 9.49474L10.9643 7.85714L8.89286 4.75Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                                             </svg>
                                                         </div>
-                                                        <input type="email" className="form-control ms-0 border border-white rounded-2 rounded-start-0 border-start-0 bg-transparent text-white placeholder-white" style={{color: 'white'}} name="email" placeholder={tr.emailLabel} value={formData.email} onChange={handleChange} required />
+                                                        <input type="email" className="form-control ms-0 border border-white rounded-2 rounded-start-0 border-start-0 bg-transparent text-white placeholder-white" style={{color: 'white'}} name="email" placeholder={tr.emailLabel} value={formData.email} onChange={handleChange} />
                                                     </div>
                                                 </div>
                                                 <div className="col-md-6 mb-4">
@@ -260,7 +275,7 @@ export default function ContactPage() {
                                                         <div className="icon-input border border-white border-end-0 rounded-2 rounded-end-0 ps-3 d-flex align-items-center justify-content-center">
                                                             <i className="bi bi-telephone-fill text-white fs-5"></i>
                                                         </div>
-                                                        <input type="tel" className="form-control ms-0 border border-white rounded-2 rounded-start-0 border-start-0 bg-transparent text-white placeholder-white" style={{color: 'white'}} name="phone" placeholder={tr.phoneLabel} value={formData.phone} onChange={handleChange} required />
+                                                        <input type="tel" className="form-control ms-0 border border-white rounded-2 rounded-start-0 border-start-0 bg-transparent text-white placeholder-white" style={{color: 'white'}} name="phone" placeholder={tr.phoneLabel} value={formData.phone} onChange={handleChange} />
                                                     </div>
                                                 </div>
                                                 <div className="col-12 mb-4">
@@ -311,7 +326,7 @@ export default function ContactPage() {
                                                         <div className="icon-input pt-2 ps-3 align-items-start border border-white border-end-0 rounded-1 rounded-end-0">
                                                             <i className="bi bi-chat-left-text-fill text-white fs-5"></i>
                                                         </div>
-                                                        <textarea className="form-control border border-white border-start-0 ms-0 rounded-start-0 rounded-1 pb-10 bg-transparent text-white placeholder-white" style={{color: 'white'}} rows={5} name="message" value={formData.message} onChange={handleChange} required placeholder={tr.message}></textarea>
+                                                        <textarea className="form-control border border-white border-start-0 ms-0 rounded-start-0 rounded-1 pb-10 bg-transparent text-white placeholder-white" style={{color: 'white'}} rows={5} name="message" value={formData.message} onChange={handleChange} placeholder={tr.message}></textarea>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">

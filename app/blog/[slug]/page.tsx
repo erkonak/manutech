@@ -31,6 +31,20 @@ export default function BlogDetailPage() {
         e.preventDefault()
         setCommentStatus({ loading: true, success: false, error: '', message: '' })
 
+        // API Messages Translation Map
+        const getLocalizedApiMessage = (msg: string) => {
+            if (!msg) return null;
+            if (locale === 'en') {
+                const map: { [key: string]: string } = {
+                    'Lütfen formu eksiksiz doldurunuz.': 'Please fill in all required fields.',
+                    'Yorumunuz başarıyla gönderildi. Onaylandıktan sonra yayınlanacaktır.': 'Your comment has been sent successfully. It will be published after approval.',
+                    'Yorum gönderilemedi.': 'Comment could not be sent.'
+                };
+                return map[msg] || msg;
+            }
+            return msg;
+        }
+
         if (!commentData.name || !commentData.email || !commentData.comment) {
             setCommentStatus({
                 loading: false,
@@ -53,20 +67,22 @@ export default function BlogDetailPage() {
             const res = await postBlogComment(formData)
 
             if (res && res.status === true) {
+                const rawMsg = res.message || 'Yorumunuz başarıyla gönderildi.';
                 setCommentStatus({
                     loading: false,
                     success: true,
                     error: '',
-                    message: res.message || (locale === 'en' ? 'Comment sent successfully.' : 'Yorumunuz başarıyla gönderildi.')
+                    message: getLocalizedApiMessage(rawMsg) || ''
                 })
                 setCommentData({ name: '', email: '', comment: '', website: '' })
                 setReplyTo(null)
             } else {
+                const rawMsg = res?.message || res?.error;
                 setCommentStatus({
                     loading: false,
                     success: false,
                     error: 'api',
-                    message: res?.message || (locale === 'en' ? 'An error occurred.' : 'Bir hata oluştu.')
+                    message: getLocalizedApiMessage(rawMsg) || (locale === 'en' ? 'An error occurred.' : 'Bir hata oluştu.')
                 })
             }
         } catch (err) {
@@ -308,15 +324,15 @@ export default function BlogDetailPage() {
                                 <div className="d-lg-flex align-items-center">
                                     <p className="fw-bold text-500 mb-0 me-2">{tr.share}:</p>
                                     <div className="d-flex social-icons">
-                                        <Link href="#" className=" text-900 border border-end-0  border-opacity-10 icon-shape icon-md">
+                                        <a href="#" onClick={(e) => e.preventDefault()} className=" text-900 border border-end-0  border-opacity-10 icon-shape icon-md">
                                             <i className="bi bi-facebook" />
-                                        </Link>
-                                        <Link href="#" className=" text-900 border border-end-0  border-opacity-10 icon-shape icon-md">
+                                        </a>
+                                        <a href="#" onClick={(e) => e.preventDefault()} className=" text-900 border border-end-0  border-opacity-10 icon-shape icon-md">
                                             <i className="bi bi-twitter-x" />
-                                        </Link>
-                                        <Link href="#" className=" text-900 border  border-opacity-10 icon-shape icon-md">
+                                        </a>
+                                        <a href="#" onClick={(e) => e.preventDefault()} className=" text-900 border  border-opacity-10 icon-shape icon-md">
                                             <i className="bi bi-linkedin" />
-                                        </Link>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

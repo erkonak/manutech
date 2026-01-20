@@ -13,13 +13,13 @@ const BANNERS_CACHE_EXPIRY = 24 * 60 * 60 * 1000; // 24 saat
 // Banner cache'den veri okuma helper fonksiyonu
 function getCachedBanners(): any[] | null {
 	if (typeof window === 'undefined') return null;
-	
+
 	try {
 		const cachedData = localStorage.getItem(BANNERS_CACHE_KEY);
 		if (cachedData) {
 			const { data, timestamp } = JSON.parse(cachedData);
 			const now = Date.now();
-			
+
 			// Cache geçerli mi kontrol et
 			if (now - timestamp < BANNERS_CACHE_EXPIRY) {
 				return data;
@@ -28,7 +28,7 @@ function getCachedBanners(): any[] | null {
 	} catch (error) {
 		console.error("Banner cache okunurken hata:", error);
 	}
-	
+
 	return null;
 }
 
@@ -60,9 +60,9 @@ export default function Hero5() {
 					const activeBanners = response.data
 						.filter((banner: any) => banner.durum === "1")
 						.sort((a: any, b: any) => parseInt(a.sira || "999") - parseInt(b.sira || "999"));
-					
+
 					setBanners(activeBanners);
-					
+
 					// Yeni veriyi cache'e kaydet
 					if (typeof window !== 'undefined') {
 						localStorage.setItem(BANNERS_CACHE_KEY, JSON.stringify({
@@ -137,7 +137,7 @@ export default function Hero5() {
 														<p className="fs-5 text-900">
 															{t(banner, 'aciklama')}
 														</p>
-														{banner.url && (
+														{(banner.url && banner.url.trim().length > 1) && (
 															<div className="d-flex flex-column flex-md-row align-items-center mt-4">
 																<Link href={banner.url} className="btn btn-gradient rounded-4">
 																	{locale === 'en' ? 'Learn More' : locale === 'ar' ? 'المزيد' : 'Daha Fazla'}
