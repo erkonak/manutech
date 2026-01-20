@@ -2,9 +2,11 @@
 "use client"
 import Link from "next/link"
 import { useLanguage } from '@/context/LanguageContext'
+import { useSiteInfo } from '@/context/SiteInfoContext'
 
 export default function Services1() {
     const { locale, t } = useLanguage()
+    const { siteInfo } = useSiteInfo()
 
     const translations = {
         tr: {
@@ -49,7 +51,10 @@ export default function Services1() {
                             <span className="tag-spacing fs-7 fw-bold text-linear-2 ms-2 text-uppercase">{tr.title}</span>
                         </div>
                         <h3 className="ds-3 my-3" data-aos="fade-zoom-in" data-aos-delay={300}>{tr.subtitle}</h3>
-                        <p data-aos="fade-zoom-in" data-aos-delay={100}>{tr.desc}</p>
+                        <p data-aos="fade-zoom-in" data-aos-delay={100}>
+                            {/* Site Info'dan gelen metni dile göre seç (en ise _en ekli halini al, yoksa normalini al) */}
+                            {(locale === 'en' ? siteInfo?.hizmetlerimiz_metni_en : siteInfo?.hizmetlerimiz_metni) || tr.desc}
+                        </p>
                     </div>
                     <div className="row mt-6 position-relative justify-content-center">
                         <div className="col-lg-6">

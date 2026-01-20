@@ -67,7 +67,8 @@ export default function Footer1() {
 										)}
 									</Link>
 									<p className="text-white fw-medium mt-3 mb-6 opacity-50">
-										{siteInfo?.footer_metni || t.description}
+										{/* Site Info'dan gelen metni dile göre seç (en ise _en ekli halini al, yoksa normalini al) */}
+										{(locale === 'en' ? siteInfo?.footer_metni_en : siteInfo?.footer_metni) || t.description}
 									</p>
 									<div className="d-flex social-icons">
 										{siteInfo?.facebook && (

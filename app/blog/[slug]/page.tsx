@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
-import { getBlogBySlug } from '@/util/api'
+import { getBlogBySlug, postBlogComment } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -21,6 +21,64 @@ export default function BlogDetailPage() {
     const [loading, setLoading] = useState(true)
     const [open, setOpen] = useState(false)
     const [index, setIndex] = useState(0)
+
+    // Comment Form State
+    const [commentData, setCommentData] = useState({ name: '', email: '', comment: '', website: '' })
+    const [replyTo, setReplyTo] = useState<{ id: number, name: string } | null>(null)
+    const [commentStatus, setCommentStatus] = useState({ loading: false, success: false, error: '', message: '' })
+
+    const handleCommentSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setCommentStatus({ loading: true, success: false, error: '', message: '' })
+
+        if (!commentData.name || !commentData.email || !commentData.comment) {
+            setCommentStatus({
+                loading: false,
+                success: false,
+                error: 'validation',
+                message: locale === 'en' ? 'Please fill in required fields.' : 'Lütfen zorunlu alanları doldurunuz.'
+            })
+            return
+        }
+
+        try {
+            const formData = {
+                blog_id: blog.id,
+                ad_soyad: commentData.name,
+                eposta: commentData.email,
+                yorum: commentData.comment,
+                parent_id: replyTo ? replyTo.id : null
+            }
+
+            const res = await postBlogComment(formData)
+
+            if (res && res.status === true) {
+                setCommentStatus({
+                    loading: false,
+                    success: true,
+                    error: '',
+                    message: res.message || (locale === 'en' ? 'Comment sent successfully.' : 'Yorumunuz başarıyla gönderildi.')
+                })
+                setCommentData({ name: '', email: '', comment: '', website: '' })
+                setReplyTo(null)
+            } else {
+                setCommentStatus({
+                    loading: false,
+                    success: false,
+                    error: 'api',
+                    message: res?.message || (locale === 'en' ? 'An error occurred.' : 'Bir hata oluştu.')
+                })
+            }
+        } catch (err) {
+            console.error(err)
+            setCommentStatus({
+                loading: false,
+                success: false,
+                error: 'network',
+                message: locale === 'en' ? 'An error occurred.' : 'Bir hata oluştu.'
+            })
+        }
+    }
 
     const swiperOptions = {
         slidesPerView: 1,
@@ -276,15 +334,17 @@ export default function BlogDetailPage() {
                                         <div className="w-100">
                                             <div className="d-flex align-items-center">
                                                 <h6 className="mb-0 fs-6 text-900 fw-bold">{comment.ad_soyad}</h6>
-                                                <span className="mb-0 ms-2 fs-6 text-500">{new Date(comment.created_at).toLocaleDateString()}</span>
+                                                <span className="mb-0 ms-2 fs-6 text-500">
+                                                    {new Date(comment.created_at).toLocaleDateString()} {new Date(comment.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                                </span>
                                             </div>
                                             <p className="py-3 tex-500">{comment.yorum}</p>
-                                            <Link href="#" className="d-flex align-items-center d-inline-flex mb-8">
+                                            <button onClick={(e) => { e.preventDefault(); setReplyTo({ id: comment.id, name: comment.ad_soyad }); document.getElementById('comment-form')?.scrollIntoView({ behavior: 'smooth' }); }} className="d-flex align-items-center d-inline-flex mb-8 bg-transparent border-0 p-0">
                                                 <span className="icon-shape icon-sm bg-white border rounded-3 me-2 p-3">
                                                     <i className="bi bi-reply text-900" />
                                                 </span>
                                                 <span className="text-900 fw-medium fs-7"> {tr.reply} </span>
-                                            </Link>
+                                            </button>
                                         </div>
                                     </div>
 
@@ -297,7 +357,9 @@ export default function BlogDetailPage() {
                                             <div>
                                                 <div className="d-flex align-items-center">
                                                     <h6 className="mb-0 fs-6 text-900 fw-bold">{reply.ad_soyad}</h6>
-                                                    <span className="mb-0 ms-2 fs-6 text-500">{new Date(reply.created_at).toLocaleDateString()}</span>
+                                                    <span className="mb-0 ms-2 fs-6 text-500">
+                                                        {new Date(reply.created_at).toLocaleDateString()} {new Date(reply.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                                    </span>
                                                 </div>
                                                 <p className="py-3 tex-500">{reply.yorum}</p>
                                             </div>
@@ -307,31 +369,63 @@ export default function BlogDetailPage() {
                             ))}
 
                             {/* Comment Form */}
-                            <h3 className="mt-7 mb-4 pb-4 border-bottom">{tr.leaveComment}</h3>
-                            <div className="row mt-5">
+                            <h3 className="mt-7 mb-4 pb-4 border-bottom" id="comment-form">{tr.leaveComment}</h3>
+
+                            {replyTo && (
+                                <div className="alert alert-info d-flex justify-content-between align-items-center mb-4">
+                                    <span>
+                                        {locale === 'en' ? `Replying to: ${replyTo.name}` : `Cevap veriliyor: ${replyTo.name}`}
+                                    </span>
+                                    <button className="btn btn-sm btn-outline-dark" onClick={() => setReplyTo(null)}>
+                                        {locale === 'en' ? 'Cancel' : 'İptal'}
+                                    </button>
+                                </div>
+                            )}
+
+                            {commentStatus.message && (
+                                <div className={`alert ${commentStatus.success ? 'alert-success' : 'alert-danger'} mb-4`}>
+                                    {commentStatus.message}
+                                </div>
+                            )}
+
+                            <form onSubmit={handleCommentSubmit} className="row mt-5">
                                 <div className="col-md-6 col-lg-4">
-                                    <div className="input-group d-flex align-items-center">
+                                    <div className="input-group d-flex align-items-center mb-3">
                                         <div className="icon-input border border-end-0 rounded-2 rounded-end-0 ps-3 d-flex align-items-center justify-content-center bg-white">
                                             <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
                                                 <path d="M12 11.25C13.7949 11.25 15.25 9.79493 15.25 8C15.25 6.20507 13.7949 4.75 12 4.75C10.2051 4.75 8.75 6.20507 8.75 8C8.75 9.79493 10.2051 11.25 12 11.25Z" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                                 <path d="M6.84723 19.25H17.1522C18.2941 19.25 19.1737 18.2681 18.6405 17.2584C17.856 15.7731 16.0677 14 11.9997 14C7.93174 14 6.1434 15.7731 5.35897 17.2584C4.8257 18.2681 5.70531 19.25 6.84723 19.25Z" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                         </div>
-                                        <input type="text" className="form-control ms-0 border rounded-2 rounded-start-0 border-start-0 bg-white" name="name" placeholder={tr.name} />
+                                        <input
+                                            type="text"
+                                            className="form-control ms-0 border rounded-2 rounded-start-0 border-start-0 bg-white"
+                                            name="name"
+                                            placeholder={tr.name}
+                                            value={commentData.name}
+                                            onChange={(e) => setCommentData({...commentData, name: e.target.value})}
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-lg-4 mt-3 mt-md-0">
-                                    <div className="input-group d-flex align-items-center">
+                                    <div className="input-group d-flex align-items-center mb-3">
                                         <div className="icon-input border border-end-0 rounded-2 rounded-end-0 ps-3 d-flex align-items-center justify-content-center bg-white">
                                             <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
                                                 <path d="M8.89286 4.75H6.06818C5.34017 4.75 4.75 5.34017 4.75 6.06818C4.75 13.3483 10.6517 19.25 17.9318 19.25C18.6598 19.25 19.25 18.6598 19.25 17.9318V15.1071L16.1429 13.0357L14.5317 14.6468C14.2519 14.9267 13.8337 15.0137 13.4821 14.8321C12.8858 14.524 11.9181 13.9452 10.9643 13.0357C9.98768 12.1045 9.41548 11.1011 9.12829 10.494C8.96734 10.1537 9.06052 9.76091 9.32669 9.49474L10.9643 7.85714L8.89286 4.75Z" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                         </div>
-                                        <input type="email" className="form-control ms-0 border rounded-2 rounded-start-0 border-start-0 bg-white" name="email" placeholder={tr.email} />
+                                        <input
+                                            type="email"
+                                            className="form-control ms-0 border rounded-2 rounded-start-0 border-start-0 bg-white"
+                                            name="email"
+                                            placeholder={tr.email}
+                                            value={commentData.email}
+                                            onChange={(e) => setCommentData({...commentData, email: e.target.value})}
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-lg-4 mt-3 mt-lg-0">
-                                    <div className="input-group d-flex align-items-center">
+                                    <div className="input-group d-flex align-items-center mb-3">
                                         <div className="icon-input border border-end-0 rounded-2 rounded-end-0 ps-3 d-flex align-items-center justify-content-center bg-white">
                                             <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
                                                 <circle cx="12" cy="12" r="9" stroke="#111827" strokeWidth="1.5"/>
@@ -339,7 +433,14 @@ export default function BlogDetailPage() {
                                                 <path d="M12 3a15.3 15.3 0 0 0 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 0 4-9z" stroke="#111827" strokeWidth="1.5"/>
                                             </svg>
                                         </div>
-                                        <input type="text" className="form-control ms-0 border rounded-2 rounded-start-0 border-start-0 bg-white" name="website" placeholder={tr.website} />
+                                        <input
+                                            type="text"
+                                            className="form-control ms-0 border rounded-2 rounded-start-0 border-start-0 bg-white"
+                                            name="website"
+                                            placeholder={tr.website}
+                                            value={commentData.website}
+                                            onChange={(e) => setCommentData({...commentData, website: e.target.value})}
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-12 mt-4">
@@ -350,16 +451,23 @@ export default function BlogDetailPage() {
                                                 <path d="M17.3285 1.20344L16.4448 0.319749C16.0185 -0.106583 15.3248 -0.106583 14.8984 0.319749L7.82915 7.38907C7.76373 7.45449 7.71914 7.53782 7.70096 7.62854L7.2591 9.83772C7.22839 9.99137 7.27647 10.1502 7.38729 10.261C7.47605 10.3498 7.59561 10.3983 7.71864 10.3983C7.74923 10.3983 7.77997 10.3953 7.81053 10.3892L10.0197 9.94732C10.1104 9.92917 10.1938 9.88455 10.2592 9.81913L17.3285 2.74984C17.3285 2.74984 17.3286 2.74984 17.3286 2.74981C17.7549 2.32351 17.7549 1.6298 17.3285 1.20344ZM9.69678 9.05607L8.31606 9.33225L8.59224 7.95153L14.3461 2.19754L15.4507 3.30214L9.69678 9.05607ZM16.6658 2.0871L16.1135 2.6394L15.0089 1.53479L15.5612 0.982524C15.6221 0.921601 15.7212 0.92157 15.7821 0.982493L16.6658 1.86618C16.7267 1.92707 16.7267 2.0262 16.6658 2.0871Z" fill="#111827" />
                                             </svg>
                                         </div>
-                                        <textarea className="form-control border border-start-0 ms-0 rounded-start-0 rounded-1 pb-10 bg-white" name="comment" rows={5} placeholder={tr.comment} />
+                                        <textarea
+                                            className="form-control border border-start-0 ms-0 rounded-start-0 rounded-1 pb-10 bg-white"
+                                            name="comment"
+                                            rows={5}
+                                            placeholder={tr.comment}
+                                            value={commentData.comment}
+                                            onChange={(e) => setCommentData({...commentData, comment: e.target.value})}
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-12 my-4">
-                                    <button type="submit" className="btn btn-gradient rounded-pill">
-                                        {tr.send}
-                                        <i className="bi bi-arrow-right ms-2"></i>
+                                    <button type="submit" className="btn btn-gradient rounded-pill" disabled={commentStatus.loading}>
+                                        {commentStatus.loading ? (locale === 'en' ? 'Sending...' : 'Gönderiliyor...') : tr.send}
+                                        {!commentStatus.loading && <i className="bi bi-arrow-right ms-2"></i>}
                                     </button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -51,6 +51,13 @@ export async function sendContactForm(formData: any) {
     });
 }
 
+export async function postBlogComment(data: any) {
+    return fetchApi("blog-comment", {
+        method: "POST",
+        body: JSON.stringify(data)
+    });
+}
+
 // --- MOCK DATA (Until Backend APIs are Ready) ---
 
 export async function getInterviews() {

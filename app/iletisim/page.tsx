@@ -2,14 +2,15 @@
 "use client"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useLanguage } from '@/context/LanguageContext'
-import { sendContactForm, getSiteInfo } from '@/util/api'
+import { sendContactForm } from '@/util/api'
 import './contact-styles.css'
+import { useSiteInfo } from '@/context/SiteInfoContext'
 
 export default function ContactPage() {
     const { locale } = useLanguage()
-    const [siteInfo, setSiteInfo] = useState<any>(null)
+    const { siteInfo } = useSiteInfo()
     const [formData, setFormData] = useState({
         name: '',
         company: '',
@@ -22,17 +23,6 @@ export default function ContactPage() {
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState('')
-
-    useEffect(() => {
-        // Fetch site info on component mount
-        const fetchSiteInfo = async () => {
-            const response = await getSiteInfo()
-            if (response?.status && response?.data) {
-                setSiteInfo(response.data)
-            }
-        }
-        fetchSiteInfo()
-    }, [])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -182,7 +172,10 @@ export default function ContactPage() {
                                 <span className="tag-spacing fs-7 fw-bold text-linear-2 ms-2 text-uppercase">{tr.contact}</span>
                             </div>
                             <h5 className="ds-5 mt-3 mb-3 text-white">{tr.getInTouch}</h5>
-                            <span className="fs-5 fw-medium text-white">{tr.subtitle}</span>
+                            <span className="fs-5 fw-medium text-white">
+                                {/* Site Info'dan gelen metni dile göre seç (en ise _en ekli halini al, yoksa normalini al) */}
+                                {(locale === 'en' ? siteInfo?.iletisim_metni_en : siteInfo?.iletisim_metni) || tr.subtitle}
+                            </span>
                             <div className="d-flex pt-6 pb-3 align-items-center">
                                 <div className="bg-white-keep icon-flip position-relative icon-shape icon-xxl rounded-3">
                                     <div className="icon d-flex align-items-center justify-content-center">
