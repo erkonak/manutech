@@ -63,48 +63,7 @@ export async function getEducations() {
 }
 
 export async function getInterviews() {
-    // Mock data for interviews
-    return {
-        success: true,
-        data: [
-            {
-                customer_name: "Mehmet Yılmaz",
-                company_name: "Yılmaz Makina",
-                customer_title: "Genel Müdür",
-                testimonial: "Manutech Solutions ile üretim süreçlerimizi %40 hızlandırdık. Profesyonel destekleri için teşekkürler.",
-                testimonial_en: "We accelerated our production processes by 40% with Manutech Solutions. Thanks for their professional support.",
-                customer_image: null,
-                video_url: "https://www.youtube.com"
-            },
-            {
-                customer_name: "Ayşe Kaya",
-                company_name: "Kaya Mühendislik",
-                customer_title: "Üretim Müdürü",
-                testimonial: "SolidCAM post desteği konusunda sağladıkları hızlı çözümler işimizi çok kolaylaştırdı.",
-                testimonial_en: "The fast solutions they provided regarding SolidCAM post support made our work much easier.",
-                customer_image: null,
-                video_url: ""
-            },
-            {
-                customer_name: "Ali Vural",
-                company_name: "Vural Savunma",
-                customer_title: "Proje Yöneticisi",
-                testimonial: "Eğitim hizmetleri ekibimizin yetkinliğini artırmada kilit rol oynadı.",
-                testimonial_en: "Training services played a key role in increasing the competence of our team.",
-                customer_image: null,
-                video_url: ""
-            },
-            {
-                customer_name: "Zeynep Demir",
-                company_name: "Demir Otomotiv",
-                customer_title: "Ar-Ge Müdürü",
-                testimonial: "Danışmanlık hizmetleri sayesinde hata oranlarımızı minimize ettik.",
-                testimonial_en: "We minimized our error rates thanks to consultancy services.",
-                customer_image: null,
-                video_url: ""
-            }
-        ]
-    };
+    return fetchApi("interviews");
 }
 
 export async function getSoftwareSolutions(category?: string) {

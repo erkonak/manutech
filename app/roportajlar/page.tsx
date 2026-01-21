@@ -14,13 +14,26 @@ export default function InterviewsPage() {
     useEffect(() => {
         async function fetchInterviews() {
             const data = await getInterviews()
-            if (data && data.success) {
+            if (data && data.status) {
                 setInterviews(data.data)
             }
             setLoading(false)
         }
         fetchInterviews()
     }, [])
+
+    const getYoutubeEmbedUrl = (url: string) => {
+        if (!url) return null;
+        let videoId = '';
+        if (url.includes('v=')) {
+            videoId = url.split('v=')[1].split('&')[0];
+        } else if (url.includes('youtu.be/')) {
+            videoId = url.split('youtu.be/')[1].split('?')[0];
+        } else if (url.includes('embed/')) {
+            return url;
+        }
+        return `https://www.youtube.com/embed/${videoId}`;
+    }
 
     const translations = {
         tr: {
@@ -86,27 +99,31 @@ export default function InterviewsPage() {
                                 interviews.map((item, index) => (
                                     <div key={index} className="col-lg-6 mb-6">
                                         <div className="card-testimonial p-6 bg-neutral-100 rounded-4 border border-white shadow-1 h-100 d-flex flex-column position-relative">
-                                            <div className="d-flex align-items-center mb-5">
-                                                <img className="rounded-circle border border-2 border-white shadow-sm" src={item.customer_image || "/assets/imgs/testimonial-1/avatar-1.png"} alt={item.customer_name} width="70" height="70" style={{ objectFit: 'cover' }} />
-                                                <div className="ms-4">
-                                                    <h5 className="mb-1">{item.customer_name}</h5>
-                                                    <p className="mb-0 fs-7 text-600">{t(item, 'customer_title')}</p>
-                                                    <p className="mb-0 fs-8 text-primary fw-bold text-uppercase">{t(item, 'company_name')}</p>
-                                                </div>
-                                            </div>
-                                            <p className="flex-grow-1 fs-5 text-900 italic mb-6">"{t(item, 'testimonial')}"</p>
-
-                                            {item.video_url && (
-                                                <div className="mt-auto">
-                                                    <a href={item.video_url} target="_blank" className="btn btn-sm btn-outline-dark rounded-pill">
-                                                        <i className="bi bi-play-circle-fill me-2"></i>
-                                                        {tr.watchVideo}
-                                                    </a>
+                                            {item.youtube_url && (
+                                                <div className="ratio ratio-16x9 mb-4 rounded-4 overflow-hidden shadow-sm">
+                                                    <iframe
+                                                        src={getYoutubeEmbedUrl(item.youtube_url) || ''}
+                                                        title={item.ad_soyad}
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                    ></iframe>
                                                 </div>
                                             )}
 
-                                            <div className="position-absolute top-0 end-0 p-5 opacity-10">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width={60} height={60} viewBox="0 0 24 24" fill="currentColor">
+                                            <div className="d-flex align-items-center mb-4">
+                                                <div className="icon-shape icon-md bg-primary-soft rounded-circle d-flex align-items-center justify-content-center text-primary">
+                                                    <i className="bi bi-person-fill fs-4"></i>
+                                                </div>
+                                                <div className="ms-3">
+                                                    <h5 className="mb-0">{item.ad_soyad}</h5>
+                                                    <p className="mb-0 fs-7 text-600">{t(item, 'gorev')}</p>
+                                                    <p className="mb-0 fs-8 text-primary fw-bold text-uppercase">{t(item, 'firma')}</p>
+                                                </div>
+                                            </div>
+                                            <p className="flex-grow-1 fs-5 text-900 italic mb-0">{t(item, 'konu')}</p>
+
+                                            <div className="position-absolute bottom-0 end-0 p-4 opacity-10">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} viewBox="0 0 24 24" fill="currentColor">
                                                     <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C15.4647 8 15.017 8.44772 15.017 9V12C15.017 12.5523 14.5693 13 14.017 13H12.017V21H14.017ZM5.017 21L5.017 18C5.017 16.8954 5.91243 16 7.017 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H7.017C6.46472 8 6.017 8.44772 6.017 9V12C6.017 12.5523 5.56928 13 5.017 13H3.017V21H5.017Z" />
                                                 </svg>
                                             </div>
