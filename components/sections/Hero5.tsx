@@ -178,7 +178,7 @@ export default function Hero5() {
 															</span>
 														</h3>
 														<p className="fs-5 text-900">
-															Erkonak Manutech, iş danışmanlığı için geniş bir danışmanlık ve eğitim yelpazesi sunar.
+															Manutech Solutions, iş danışmanlığı için geniş bir danışmanlık ve eğitim yelpazesi sunar.
 														</p>
 														<div className="d-flex flex-column flex-md-row align-items-center">
 															<Link href="/page-services-1" className="btn btn-gradient rounded-4">

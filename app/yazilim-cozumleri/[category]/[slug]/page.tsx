@@ -39,7 +39,7 @@ export default function SoftwareDetailsPage() {
             getInformation: "Bu Çözüm İçin Bilgi Alın",
             getInformationSub: "Program hakkında detaylı bilgi ve teklif almak için bizimle iletişime geçin.",
             request: "Talep Et",
-            supplierSub: "Erkonak Manutech olarak sizi en doğru tedarikçilerle buluşturuyoruz.",
+            supplierSub: "Manutech Solutions olarak sizi en doğru tedarikçilerle buluşturuyoruz.",
             supplierTitle: "Tedarikçi ile Bağlantı Kurun"
         },
         en: {
