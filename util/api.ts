@@ -58,7 +58,9 @@ export async function postBlogComment(data: any) {
     });
 }
 
-// --- MOCK DATA (Until Backend APIs are Ready) ---
+export async function getEducations() {
+    return fetchApi("educations");
+}
 
 export async function getInterviews() {
     // Mock data for interviews

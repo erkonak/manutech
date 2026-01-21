@@ -3,24 +3,24 @@
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import { useState, useEffect } from 'react'
-import { getSoftwareSolutions } from '@/util/api'
+import { getEducations } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 
-export default function TrainingPage() {
+export default function CoursePage() {
     const { locale, t } = useLanguage()
-    const [solutions, setSolutions] = useState<any[]>([])
+    const [educations, setEducations] = useState<any[]>([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        async function fetchSolutions() {
-            const data = await getSoftwareSolutions()
-            if (data && data.success) {
-                // Filter items that have a udemy_link
-                setSolutions(data.data.filter((item: any) => item.udemy_link))
+        async function fetchEducations() {
+            const data = await getEducations()
+            console.log(data);
+            if (data) {
+                setEducations(data.data.filter((item: any) => item.udemy_url && item.durum == 1))
             }
             setLoading(false)
         }
-        fetchSolutions()
+        fetchEducations()
     }, [])
 
     const translations = {
@@ -31,22 +31,18 @@ export default function TrainingPage() {
             udemyTitle: "Udemy Eğitimlerimiz",
             udemySubtitle: "Yazılım çözümlerimiz için hazırladığımız kapsamlı eğitim setlerine Udemy üzerinden ulaşabilirsiniz.",
             loading: "Yükleniyor...",
-            trainingSuffix: " Eğitimi",
-            learnProfessional: "Bu yazılımı profesyonel düzeyde öğrenmek için hazırladığımız özel eğitim seti.",
-            goToTraining: "Eğitime Git",
-            noTraining: "Henüz eğitim linki eklenmiş bir program bulunmamaktadır."
+            goToCourse: "Eğitime Git",
+            noCourse: "Henüz eğitim linki eklenmiş bir program bulunmamaktadır."
         },
         en: {
             home: "Home",
-            title: "Our Trainings",
-            breadcrumb: "Training",
+            title: "Our Courses",
+            breadcrumb: "Course",
             udemyTitle: "Our Udemy Courses",
-            udemySubtitle: "You can access our comprehensive training sets prepared for our software solutions via Udemy.",
+            udemySubtitle: "You can access our comprehensive course sets prepared for our software solutions via Udemy.",
             loading: "Loading...",
-            trainingSuffix: " Training",
-            learnProfessional: "Speaks for our special training set prepared to learn this software at a professional level.",
-            goToTraining: "Go to Training",
-            noTraining: "There are no programs with training links yet."
+            goToCourse: "Go to Course",
+            noCourse: "There are no programs with Course links yet."
         }
     }
 
@@ -87,21 +83,21 @@ export default function TrainingPage() {
                         </div>
                     ) : (
                         <div className="row">
-                            {solutions.length > 0 ? (
-                                solutions.map((item, index) => (
+                            {educations.length > 0 ? (
+                                educations.map((item, index) => (
                                     <div key={index} className="col-lg-4 col-md-6 mb-4">
                                         <div className="p-2 rounded-4 shadow-1 bg-white hover-up d-flex flex-column h-100">
                                             <div className="position-relative">
-                                                <img className="rounded-4 img-fluid w-100" src={item.image || "/assets/imgs/blog/img-1.png"} alt={t(item, 'title')} style={{ height: '200px', objectFit: 'cover' }} />
+                                                <img className="rounded-4 img-fluid w-100" src={item.kapak_resmi || "/assets/imgs/blog/img-1.png"} alt={t(item, 'baslik')} style={{ height: '200px', objectFit: 'cover' }} />
                                                 <div className="position-absolute top-0 end-0 m-3">
                                                     <span className="badge bg-primary px-3 py-2 rounded-pill">Udemy</span>
                                                 </div>
                                             </div>
                                             <div className="p-4 flex-grow-1 d-flex flex-column">
-                                                <h5 className="mb-3">{t(item, 'title')}{tr.trainingSuffix}</h5>
-                                                <p className="text-600 fs-7 mb-4 flex-grow-1">{tr.learnProfessional}</p>
-                                                <Link href={item.udemy_link} target="_blank" className="btn btn-gradient w-100 rounded-pill">
-                                                    {tr.goToTraining}
+                                                <h5 className="mb-3">{t(item, 'baslik')}</h5>
+                                                <p className="text-600 fs-7 mb-4 flex-grow-1">{t(item, 'aciklama')}</p>
+                                                <Link href={item.udemy_url} target="_blank" className="btn btn-gradient w-100 rounded-pill">
+                                                    {tr.goToCourse}
                                                     <i className="bi bi-box-arrow-up-right ms-2"></i>
                                                 </Link>
                                             </div>
@@ -110,7 +106,7 @@ export default function TrainingPage() {
                                 ))
                             ) : (
                                 <div className="col-12 text-center">
-                                    <p>{tr.noTraining}</p>
+                                    <p>{tr.noCourse}</p>
                                 </div>
                             )}
                         </div>
