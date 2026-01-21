@@ -4,10 +4,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { useLanguage } from '@/context/LanguageContext'
+import { useSiteInfo } from '@/context/SiteInfoContext'
 
 export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 	const [isAccordion, setIsAccordion] = useState(0)
     const { locale } = useLanguage()
+    const { siteInfo } = useSiteInfo()
 
 	const handleAccordion = (key: any) => {
 		setIsAccordion(prevState => prevState === key ? null : key)
@@ -49,8 +51,13 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 				<div className="mobile-header-wrapper-inner">
 					<div className="mobile-header-logo">
 						<Link className="navbar-brand d-flex main-logo align-items-center" href="/">
-							<img src="/assets/imgs/template/favicon.svg" alt="Manutech" />
-							<span>Manutech</span>
+							{siteInfo?.logo ? (
+								<img src={siteInfo.logo} alt={siteInfo.firma_adi || "Logo"} style={{ width: siteInfo.logo_w ? `${Number(siteInfo.logo_w) * 0.8}px` : 'auto', height: siteInfo.logo_h ? `${Number(siteInfo.logo_h) * 0.8}px` : 'auto' }} />
+							) : (
+								<>
+									<img src="https://demo.eemre.tr/assets/img/site/logo/logo.png" alt="Logo" style={{ width: '150px' }} />
+								</>
+							)}
 						</Link>
 						<div className={`burger-icon burger-icon-white border rounded-3 ${isMobileMenu ? 'burger-close' : ''}`} onClick={handleMobileMenu}>
 							<span className="burger-icon-top" />

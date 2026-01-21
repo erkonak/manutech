@@ -50,7 +50,7 @@ export default function ContactPage() {
             const apiData = {
                 ad_soyad: formData.name,
                 mail: formData.email,
-                telefon: formData.phone,
+                telefon: formData.phone, // API'ye boşluklu formatta gönderiliyor
                 konu: formData.subject,
                 mesaj: formData.message,
                 firma: formData.company
@@ -96,11 +96,30 @@ export default function ContactPage() {
         }
     }
 
+    const formatPhoneNumber = (value: string) => {
+        const numbers = value.replace(/\D/g, ''); // Sadece rakamları al
+        const char = { 3: ' ', 6: ' ', 8: ' ' };
+        let formatted = '';
+        for (let i = 0; i < Math.min(numbers.length, 10); i++) {
+            formatted += (char[i as keyof typeof char] || '') + numbers[i];
+        }
+        return formatted;
+    }
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
+        const { name, value } = e.target;
+
+        if (name === 'phone') {
+            setFormData({
+                ...formData,
+                phone: formatPhoneNumber(value)
+            })
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            })
+        }
     }
 
     const translations = {
@@ -232,7 +251,7 @@ export default function ContactPage() {
                                 <div className="ps-5">
                                     <h6 className="text-white">{tr.phone}</h6>
                                     <p className="text-white mb-0">
-                                        <a href={`tel:+90${siteInfo?.telefon}`} className="text-white">{'+90' + siteInfo?.telefon}</a>
+                                        <a href={`tel:+90${siteInfo?.telefon}`} className="text-white">{'+90 ' + siteInfo?.telefon}</a>
                                     </p>
                                 </div>
                             </div>
