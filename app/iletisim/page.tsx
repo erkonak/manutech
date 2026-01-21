@@ -2,7 +2,7 @@
 "use client"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useLanguage } from '@/context/LanguageContext'
 import { sendContactForm } from '@/util/api'
 import './contact-styles.css'
@@ -11,6 +11,7 @@ import { useSiteInfo } from '@/context/SiteInfoContext'
 export default function ContactPage() {
     const { locale } = useLanguage()
     const { siteInfo } = useSiteInfo()
+    const formContainerRef = useRef<HTMLDivElement>(null)
     const [formData, setFormData] = useState({
         name: '',
         company: '',
@@ -71,16 +72,25 @@ export default function ContactPage() {
                 })
                 // Auto-hide success message after 5 seconds
                 setTimeout(() => setSuccess(false), 5000)
+
+                // Scroll to top of the form for mobile users
+                formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
             } else {
                 // Handle API error messages
                 const rawMsg = response?.message || response?.error;
                 const errorMessage = getLocalizedApiMessage(rawMsg) || (locale === 'en' ? 'An error occurred. Please try again.' : 'Bir hata oluştu. Lütfen tekrar deneyiniz.')
                 setError(errorMessage)
+
+                // Scroll to top of the form for mobile users
+                formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
             }
         } catch (err: any) {
             console.error('Contact form error:', err)
             const errorMessage = err?.message || (locale === 'en' ? 'An error occurred. Please try again.' : 'Bir hata oluştu. Lütfen tekrar deneyiniz.')
             setError(errorMessage)
+
+            // Scroll to top of the form for mobile users
+            formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
         } finally {
             setLoading(false)
         }
@@ -230,7 +240,7 @@ export default function ContactPage() {
 
                         <div className="col-lg-6 ps-lg-0 pt-5 pt-lg-0">
                             <div className="position-relative">
-                                <div className="position-relative z-2 p-3 p-md-5 p-lg-8 rounded-3 bg-primary">
+                                <div ref={formContainerRef} className="position-relative z-2 p-3 p-md-5 p-lg-8 rounded-3 bg-primary">
                                     <h3 className="text-white mb-4">{tr.formTitle}</h3>
                                     {success && (
                                         <div className="alert alert-success mb-4">{tr.success}</div>
