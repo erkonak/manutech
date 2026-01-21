@@ -220,7 +220,7 @@ export default function ContactPage() {
                                 </div>
                                 <div className="ps-5">
                                     <h6 className="text-white">{tr.email}</h6>
-                                    <p className="text-white mb-0">{siteInfo?.mail || 'info@manutechsolutions.com'}</p>
+                                    <p className="text-white mb-0"><a href={`mailto:${siteInfo?.mail}`} className="text-white">{siteInfo?.mail}</a></p>
                                 </div>
                             </div>
                             <div className="d-flex pt-3 pb-3 align-items-center">
@@ -232,7 +232,7 @@ export default function ContactPage() {
                                 <div className="ps-5">
                                     <h6 className="text-white">{tr.phone}</h6>
                                     <p className="text-white mb-0">
-                                        {siteInfo?.telefon || '+90 212 000 00 00'}
+                                        <a href={`tel:+90${siteInfo?.telefon}`} className="text-white">{'+90' + siteInfo?.telefon}</a>
                                     </p>
                                 </div>
                             </div>
