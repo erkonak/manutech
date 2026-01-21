@@ -322,29 +322,29 @@ export default function ContactPage() {
                                                         </button>
                                                         <button
                                                             type="button"
-                                                            onClick={() => setFormData({...formData, subject: 'post'})}
-                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'post' ? 'active text-primary fw-semibold' : ''}`}
+                                                            onClick={() => setFormData({...formData, subject: 'post_destegi'})}
+                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'post_destegi' ? 'active text-primary fw-semibold' : ''}`}
                                                         >
                                                             {tr.post}
                                                         </button>
                                                         <button
                                                             type="button"
-                                                            onClick={() => setFormData({...formData, subject: 'training'})}
-                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'training' ? 'active text-primary fw-semibold' : ''}`}
+                                                            onClick={() => setFormData({...formData, subject: 'egitim'})}
+                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'egitim' ? 'active text-primary fw-semibold' : ''}`}
                                                         >
                                                             {tr.training}
                                                         </button>
                                                         <button
                                                             type="button"
-                                                            onClick={() => setFormData({...formData, subject: 'consultancy'})}
-                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'consultancy' ? 'active text-primary fw-semibold' : ''}`}
+                                                            onClick={() => setFormData({...formData, subject: 'danismanlik'})}
+                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'danismanlik' ? 'active text-primary fw-semibold' : ''}`}
                                                         >
                                                             {tr.consultancy}
                                                         </button>
                                                         <button
                                                             type="button"
-                                                            onClick={() => setFormData({...formData, subject: 'other'})}
-                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'other' ? 'active text-primary fw-semibold' : ''}`}
+                                                            onClick={() => setFormData({...formData, subject: 'diger'})}
+                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'diger' ? 'active text-primary fw-semibold' : ''}`}
                                                         >
                                                             {tr.other}
                                                         </button>
