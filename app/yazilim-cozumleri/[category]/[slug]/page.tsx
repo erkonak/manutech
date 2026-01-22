@@ -87,7 +87,7 @@ export default function SoftwareDetailsPage() {
             <section className="section-page-header py-10 fix position-relative">
                 <div className="container position-relative z-1">
                     <div className="text-start">
-                        <h3>{t(solution, 'title')}</h3>
+                        <h3>{t(solution, 'baslik')}</h3>
                         <div className="d-flex">
                             <Link href="/">
                                 <p className="mb-0 text-900">{tr.home}</p>
@@ -101,7 +101,7 @@ export default function SoftwareDetailsPage() {
                             <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
                                 <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                            <p className="text-primary mb-0">{t(solution, 'title')}</p>
+                            <p className="text-primary mb-0">{t(solution, 'baslik')}</p>
                         </div>
                     </div>
                 </div>
@@ -112,12 +112,12 @@ export default function SoftwareDetailsPage() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8">
-                            <img className="rounded-3 img-fluid mb-5 w-100" src={solution.image || "/assets/imgs/services-details/img-1.png"} alt={t(solution, 'title')} style={{ maxHeight: '450px', objectFit: 'cover' }} />
+                            <img className="rounded-3 img-fluid mb-5 w-100" src={solution.resim || "/assets/imgs/services-details/img-1.png"} alt={t(solution, 'baslik')} style={{ maxHeight: '450px', objectFit: 'contain' }} />
                             <div className="content">
-                                <h4>{t(solution, 'title')} {tr.techDetails}</h4>
-                                <div className="mt-4" dangerouslySetInnerHTML={{ __html: t(solution, 'description') }} />
+                                <h4>{t(solution, 'alt_baslik')}</h4>
+                                <div className="mt-4" dangerouslySetInnerHTML={{ __html: t(solution, 'icerik') }} />
 
-                                {solution.features && (
+                                {solution.features && Array.isArray(solution.features) && solution.features.length > 0 && (
                                     <div className="mt-5">
                                         <h5>{tr.features}</h5>
                                         <ul className="list-unstyled phase-items">

@@ -90,10 +90,10 @@ export default function SoftwareCategoryPage() {
                                         <div className="p-2 rounded-4 shadow-1 bg-white hover-up h-100">
                                             <div className="card-service bg-white p-6 border rounded-4 d-flex flex-column h-100">
                                                 <div className="mb-3">
-                                                    <img src={item.icon || item.image || "/assets/imgs/service-1/icon-1.svg"} alt={t(item, 'title')} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                                                    <img src={item.resim || "/assets/imgs/service-1/icon-1.svg"} alt={t(item, 'baslik')} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
                                                 </div>
-                                                <h6 className="my-3">{t(item, 'title')}</h6>
-                                                <p className="mb-6 flex-grow-1">{t(item, 'short_description')}</p>
+                                                <h6 className="my-3">{t(item, 'baslik')}</h6>
+                                                <p className="mb-6 flex-grow-1">{t(item, 'alt_baslik')}</p>
                                                 <Link href={`/yazilim-cozumleri/${category}/${item.slug}`} className="rounded-pill border icon-shape d-inline-flex gap-3 icon-learn-more mt-auto">
                                                     <svg className="arrow" xmlns="http://www.w3.org/2000/svg" width={18} height={10} viewBox="0 0 18 10" fill="none">
                                                         <path className="fill-dark" d="M13.0633 0.0634766L12.2615 0.86529L15.8294 4.43321H0V5.56716H15.8294L12.2615 9.13505L13.0633 9.93686L18 5.00015L13.0633 0.0634766Z" fill="#111827" />

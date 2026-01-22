@@ -1,15 +1,27 @@
 
 'use client'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { useLanguage } from '@/context/LanguageContext'
 import { useSiteInfo } from '@/context/SiteInfoContext'
+import { getSolutions, Solution } from '@/util/api'
 
 export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 	const [isAccordion, setIsAccordion] = useState(0)
     const { locale } = useLanguage()
     const { siteInfo } = useSiteInfo()
+    const [solutions, setSolutions] = useState<Solution[]>([])
+
+    useEffect(() => {
+        async function fetchMenuData() {
+            const data = await getSolutions()
+            if (data && data.status) {
+                setSolutions(data.data)
+            }
+        }
+        fetchMenuData()
+    }, [])
 
 	const handleAccordion = (key: any) => {
 		setIsAccordion(prevState => prevState === key ? null : key)
@@ -79,12 +91,11 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 											</span>
 											<Link href="#">{m.software}</Link>
 											<ul className="sub-menu" style={{ display: `${isAccordion == 1 ? "block" : "none"}` }}>
-												<li><Link href="/yazilim-cozumleri/cad">CAD</Link></li>
-												<li><Link href="/yazilim-cozumleri/cam">CAM</Link></li>
-												<li><Link href="/yazilim-cozumleri/aea">AEA / FEA</Link></li>
-												<li><Link href="/yazilim-cozumleri/fma">FMA</Link></li>
-												<li><Link href="/yazilim-cozumleri/pdm">PDM</Link></li>
-												<li><Link href="/yazilim-cozumleri/plm">PLM</Link></li>
+                                                {solutions.map((item) => (
+                                                    <li key={item.id}>
+                                                        <Link href={`/yazilim-cozumleri/${item.slug}`} onClick={handleMobileMenu}>{item.baslik}</Link>
+                                                    </li>
+                                                ))}
 											</ul>
 										</li>
 										<li className={`has-children ${isAccordion === 2 ? "active" : ""}`}>

@@ -22,6 +22,35 @@ async function fetchApi(endpoint: string, options: RequestInit = {}) {
     }
 }
 
+// --- TYPES ---
+
+export interface Solution {
+    id: number;
+    baslik: string;
+    slug: string;
+    durum: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface SubSolution {
+    id: number;
+    yazilim_cozum_id: string;
+    baslik: string;
+    baslik_en: string;
+    slug: string;
+    slug_en: string;
+    alt_baslik: string;
+    alt_baslik_en: string;
+    icerik: string;
+    icerik_en: string;
+    resim: string;
+    durum: string;
+    created_at: string;
+    updated_at: string;
+    ana_slug?: string;
+}
+
 // --- ACTIVE HEADLESS APIs ---
 
 export async function getSiteInfo() {
@@ -66,70 +95,66 @@ export async function getInterviews() {
     return fetchApi("interviews");
 }
 
-export async function getSoftwareSolutions(category?: string) {
-    // Mock data for software solutions
-    const allSolutions = [
-        {
-            title: "SolidCAM",
-            title_en: "SolidCAM",
-            slug: "solidcam",
-            category: "cam",
-            image: "/assets/imgs/page/about/img-1.png",
-            icon: "/assets/imgs/service-1/icon-1.svg",
-            short_description: "SolidWorks ile tam entegre CAM çözümü.",
-            short_description_en: "Fully integrated CAM solution with SolidWorks.",
-            udemy_link: "https://www.udemy.com"
-        },
-        {
-            title: "Siemens NX",
-            title_en: "Siemens NX",
-            slug: "siemens-nx",
-            category: "cad",
-            image: "/assets/imgs/page/about/img-2.png",
-            icon: "/assets/imgs/service-1/icon-2.svg",
-            short_description: "Kapsamlı CAD/CAM/CAE çözümü.",
-            short_description_en: "Comprehensive CAD/CAM/CAE solution.",
-            udemy_link: "https://www.udemy.com"
-        },
-        {
-            title: "Ansys",
-            title_en: "Ansys",
-            slug: "ansys",
-            category: "aea",
-            image: "/assets/imgs/page/about/img-3.png",
-            icon: "/assets/imgs/service-1/icon-3.svg",
-            short_description: "Mühendislik simülasyon yazılımı.",
-            short_description_en: "Engineering simulation software.",
-            udemy_link: null
-        }
-    ];
+export async function getSolutions() {
+    return fetchApi("solutions");
+}
 
-    const data = category
-        ? allSolutions.filter(s => s.category === category)
-        : allSolutions;
+export async function getSubSolutions(solutionId: number | string) {
+    return fetchApi(`sub-solutions?solution_id=${solutionId}`);
+}
 
+export async function getSoftwareSolutions(categorySlug?: string) {
+    // Tüm ana çözümleri getir
+    const solutionsResponse = await getSolutions();
+    if (!solutionsResponse || !solutionsResponse.status) return { success: false, data: [] };
+
+    const solutions: Solution[] = solutionsResponse.data;
+
+    if (categorySlug) {
+        // Belirli bir kategoriye ait alt çözümleri getir
+        const targetSolution = solutions.find(s => s.slug === categorySlug);
+        if (!targetSolution) return { success: false, data: [] };
+
+        const subSolutionsResponse = await getSubSolutions(targetSolution.id);
+        return {
+            success: subSolutionsResponse?.status ?? false,
+            data: subSolutionsResponse?.data ?? []
+        };
+    }
+
+    // Kategori belirtilmemişse, tüm ana çözümlerin alt çözümlerini topla (veya boş dön, ihtiyaca göre)
+    // Şimdilik sadece ana çözümleri de dönebiliriz ya da hepsini fetch edebiliriz.
+    // Ancak genellikle kategori bazlı istenir.
     return {
         success: true,
-        data: data
+        data: solutions
     };
 }
 
 export async function getSoftwareSolutionBySlug(slug: string) {
-    const solutions = await getSoftwareSolutions();
-    const solution = solutions.data.find((s: any) => s.slug === slug);
-    return {
-        success: !!solution,
-        data: solution ? {
-            ...solution,
-            description: "<p>Bu yazılım ile üretim süreçlerinizi optimize edebilirsiniz. Detaylı teknik özellikler ve modüller hakkında bilgi almak için bizimle iletişime geçin.</p>",
-            description_en: "<p>You can optimize your production processes with this software. Contact us for detailed technical specifications and modules.</p>",
-            features: [
-                { title: "Yüksek Performans", title_en: "High Performance" },
-                { title: "Kolay Kullanım", title_en: "Easy to Use" },
-                { title: "Teknik Destek", title_en: "Technical Support" }
-            ]
-        } : null
-    };
+    // Bu API'da slug ile direkt getirme yok gibi görünüyor.
+    // Tüm alt çözümleri kontrol etmemiz gerekebilir ya da önce kategoriyi bulup sonra altındakilere bakmalıyız.
+    // Pratik olması için tüm çözümleri ve altlarını fetch eden bir yapı kurabiliriz veya
+    // sub-solutions API'sinin slug desteği olup olmadığını kontrol etmeliyiz.
+    // Örnek datada 'ana_slug' var, bu yardımcı olabilir.
+
+    const solutionsResponse = await getSolutions();
+    if (!solutionsResponse || !solutionsResponse.status) return { success: false, data: null };
+
+    for (const solution of solutionsResponse.data) {
+        const subsResponse = await getSubSolutions(solution.id);
+        if (subsResponse && subsResponse.status) {
+            const found = subsResponse.data.find((s: SubSolution) => s.slug === slug || s.slug_en === slug);
+            if (found) {
+                return {
+                    success: true,
+                    data: found
+                };
+            }
+        }
+    }
+
+    return { success: false, data: null };
 }
 
 export async function getPostSupport(slug?: string) {

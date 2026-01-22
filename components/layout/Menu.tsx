@@ -2,20 +2,27 @@
 "use client"
 import Link from "next/link"
 import { useLanguage } from "@/context/LanguageContext"
+import { useEffect, useState } from "react"
+import { getSolutions, Solution } from "@/util/api"
 
 export default function Menu() {
     const { locale } = useLanguage()
+    const [solutions, setSolutions] = useState<Solution[]>([])
+
+    useEffect(() => {
+        async function fetchMenuData() {
+            const data = await getSolutions()
+            if (data && data.status) {
+                setSolutions(data.data)
+            }
+        }
+        fetchMenuData()
+    }, [])
 
     const menuItems = {
         tr: {
             home: "Anasayfa",
             software: "Yazılım Çözümleri",
-            cad: "CAD Çözümleri",
-            cam: "CAM Çözümleri",
-            aea: "AEA (Analiz)",
-            fma: "FMA (Simülasyon)",
-            pdm: "PDM (Veri Yönetimi)",
-            plm: "PLM (Ürün Yaşam Döngüsü)",
             post: "Post Desteği",
             training: "Eğitim",
             consultancy: "Danışmanlık",
@@ -28,12 +35,6 @@ export default function Menu() {
         en: {
             home: "Home",
             software: "Software Solutions",
-            cad: "CAD Solutions",
-            cam: "CAM Solutions",
-            aea: "FEA (Analysis)",
-            fma: "FMA (Simulation)",
-            pdm: "PDM (Data Management)",
-            plm: "PLM (Product Lifecycle)",
             post: "Post Support",
             training: "Training",
             consultancy: "Consultancy",
@@ -59,36 +60,13 @@ export default function Menu() {
                     </Link>
                     <div className="dropdown-menu fix">
                         <ul className="list-unstyled">
-                            <li className="position-relative z-1 border-bottom">
-                                <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href="/yazilim-cozumleri/cad">
-                                    <span className="ms-2">CAD</span>
-                                </Link>
-                            </li>
-                            <li className="position-relative z-1 border-bottom">
-                                <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href="/yazilim-cozumleri/cam">
-                                    <span className="ms-2">CAM</span>
-                                </Link>
-                            </li>
-                            <li className="position-relative z-1 border-bottom">
-                                <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href="/yazilim-cozumleri/aea">
-                                    <span className="ms-2">AEA / FEA</span>
-                                </Link>
-                            </li>
-                            <li className="position-relative z-1 border-bottom">
-                                <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href="/yazilim-cozumleri/fma">
-                                    <span className="ms-2">FMA</span>
-                                </Link>
-                            </li>
-                            <li className="position-relative z-1 border-bottom">
-                                <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href="/yazilim-cozumleri/pdm">
-                                    <span className="ms-2">PDM</span>
-                                </Link>
-                            </li>
-                            <li className="position-relative z-1">
-                                <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href="/yazilim-cozumleri/plm">
-                                    <span className="ms-2">PLM</span>
-                                </Link>
-                            </li>
+                            {solutions.map((item) => (
+                                <li key={item.id} className="position-relative z-1 border-bottom">
+                                    <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href={`/yazilim-cozumleri/${item.slug}`}>
+                                        <span className="ms-2">{item.baslik}</span>
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </li>
