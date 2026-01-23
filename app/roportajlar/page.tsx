@@ -2,25 +2,19 @@
 "use client"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState, useEffect } from 'react'
 import { getInterviews } from '@/util/api'
+import type { Interview } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
+import { useApi } from '@/hooks/useApi'
 
 export default function InterviewsPage() {
     const { locale, t } = useLanguage()
-    const [interviews, setInterviews] = useState<any[]>([])
-    const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        async function fetchInterviews() {
-            const data = await getInterviews()
-            if (data && data.status) {
-                setInterviews(data.data)
-            }
-            setLoading(false)
-        }
-        fetchInterviews()
-    }, [])
+    // useApi hook kullanımı (SWR desteği ile)
+    const { data: response, loading } = useApi(getInterviews, { cacheKey: 'interviews' });
+
+    // Veriyi al
+    const interviews = response?.status && response?.data ? response.data : [];
 
     const getYoutubeEmbedUrl = (url: string) => {
         if (!url) return null;
@@ -116,11 +110,12 @@ export default function InterviewsPage() {
                                                 </div>
                                                 <div className="ms-3">
                                                     <h5 className="mb-0">{item.ad_soyad}</h5>
-                                                    <p className="mb-0 fs-7 text-600">{t(item, 'gorev')}</p>
-                                                    <p className="mb-0 fs-8 text-primary fw-bold text-uppercase">{t(item, 'firma')}</p>
+                                                    <p className="mb-0 fs-7 text-600">{item.gorev}</p>
+                                                    <p className="mb-0 fs-8 text-primary fw-bold text-uppercase">{item.firma}</p>
                                                 </div>
                                             </div>
-                                            <p className="flex-grow-1 fs-5 text-900 italic mb-0">{t(item, 'konu')}</p>
+
+                                            <p className="flex-grow-1 fs-5 text-900 italic mb-0">{item.konu}</p>
 
                                             <div className="position-absolute bottom-0 end-0 p-4 opacity-10">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width={40} height={40} viewBox="0 0 24 24" fill="currentColor">

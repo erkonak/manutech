@@ -2,31 +2,19 @@
 "use client"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
-import { getPostSupport, PostSupport } from '@/util/api'
+import { getPostSupport } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
+import { useApi } from '@/hooks/useApi'
 
 export default function PostSupportDetailsPage() {
     const params = useParams()
     const slug = params.slug as string
-    const [data, setData] = useState<PostSupport | null>(null)
-    const [loading, setLoading] = useState(true)
     const { locale } = useLanguage()
 
-    useEffect(() => {
-        async function fetchData() {
-            setLoading(true)
-            const response = await getPostSupport(slug)
-            if (response && response.success) {
-                setData(response.data)
-            }
-            setLoading(false)
-        }
-        if (slug) {
-            fetchData()
-        }
-    }, [slug])
+    // useApi hook kullanımı
+    const { data: response, loading } = useApi(() => getPostSupport(slug), { deps: [slug] });
+    const data = response?.success ? response.data : null;
 
     if (loading) {
         return (

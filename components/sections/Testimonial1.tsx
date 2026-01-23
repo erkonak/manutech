@@ -13,7 +13,7 @@ export default function Testimonial1() {
     useEffect(() => {
         async function fetchInterviews() {
             const data = await getInterviews()
-            if (data && data.success) {
+            if (data && data.status && data.data) {
                 setInterviews(data.data.slice(0, 4)) // Take first 4 interviews
             }
             setLoading(false)
@@ -76,15 +76,15 @@ export default function Testimonial1() {
                             </div>
                         </div>
                         <div className="col-lg-4">
-                            {col2Reviews.map((item, index) => (
+                            {col2Reviews.map((item: any, index: number) => (
                                 <div key={index} className={`bg-neutral-100 p-5 ${index > 0 ? 'mt-5' : 'mt-8'} rounded-3 position-relative card-hover`} data-aos="fade-zoom-in" data-aos-delay={100 * (index + 1)}>
-                                    <p className="text-900">"{t(item, 'testimonial')}"</p>
+                                    <p className="text-900">"{t(item, 'konu')}"</p>
                                     <div className="d-flex align-items-center mt-5">
-                                        <img className="avatar-lg rounded-circle" src={item.customer_image || "/assets/imgs/testimonial-1/avatar-1.png"} alt={item.customer_name} style={{ width: '48px', height: '48px', objectFit: 'cover' }} />
+                                        <img className="avatar-lg rounded-circle" src={item.customer_image || "/assets/imgs/testimonial-1/avatar-1.png"} alt={item.ad_soyad} style={{ width: '48px', height: '48px', objectFit: 'cover' }} />
                                         <div className="d-flex flex-column">
-                                            <h6 className="ms-3 fs-6 mb-0">{item.customer_name}</h6>
+                                            <h6 className="ms-3 fs-6 mb-0">{item.ad_soyad}</h6>
                                             <div className="flag ms-3">
-                                                <span className="fs-8">{t(item, 'company_name')}</span>
+                                                <span className="fs-8">{t(item, 'firma')}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -93,15 +93,15 @@ export default function Testimonial1() {
                             ))}
                         </div>
                         <div className="col-lg-4">
-                            {col3Reviews.map((item, index) => (
+                            {col3Reviews.map((item: any, index: number) => (
                                 <div key={index} className={`bg-neutral-100 p-5 ${index > 0 ? 'mt-5' : 'mt-5 mt-lg-0'} rounded-3 position-relative card-hover`} data-aos="fade-zoom-in" data-aos-delay={300 + (100 * index)}>
-                                    <p className="text-900">"{t(item, 'testimonial')}"</p>
+                                    <p className="text-900">"{t(item, 'konu')}"</p>
                                     <div className="d-flex align-items-center mt-5">
-                                        <img className="avatar-lg rounded-circle" src={item.customer_image || "/assets/imgs/testimonial-1/avatar-3.png"} alt={item.customer_name} style={{ width: '48px', height: '48px', objectFit: 'cover' }} />
+                                        <img className="avatar-lg rounded-circle" src={item.customer_image || "/assets/imgs/testimonial-1/avatar-3.png"} alt={item.ad_soyad} style={{ width: '48px', height: '48px', objectFit: 'cover' }} />
                                         <div className="d-flex flex-column">
-                                            <h6 className="ms-3 fs-6 mb-0">{item.customer_name}</h6>
+                                            <h6 className="ms-3 fs-6 mb-0">{item.ad_soyad}</h6>
                                             <div className="flag ms-3">
-                                                <span className="fs-8">{t(item, 'company_name')}</span>
+                                                <span className="fs-8">{t(item, 'firma')}</span>
                                             </div>
                                         </div>
                                     </div>

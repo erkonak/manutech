@@ -77,7 +77,7 @@ export default function BlogDetailPage() {
                 setCommentData({ name: '', email: '', comment: '', website: '' })
                 setReplyTo(null)
             } else {
-                const rawMsg = res?.message || res?.error;
+                const rawMsg = res?.message || res?.error || '';
                 setCommentStatus({
                     loading: false,
                     success: false,

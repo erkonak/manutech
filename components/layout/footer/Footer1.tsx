@@ -24,7 +24,6 @@ export default function Footer1() {
 			aea: "AEA / FEA",
 			post: "Post Desteği",
 			training: "Eğitim",
-			consultancy: "Danışmanlık",
 			kvkk: "KVKK Aydınlatma Metni",
 			privacy: "Gizlilik Politikası"
 		},
@@ -43,7 +42,6 @@ export default function Footer1() {
 			aea: "FEA Analysis",
 			post: "Post Support",
 			training: "Training",
-			consultancy: "Consultancy",
 			kvkk: "KVKK Text",
 			privacy: "Privacy Policy"
 		}
@@ -114,7 +112,7 @@ export default function Footer1() {
 											<div className="d-flex flex-column align-items-start">
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/post-destegi/solidcam">{t.post}</Link>
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/egitim">{t.training}</Link>
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/danismanlik/uretim-surecleri">{t.consultancy}</Link>
+
 											</div>
 										</div>
 									</div>

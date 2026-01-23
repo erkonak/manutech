@@ -2,31 +2,20 @@
 "use client"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { getSoftwareSolutionBySlug } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
+import { useApi } from '@/hooks/useApi'
 
 export default function SoftwareDetailsPage() {
     const params = useParams()
     const slug = params.slug as string
     const category = params.category as string
     const { locale, t } = useLanguage()
-    const [solution, setSolution] = useState<any>(null)
-    const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        async function fetchDetail() {
-            const data = await getSoftwareSolutionBySlug(slug)
-            if (data && data.success) {
-                setSolution(data.data)
-            }
-            setLoading(false)
-        }
-        if (slug) {
-            fetchDetail()
-        }
-    }, [slug])
+    // useApi hook kullanımı
+    const { data: response, loading } = useApi(() => getSoftwareSolutionBySlug(slug), { deps: [slug] });
+    const solution = response?.success ? response.data : null;
 
     const translations = {
         tr: {
@@ -117,6 +106,7 @@ export default function SoftwareDetailsPage() {
                                 <h4>{t(solution, 'alt_baslik')}</h4>
                                 <div className="mt-4" dangerouslySetInnerHTML={{ __html: t(solution, 'icerik') }} />
 
+                                {/* solution.features yeni API'de dönmüyor (mock veride vardı). Kontrollü ekleyelim */}
                                 {solution.features && Array.isArray(solution.features) && solution.features.length > 0 && (
                                     <div className="mt-5">
                                         <h5>{tr.features}</h5>

@@ -15,6 +15,7 @@ import type { Metadata } from "next"
 
 import { LanguageProvider } from "@/context/LanguageContext"
 import { SiteInfoProvider } from "@/context/SiteInfoContext"
+import { DataProvider } from "@/context/DataContext"
 
 export const metadata: Metadata = {
     title: "Manutech Solutions",
@@ -31,10 +32,13 @@ export default function RootLayout({
             <body>
                 <LanguageProvider>
                     <SiteInfoProvider>
-                        {children}
+                        <DataProvider>
+                            {children}
+                        </DataProvider>
                     </SiteInfoProvider>
                 </LanguageProvider>
             </body>
         </html>
     )
 }
+

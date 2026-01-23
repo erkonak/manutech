@@ -3,11 +3,12 @@
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { getBlogs } from '@/util/api'
+import type { Blog } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function Blog1() {
     const { locale, t } = useLanguage()
-    const [blogs, setBlogs] = useState<any[]>([])
+    const [blogs, setBlogs] = useState<Blog[]>([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -15,13 +16,12 @@ export default function Blog1() {
             try {
                 const response = await getBlogs()
                 // Check if response has status: true and data object with pagination
-                if (response && response.status && response.data && Array.isArray(response.data.data)) {
+                if (response?.status && response.data && Array.isArray(response.data.data)) {
                     // Take first 3 blogs from the data array inside pagination object
-                    // API returns: { status: true, data: { current_page: 1, data: [ ... ], ... } }
                     setBlogs(response.data.data.slice(0, 3))
-                } else if (response && response.data && Array.isArray(response.data)) {
+                } else if (response?.data && Array.isArray(response.data)) {
                     // Fallback for direct array response
-                    setBlogs(response.data.slice(0, 3))
+                    setBlogs((response.data as unknown as Blog[]).slice(0, 3))
                 }
             } catch (error) {
                 console.error("Blog yüklenirken hata:", error)
@@ -33,7 +33,7 @@ export default function Blog1() {
     }, [])
 
     // Blog için doğru slug'ı getir - Ana sayfada da lokalizasyon önemli
-    const getSlug = (blogItem: any) => {
+    const getSlug = (blogItem: Blog) => {
        if (locale === 'en' && blogItem.slug_en) return blogItem.slug_en;
        if (locale === 'ar' && blogItem.slug_ar) return blogItem.slug_ar;
        return blogItem.slug;
@@ -97,7 +97,7 @@ export default function Blog1() {
                                         </div>
                                         <div className="card-body p-0 bg-white d-flex flex-column">
                                             <div className="bg-primary-soft position-relative z-1 d-inline-flex rounded-pill px-3 py-2 mt-3 align-self-start">
-                                                <span className="tag-spacing fs-7 fw-bold text-linear-2 text-uppercase">{blog.k?.kategori || blog.kategori || 'Blog'}</span>
+                                                <span className="tag-spacing fs-7 fw-bold text-linear-2 text-uppercase">{blog.k?.kategori || 'Blog'}</span>
                                             </div>
                                             <h6 className="my-3">{t(blog, 'baslik')}</h6>
                                             <p className="flex-grow-1"dangerouslySetInnerHTML={{

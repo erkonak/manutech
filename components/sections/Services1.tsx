@@ -19,8 +19,6 @@ export default function Services1() {
             postDesc: "SolidCAM, Mastercam ve NX CAM için profesyonel post işlemci desteği.",
             training: "Eğitim Hizmetleri",
             trainingDesc: "Uzman kadromuzdan birebir veya online teknik eğitimler.",
-            consultancy: "Danışmanlık",
-            consultancyDesc: "Üretim ve tasarım süreçlerinizi optimize etmek için profesyonel danışmanlık.",
             readMore: "Detayları İncele"
         },
         en: {
@@ -33,8 +31,6 @@ export default function Services1() {
             postDesc: "Professional post-processor support for SolidCAM, Mastercam, and NX CAM.",
             training: "Training Services",
             trainingDesc: "One-on-one or online technical training from our expert staff.",
-            consultancy: "Consultancy",
-            consultancyDesc: "Professional consultancy to optimize your production and design processes.",
             readMore: "Read More"
         }
     }
@@ -99,19 +95,7 @@ export default function Services1() {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="p-2 mt-5 rounded-4 shadow-1 bg-white position-relative z-1 hover-up" data-aos="fade-zoom-in" data-aos-delay={100}>
-                                <div className="card-service bg-white p-6 border rounded-3">
-                                    <div className="icon-shape icon-lg rounded-circle bg-primary-soft mb-3">
-                                        <i className="bi bi-people fs-3 text-primary"></i>
-                                    </div>
-                                    <h6 className="my-3">{tr.consultancy}</h6>
-                                    <p className="mb-6">{tr.consultancyDesc}</p>
-                                    <Link href="/danismanlik/uretim-surecleri" className="rounded-pill border icon-shape d-inline-flex gap-3 icon-learn-more">
-                                        <span className="fw-bold fs-7 text-900">{tr.readMore}</span>
-                                        <i className="bi bi-arrow-right"></i>
-                                    </Link>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

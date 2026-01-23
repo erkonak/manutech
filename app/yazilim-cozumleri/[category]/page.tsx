@@ -2,30 +2,19 @@
 "use client"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { getSoftwareSolutions } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
+import { useApi } from '@/hooks/useApi'
 
 export default function SoftwareCategoryPage() {
     const params = useParams()
     const category = params.category as string
     const { locale, t } = useLanguage()
-    const [solutions, setSolutions] = useState<any[]>([])
-    const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        async function fetchSolutions() {
-            const data = await getSoftwareSolutions(category)
-            if (data && data.success) {
-                setSolutions(data.data)
-            }
-            setLoading(false)
-        }
-        if (category) {
-            fetchSolutions()
-        }
-    }, [category])
+    // useApi hook kullanımı
+    const { data: response, loading } = useApi(() => getSoftwareSolutions(category), { deps: [category] });
+    const solutions = response?.success && response?.data ? response.data : [];
 
     const translations = {
         tr: {

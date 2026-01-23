@@ -77,7 +77,7 @@ export default function ContactPage() {
                 formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
             } else {
                 // Handle API error messages
-                const rawMsg = response?.message || response?.error;
+                const rawMsg = response?.message || response?.error || '';
                 const errorMessage = getLocalizedApiMessage(rawMsg) || (locale === 'en' ? 'An error occurred. Please try again.' : 'Bir hata oluştu. Lütfen tekrar deneyiniz.')
                 setError(errorMessage)
 
@@ -144,7 +144,6 @@ export default function ContactPage() {
             software: "Yazılım Çözümleri",
             post: "Post Desteği",
             training: "Eğitim",
-            consultancy: "Danışmanlık",
             other: "Diğer",
             message: "Mesajınız",
             send: "Gönder",
@@ -174,7 +173,6 @@ export default function ContactPage() {
             software: "Software Solutions",
             post: "Post Support",
             training: "Training",
-            consultancy: "Consultancy",
             other: "Other",
             message: "Your Message",
             send: "Send Message",
@@ -334,13 +332,7 @@ export default function ContactPage() {
                                                         >
                                                             {tr.training}
                                                         </button>
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => setFormData({...formData, subject: 'danismanlik'})}
-                                                            className={`btn rounded-pill px-4 py-2 subject-btn text-white ${formData.subject === 'danismanlik' ? 'active text-primary fw-semibold' : ''}`}
-                                                        >
-                                                            {tr.consultancy}
-                                                        </button>
+
                                                         <button
                                                             type="button"
                                                             onClick={() => setFormData({...formData, subject: 'diger'})}

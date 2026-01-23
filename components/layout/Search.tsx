@@ -12,14 +12,14 @@ export default function Search({ isSearch, handleSearch }: any) {
             subtitle: "Hizmetlerimizi keşfedin ve hedeflerinize ulaşmanıza nasıl yardımcı olabileceğimizi görün.",
             placeholder: "Anahtar Kelime Girin",
             suggest: "Öneriler:",
-            tags: ["CAD", "CAM", "Post", "Eğitim", "Danışmanlık", "NX", "SolidCAM"]
+            tags: ["CAD", "CAM", "Post", "Eğitim", "NX", "SolidCAM"]
         },
         en: {
             title: "What are you looking for?",
             subtitle: "Explore our services and discover how we can help you achieve your goals",
             placeholder: "Enter Your Keywords",
             suggest: "Suggest:",
-            tags: ["CAD", "CAM", "Post", "Training", "Consultancy", "NX", "SolidCAM"]
+            tags: ["CAD", "CAM", "Post", "Training", "NX", "SolidCAM"]
         }
     }
 

@@ -1,33 +1,16 @@
 
 'use client'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
-import PerfectScrollbar from 'react-perfect-scrollbar'
+import { useState } from 'react'
 import { useLanguage } from '@/context/LanguageContext'
 import { useSiteInfo } from '@/context/SiteInfoContext'
-import { getSolutions, Solution, getPostSupports, PostSupport } from '@/util/api'
+import { useData } from '@/context/DataContext'
 
 export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 	const [isAccordion, setIsAccordion] = useState(0)
     const { locale } = useLanguage()
     const { siteInfo } = useSiteInfo()
-    const [solutions, setSolutions] = useState<Solution[]>([])
-    const [postSupports, setPostSupports] = useState<PostSupport[]>([])
-
-    useEffect(() => {
-        async function fetchMenuData() {
-            const solutionsData = await getSolutions()
-            if (solutionsData && solutionsData.status) {
-                setSolutions(solutionsData.data)
-            }
-
-            const postResponse = await getPostSupports()
-            if (postResponse && postResponse.status) {
-                setPostSupports(postResponse.data)
-            }
-        }
-        fetchMenuData()
-    }, [])
+    const { solutions, postSupports } = useData()
 
 	const handleAccordion = (key: any) => {
 		setIsAccordion(prevState => prevState === key ? null : key)
@@ -39,9 +22,6 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
             software: "Yazılım Çözümleri",
             post: "Post Desteği",
             training: "Eğitim",
-            consultancy: "Danışmanlık",
-            production: "Üretim Süreçleri",
-            design: "Tasarım Süreçleri",
             blog: "Blog",
             interviews: "Röportajlar",
             contact: "İletişim"
@@ -51,9 +31,6 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
             software: "Software Solutions",
             post: "Post Support",
             training: "Training",
-            consultancy: "Consultancy",
-            production: "Production Processes",
-            design: "Design Processes",
             blog: "Blog",
             interviews: "Interviews",
             contact: "Contact"
@@ -122,16 +99,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 										<li className="nav-item">
 											<Link href="/egitim">{m.training}</Link>
 										</li>
-										<li className={`has-children ${isAccordion === 3 ? "active" : ""}`}>
-											<span className="menu-expand" onClick={() => handleAccordion(3)}>
-												<i className="arrow-small-down"></i>
-											</span>
-											<Link href="#">{m.consultancy}</Link>
-											<ul className="sub-menu" style={{ display: `${isAccordion == 3 ? "block" : "none"}` }}>
-												<li><Link href="/danismanlik/uretim-surecleri">{m.production}</Link></li>
-												<li><Link href="/danismanlik/tasarim-surecleri">{m.design}</Link></li>
-											</ul>
-										</li>
+
 										<li className="nav-item">
 											<Link href="/blog">{m.blog}</Link>
 										</li>

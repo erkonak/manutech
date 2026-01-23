@@ -4,80 +4,42 @@ import { useState, useEffect } from 'react'
 import ModalVideo from 'react-modal-video'
 import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { getBanners } from '@/util/api'
+import { getBanners, getFromCache, CACHE_KEYS } from '@/util/api'
+import type { Banner } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
-
-const BANNERS_CACHE_KEY = 'banners-cache';
-const BANNERS_CACHE_EXPIRY = 24 * 60 * 60 * 1000; // 24 saat
-
-// Banner cache'den veri okuma helper fonksiyonu
-function getCachedBanners(): any[] | null {
-	if (typeof window === 'undefined') return null;
-
-	try {
-		const cachedData = localStorage.getItem(BANNERS_CACHE_KEY);
-		if (cachedData) {
-			const { data, timestamp } = JSON.parse(cachedData);
-			const now = Date.now();
-
-			// Cache geçerli mi kontrol et
-			if (now - timestamp < BANNERS_CACHE_EXPIRY) {
-				return data;
-			}
-		}
-	} catch (error) {
-		console.error("Banner cache okunurken hata:", error);
-	}
-
-	return null;
-}
 
 export default function Hero5() {
 	const { locale, t } = useLanguage()
 	const [isOpen, setOpen] = useState(false)
-	// Hydration hatası önlemek için initial state her zaman boş array (server ve client aynı başlasın)
-	const [banners, setBanners] = useState<any[]>([])
+	const [banners, setBanners] = useState<Banner[]>([])
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		let isMounted = true;
 
 		async function fetchBanners() {
-			// Önce cache'den senkron kontrol et (client-side'da hızlı yükleme için)
-			const cachedBanners = getCachedBanners();
-			if (cachedBanners && cachedBanners.length > 0 && isMounted) {
-				// Cache geçerli, hemen state'i güncelle (senkron, anında görünsün)
-				setBanners(cachedBanners);
+			// SWR: Önce cache'e bak
+			const cached = getFromCache<any>(CACHE_KEYS.BANNERS);
+			if (cached && isMounted) {
+				const activeBanners = cached.data
+					.filter((banner: any) => banner.durum === "1")
+					.sort((a: any, b: any) => parseInt(a.sira || "999") - parseInt(b.sira || "999"));
+				setBanners(activeBanners);
 				setLoading(false);
-				return; // Cache geçerli, API çağrısı yapma
 			}
 
-			// Cache yoksa veya süresi dolmuşsa API'den çek
 			try {
 				const response = await getBanners();
-				if (response && response.status === true && Array.isArray(response.data) && isMounted) {
+				if (response?.status && Array.isArray(response.data) && isMounted) {
 					// Sadece aktif (durum: "1") banner'ları filtrele ve sırala
 					const activeBanners = response.data
-						.filter((banner: any) => banner.durum === "1")
-						.sort((a: any, b: any) => parseInt(a.sira || "999") - parseInt(b.sira || "999"));
+						.filter((banner) => banner.durum === "1")
+						.sort((a, b) => parseInt(a.sira || "999") - parseInt(b.sira || "999"));
 
 					setBanners(activeBanners);
-
-					// Yeni veriyi cache'e kaydet
-					if (typeof window !== 'undefined') {
-						localStorage.setItem(BANNERS_CACHE_KEY, JSON.stringify({
-							data: activeBanners,
-							timestamp: Date.now()
-						}));
-					}
 				}
 			} catch (error) {
-				console.error("Banner yüklenirken hata:", error);
-				// Hata durumunda cache'den yükle (varsa)
-				const fallbackCache = getCachedBanners();
-				if (fallbackCache && fallbackCache.length > 0 && isMounted) {
-					setBanners(fallbackCache);
-				}
+				console.error("Banner güncellenirken hata:", error);
 			} finally {
 				if (isMounted) {
 					setLoading(false);
@@ -94,7 +56,6 @@ export default function Hero5() {
 
 	const swiperOptions = {
 		slidesPerView: 1,
-		// spaceBetween: 20,
 		slidesPerGroup: 1,
 		centeredSlides: false,
 		loop: true,
@@ -178,7 +139,7 @@ export default function Hero5() {
 															</span>
 														</h3>
 														<p className="fs-5 text-900">
-															Manutech Solutions, iş danışmanlığı için geniş bir danışmanlık ve eğitim yelpazesi sunar.
+															Manutech Solutions, ileri teknoloji çözümlerimizle iş süreçlerinizi optimize etmeniz için profesyonel çözümler sunar.
 														</p>
 														<div className="d-flex flex-column flex-md-row align-items-center">
 															<Link href="/page-services-1" className="btn btn-gradient rounded-4">

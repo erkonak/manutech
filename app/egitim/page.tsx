@@ -2,26 +2,22 @@
 "use client"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState, useEffect } from 'react'
 import { getEducations } from '@/util/api'
+import type { Education } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
+import { useApi } from '@/hooks/useApi'
 
 export default function CoursePage() {
     const { locale, t } = useLanguage()
-    const [educations, setEducations] = useState<any[]>([])
-    const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        async function fetchEducations() {
-            const data = await getEducations()
-            console.log(data);
-            if (data) {
-                setEducations(data.data.filter((item: any) => item.udemy_url && item.durum == 1))
-            }
-            setLoading(false)
-        }
-        fetchEducations()
-    }, [])
+    // useApi hook kullanımı (SWR desteği ile)
+    const { data: response, loading } = useApi(getEducations, { cacheKey: 'educations' });
+
+    // Filtreleme işlemi
+    // API'den gelen durum alanı string "1" olduğu için "1" kontrolü yapılıyor
+    const educations = response?.status && response?.data
+        ? response.data.filter((item) => item.udemy_url && item.durum == "1")
+        : [];
 
     const translations = {
         tr: {
@@ -96,7 +92,7 @@ export default function CoursePage() {
                                             <div className="p-4 flex-grow-1 d-flex flex-column">
                                                 <h5 className="mb-3">{t(item, 'baslik')}</h5>
                                                 <p className="text-600 fs-7 mb-4 flex-grow-1">{t(item, 'aciklama')}</p>
-                                                <Link href={item.udemy_url} target="_blank" className="btn btn-gradient w-100 rounded-pill">
+                                                <Link href={item.udemy_url || '#'} target="_blank" className="btn btn-gradient w-100 rounded-pill">
                                                     {tr.goToCourse}
                                                     <i className="bi bi-box-arrow-up-right ms-2"></i>
                                                 </Link>
