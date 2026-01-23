@@ -52,7 +52,7 @@ git push -u origin main
 ### 2.4 Environment Variables (Opsiyonel):
 Eğer projenizde environment variable'lar varsa (örn: API URL'leri):
 - "Environment Variables" bölümünü açın
-- Gerekli değişkenleri ekleyin (örn: `NEXT_PUBLIC_API_URL=https://demo.eemre.tr/api`)
+- Gerekli değişkenleri ekleyin (örn: `NEXT_PUBLIC_API_URL=https://admin.manutechsolutions.com/api`)
 
 ### 2.5 Deploy edin:
 - "Deploy" butonuna tıklayın
@@ -158,7 +158,7 @@ git push
 
 ## 🎯 Önemli Notlar
 
-1. **API URL'leri:** Backend API'niz hala `https://demo.eemre.tr/api` adresinde çalışmaya devam edecek
+1. **API URL'leri:** Backend API'niz hala `https://admin.manutechsolutions.com/api` adresinde çalışmaya devam edecek
 2. **CORS Ayarları:** Laravel backend'inizde Vercel domain'inizi CORS whitelist'e eklemeyi unutmayın
 3. **Environment Variables:** Hassas bilgileri (API keys, vb.) Vercel environment variables'a ekleyin
 4. **Build Time:** Her deployment 2-3 dakika sürer

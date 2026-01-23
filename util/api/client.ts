@@ -1,6 +1,6 @@
 // Merkezi API Client
 
-const API_BASE_URL = "https://demo.eemre.tr/api";
+const API_BASE_URL = "https://admin.manutechsolutions.com/api";
 const API_TOKEN = "AF28Xc5wZ7KIDIrVIcVUFZEyPmiDWvP6TVAZ54ZXpUY";
 
 interface FetchOptions extends RequestInit {
