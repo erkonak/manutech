@@ -12,7 +12,7 @@ export default function Home() {
 		<>
 			<Layout headerStyle={5} footerStyle={1}>
 				<Hero1 />
-				<LogoCloud1 />
+				{/* <LogoCloud1 /> */}
 				<Services1 />
 				<Testimonial1 />
 				<Blog1 />
