@@ -95,7 +95,7 @@ export default function Header5({ scroll, scrollDirection, isMobileMenu, handleM
 							{siteInfo?.logo ? (
 								<img src={siteInfo.logo} alt={siteInfo.firma_adi || "Logo"} style={{ width: siteInfo.logo_w ? `${siteInfo.logo_w}px` : 'auto', height: siteInfo.logo_h ? `${siteInfo.logo_h}px` : 'auto' }} />
 							) : (
-								<img src="https://demo.eemre.tr/assets/img/site/logo/logo.png" width={200} height={60} alt="Logo" />
+								<img src="https://admin.manutechsolutions.com/assets/img/site/logo/logo.png" width={200} height={60} alt="Logo" />
 							)}
 						</Link>
 						<Menu />

@@ -50,7 +50,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 								<img src={siteInfo.logo} alt={siteInfo.firma_adi || "Logo"} style={{ width: siteInfo.logo_w ? `${Number(siteInfo.logo_w) * 0.8}px` : 'auto', height: siteInfo.logo_h ? `${Number(siteInfo.logo_h) * 0.8}px` : 'auto' }} />
 							) : (
 								<>
-									<img src="https://demo.eemre.tr/assets/img/site/logo/logo.png" alt="Logo" style={{ width: '150px' }} />
+									<img src="https://admin.manutechsolutions.com/assets/img/site/logo/logo.png" alt="Logo" style={{ width: '150px' }} />
 								</>
 							)}
 						</Link>

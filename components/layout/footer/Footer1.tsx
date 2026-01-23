@@ -3,27 +3,24 @@
 import Link from 'next/link'
 import { useLanguage } from '@/context/LanguageContext'
 import { useSiteInfo } from '@/context/SiteInfoContext'
+import { useData } from '@/context/DataContext'
 
 export default function Footer1() {
 	const { locale } = useLanguage()
 	const { siteInfo } = useSiteInfo()
+	const { solutions, postSupports } = useData()
 
 	const translations = {
 		tr: {
 			description: "Üretim ve tasarım süreçlerinizde verimliliği artıran, maliyetleri düşüren ve yenilikçi çözümler sunan teknoloji ortağınız.",
 			company: "Kurumsal",
 			solutions: "Yazılım Çözümleri",
-			support: "Destek & Hizmetler",
+			post: "Post Destekleri",
+			training: "Eğitim",
 			contact: "İletişim",
 			rights: "Tüm Hakları Saklıdır",
-			about: "Hakkımızda",
 			blog: "Blog",
 			interviews: "Röportajlar",
-			cad: "CAD Çözümleri",
-			cam: "CAM Çözümleri",
-			aea: "AEA / FEA",
-			post: "Post Desteği",
-			training: "Eğitim",
 			kvkk: "KVKK Aydınlatma Metni",
 			privacy: "Gizlilik Politikası"
 		},
@@ -31,17 +28,12 @@ export default function Footer1() {
 			description: "Your technology partner providing innovative solutions that increase efficiency and reduce costs in your production and design processes.",
 			company: "Corporate",
 			solutions: "Software Solutions",
-			support: "Support & Services",
-			contact: "Contact",
-			rights: "All Rights Reserved",
-			about: "About Us",
-			blog: "Blog",
-			interviews: "Interviews",
-			cad: "CAD Solutions",
-			cam: "CAM Solutions",
-			aea: "FEA Analysis",
 			post: "Post Support",
 			training: "Training",
+			contact: "Contact",
+			rights: "All Rights Reserved",
+			blog: "Blog",
+			interviews: "Interviews",
 			kvkk: "KVKK Text",
 			privacy: "Privacy Policy"
 		}
@@ -61,7 +53,7 @@ export default function Footer1() {
 										{siteInfo?.logo_dark ? (
 											<img src={siteInfo.logo_dark} alt={siteInfo.firma_adi || "Logo"} style={{ maxHeight: '50px', width: siteInfo.logo_w ? `${siteInfo.logo_w}px` : 'auto', height: siteInfo.logo_h ? `${siteInfo.logo_h}px` : 'auto' }} />
 										) : (
-											<img src="https://demo.eemre.tr/assets/img/site/logo/logo-dark.svg" width={200} height={60} alt="Logo" />
+											<img src="https://admin.manutechsolutions.com/assets/img/site/logo/logo-dark.svg" width={200} height={60} alt="Logo" />
 										)}
 									</Link>
 									<p className="text-white fw-medium mt-3 mb-6 opacity-50">
@@ -93,7 +85,6 @@ export default function Footer1() {
 										<div className="col-lg-4 col-md-4 col-6">
 											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.company}</h3>
 											<div className="d-flex flex-column align-items-start">
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/">{t.about}</Link>
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/blog">{t.blog}</Link>
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/roportajlar">{t.interviews}</Link>
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/iletisim">{t.contact}</Link>
@@ -102,17 +93,22 @@ export default function Footer1() {
 										<div className="col-lg-4 col-md-4 col-6">
 											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.solutions}</h3>
 											<div className="d-flex flex-column align-items-start">
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/yazilim-cozumleri/cad">{t.cad}</Link>
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/yazilim-cozumleri/cam">{t.cam}</Link>
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/yazilim-cozumleri/aea">{t.aea}</Link>
+												{solutions.slice(0, 5).map((item) => (
+													<Link key={item.id} className="hover-effect text-white mb-2 fw-medium fs-6" href={`/yazilim-cozumleri/${item.slug}`}>
+														{item.baslik}
+													</Link>
+												))}
 											</div>
 										</div>
 										<div className="col-lg-4 col-md-4 col-6">
-											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.support}</h3>
+											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.post}</h3>
 											<div className="d-flex flex-column align-items-start">
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/post-destegi/solidcam">{t.post}</Link>
+												{postSupports.slice(0, 5).map((item) => (
+													<Link key={item.id} className="hover-effect text-white mb-2 fw-medium fs-6" href={`/post-destegi/${locale === 'tr' ? item.slug_tr : (item.slug_en || item.slug_tr)}`}>
+														{locale === 'tr' ? item.baslik_tr : (item.baslik_en || item.baslik_tr)}
+													</Link>
+												))}
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/egitim">{t.training}</Link>
-
 											</div>
 										</div>
 									</div>
