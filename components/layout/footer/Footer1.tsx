@@ -54,11 +54,11 @@ export default function Footer1() {
 	return (
 		<>
 			<footer>
-				<div className="section-footer position-relative">
+				<div className="section-footer position-relative overflow-hidden">
 					<div className="container-fluid bgft-1">
 						<div className="container position-relative z-2">
 							<div className="row py-90">
-								<div className="col-lg-4 pe-10" data-aos="fade-zoom-in" data-aos-delay={100}>
+								<div className="col-lg-4 pe-10">
 									<Link href="/">
 										{siteInfo?.logo_dark ? (
 											<img src={siteInfo.logo_dark} alt={siteInfo.firma_adi || "Logo"} style={{ maxHeight: '50px', width: siteInfo.logo_w ? `${siteInfo.logo_w}px` : 'auto', height: siteInfo.logo_h ? `${siteInfo.logo_h}px` : 'auto' }} />
@@ -92,7 +92,7 @@ export default function Footer1() {
 								</div>
 								<div className="col-lg-8">
 									<div className="row">
-										<div className="col-lg-4 col-md-4 col-6" data-aos="fade-zoom-in" data-aos-delay={200}>
+										<div className="col-lg-4 col-md-4 col-6">
 											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.company}</h3>
 											<div className="d-flex flex-column align-items-start">
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/">{t.about}</Link>
@@ -101,7 +101,7 @@ export default function Footer1() {
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/iletisim">{t.contact}</Link>
 											</div>
 										</div>
-										<div className="col-lg-4 col-md-4 col-6" data-aos="fade-zoom-in" data-aos-delay={300}>
+										<div className="col-lg-4 col-md-4 col-6">
 											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.solutions}</h3>
 											<div className="d-flex flex-column align-items-start">
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/yazilim-cozumleri/cad">{t.cad}</Link>
@@ -109,7 +109,7 @@ export default function Footer1() {
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/yazilim-cozumleri/aea">{t.aea}</Link>
 											</div>
 										</div>
-										<div className="col-lg-4 col-md-4 col-6" data-aos="fade-zoom-in" data-aos-delay={400}>
+										<div className="col-lg-4 col-md-4 col-6">
 											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.support}</h3>
 											<div className="d-flex flex-column align-items-start">
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/post-destegi/solidcam">{t.post}</Link>
@@ -121,14 +121,14 @@ export default function Footer1() {
 								</div>
 							</div>
 							<div className="row text-center py-4 border-top border-white border-opacity-10">
-								<span className="text-white opacity-50" data-aos="fade-zoom-in" data-aos-delay={200}>
+								<span className="text-white opacity-50">
 									Copyright © {new Date().getFullYear()} {siteInfo?.firma_adi || "Manutech Solutions"}. {t.rights}
 								</span>
 							</div>
 						</div>
 					</div>
 					<div className="position-absolute top-0 start-50 translate-middle-x z-0">
-						<img src="/assets/imgs/footer-1/line-bg.png" alt="infinia" />
+						<img src="/assets/imgs/footer-1/line-bg.png" alt="infinia" style={{ maxHeight: '100%' }} />
 					</div>
 					<div className="position-absolute top-0 start-0 z-0">
 						<img src="/assets/imgs/footer-1/ellipse-left.png" alt="infinia" />
