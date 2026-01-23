@@ -5,19 +5,25 @@ import { useState, useEffect } from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { useLanguage } from '@/context/LanguageContext'
 import { useSiteInfo } from '@/context/SiteInfoContext'
-import { getSolutions, Solution } from '@/util/api'
+import { getSolutions, Solution, getPostSupports, PostSupport } from '@/util/api'
 
 export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 	const [isAccordion, setIsAccordion] = useState(0)
     const { locale } = useLanguage()
     const { siteInfo } = useSiteInfo()
     const [solutions, setSolutions] = useState<Solution[]>([])
+    const [postSupports, setPostSupports] = useState<PostSupport[]>([])
 
     useEffect(() => {
         async function fetchMenuData() {
-            const data = await getSolutions()
-            if (data && data.status) {
-                setSolutions(data.data)
+            const solutionsData = await getSolutions()
+            if (solutionsData && solutionsData.status) {
+                setSolutions(solutionsData.data)
+            }
+
+            const postResponse = await getPostSupports()
+            if (postResponse && postResponse.status) {
+                setPostSupports(postResponse.data)
             }
         }
         fetchMenuData()
@@ -104,9 +110,13 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 											</span>
 											<Link href="#">{m.post}</Link>
 											<ul className="sub-menu" style={{ display: `${isAccordion == 2 ? "block" : "none"}` }}>
-												<li><Link href="/post-destegi/solidcam">SolidCAM</Link></li>
-												<li><Link href="/post-destegi/mastercam">Mastercam</Link></li>
-												<li><Link href="/post-destegi/nx-cam">NX CAM</Link></li>
+                                                {postSupports.map((item) => (
+                                                    <li key={item.id}>
+                                                        <Link href={`/post-destegi/${locale === 'tr' ? item.slug_tr : (item.slug_en || item.slug_tr)}`} onClick={handleMobileMenu}>
+                                                            {locale === 'tr' ? item.baslik_tr : (item.baslik_en || item.baslik_tr)}
+                                                        </Link>
+                                                    </li>
+                                                ))}
 											</ul>
 										</li>
 										<li className="nav-item">

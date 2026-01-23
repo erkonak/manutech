@@ -51,6 +51,26 @@ export interface SubSolution {
     ana_slug?: string;
 }
 
+export interface PostSupport {
+    id: number;
+    baslik_tr: string;
+    baslik_en: string | null;
+    detay_tr: string;
+    detay_en: string | null;
+    foto: string;
+    aciklama_tr: string;
+    aciklama_en: string | null;
+    fiyat: string;
+    avantajlar_tr: string[];
+    avantajlar_en: string[];
+    slug_tr: string;
+    slug_en: string | null;
+    sira: string;
+    durum: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
 // --- ACTIVE HEADLESS APIs ---
 
 export async function getSiteInfo() {
@@ -157,17 +177,21 @@ export async function getSoftwareSolutionBySlug(slug: string) {
     return { success: false, data: null };
 }
 
-export async function getPostSupport(slug?: string) {
+export async function getPostSupports() {
+    return fetchApi("post-support");
+}
+
+export async function getPostSupport(slug: string) {
+    const response = await getPostSupports();
+    if (!response || !response.status) return { success: false, data: null };
+
+    const found = response.data.find((item: PostSupport) =>
+        item.slug_tr === slug || item.slug_en === slug
+    );
+
     return {
-        success: true,
-        data: {
-            title: slug ? slug.toUpperCase() : "Post Process",
-            image: "/assets/imgs/page/about/img-1.png",
-            description: "<p>CN tezgahlarınız için özel post processor çözümleri sunuyoruz. Fanuc, Siemens, Heidenhain ve daha fazlası için optimize edilmiş kodlar.</p>",
-            description_en: "<p>We offer special post processor solutions for your CN benches. Optimized codes for Fanuc, Siemens, Heidenhain and more.</p>",
-            price: "5000",
-            purchase_link: "/iletisim"
-        }
+        success: !!found,
+        data: found || null
     };
 }
 

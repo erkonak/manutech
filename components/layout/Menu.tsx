@@ -3,17 +3,23 @@
 import Link from "next/link"
 import { useLanguage } from "@/context/LanguageContext"
 import { useEffect, useState } from "react"
-import { getSolutions, Solution } from "@/util/api"
+import { getSolutions, Solution, getPostSupports, PostSupport } from "@/util/api"
 
 export default function Menu() {
     const { locale } = useLanguage()
     const [solutions, setSolutions] = useState<Solution[]>([])
+    const [postSupports, setPostSupports] = useState<PostSupport[]>([])
 
     useEffect(() => {
         async function fetchMenuData() {
-            const data = await getSolutions()
-            if (data && data.status) {
-                setSolutions(data.data)
+            const solutionsData = await getSolutions()
+            if (solutionsData && solutionsData.status) {
+                setSolutions(solutionsData.data)
+            }
+
+            const postResponse = await getPostSupports()
+            if (postResponse && postResponse.status) {
+                setPostSupports(postResponse.data)
             }
         }
         fetchMenuData()
@@ -76,21 +82,13 @@ export default function Menu() {
                     </Link>
                     <div className="dropdown-menu fix">
                         <ul className="list-unstyled">
-                            <li className="position-relative z-1 border-bottom">
-                                <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href="/post-destegi/solidcam">
-                                    <span className="ms-2">SolidCAM</span>
-                                </Link>
-                            </li>
-                            <li className="position-relative z-1 border-bottom">
-                                <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href="/post-destegi/mastercam">
-                                    <span className="ms-2">Mastercam</span>
-                                </Link>
-                            </li>
-                            <li className="position-relative z-1">
-                                <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href="/post-destegi/nx-cam">
-                                    <span className="ms-2">NX CAM</span>
-                                </Link>
-                            </li>
+                            {postSupports.map((item, index) => (
+                                <li key={item.id} className={`position-relative z-1 ${index !== postSupports.length - 1 ? 'border-bottom' : ''}`}>
+                                    <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href={`/post-destegi/${locale === 'tr' ? item.slug_tr : (item.slug_en || item.slug_tr)}`}>
+                                        <span className="ms-2">{locale === 'tr' ? item.baslik_tr : (item.baslik_en || item.baslik_tr)}</span>
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </li>
