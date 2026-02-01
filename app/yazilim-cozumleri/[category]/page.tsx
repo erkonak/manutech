@@ -63,7 +63,7 @@ export default function SoftwareCategoryPage() {
                 <img className="position-absolute bottom-0 start-0 end-0 top-0 z-0" src="/assets/imgs/page-header/bg-line.png" alt="bg" />
             </section>
 
-            <section className="section-padding">
+            <section className="section-padding" style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div className="container">
                     {loading ? (
                         <div className="text-center py-10">
@@ -94,8 +94,11 @@ export default function SoftwareCategoryPage() {
                                     </div>
                                 ))
                             ) : (
-                                <div className="col-12 text-center">
-                                    <p>{tr.noProgram}</p>
+                                <div className="col-12 text-center py-20">
+                                    <div className="bg-neutral-100 p-10 rounded-4 border">
+                                        <i className="bi bi-info-circle text-primary fs-1 mb-4 d-block"></i>
+                                        <h4 className="text-900 mb-0">{tr.noProgram}</h4>
+                                    </div>
                                 </div>
                             )}
                         </div>
