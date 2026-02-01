@@ -178,11 +178,21 @@ export default function BlogDetailPage() {
     if (loading) {
         return (
             <Layout>
-                <div className="text-center py-20">
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="visually-hidden">{tr.loading}</span>
+                <section style={{ minHeight: '70vh' }}>
+                    <div className="container pt-4">
+                        <div className="row justify-content-center">
+                            <div className="col-12">
+                                <div className="position-relative rounded-4 overflow-hidden bg-neutral-100" style={{ height: '500px' }}>
+                                    <div className="d-flex align-items-center justify-content-center h-100">
+                                        <div className="spinner-border text-primary" role="status">
+                                            <span className="visually-hidden">{tr.loading}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
             </Layout>
         )
     }
@@ -190,10 +200,20 @@ export default function BlogDetailPage() {
     if (!blog) {
         return (
             <Layout>
-                <div className="text-center py-20">
-                    <h3>{tr.notFound}</h3>
-                    <Link href="/blog" className="btn btn-primary mt-4">{tr.backToList}</Link>
-                </div>
+                <section style={{ minHeight: '70vh' }}>
+                    <div className="container pt-4">
+                        <div className="row justify-content-center">
+                            <div className="col-12">
+                                <div className="position-relative rounded-4 overflow-hidden bg-neutral-100" style={{ height: '500px' }}>
+                                    <div className="d-flex flex-column align-items-center justify-content-center h-100">
+                                        <h3>{tr.notFound}</h3>
+                                        <Link href="/blog" className="btn btn-primary mt-4">{tr.backToList}</Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </Layout>
         )
     }

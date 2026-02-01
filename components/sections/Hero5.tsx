@@ -75,10 +75,32 @@ export default function Hero5() {
 	return (
 		<>
 
-			<div className="section-hero-5 position-relative">
+			<div className="section-hero-5 position-relative" style={{ minHeight: '600px' }}>
+				{/* Loading Skeleton */}
+				{loading && (
+					<div className="position-relative py-188 img-pull" style={{
+						background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%)',
+						minHeight: '600px'
+					}}>
+						<div className="container position-relative z-2">
+							<div className="row">
+								<div className="col-lg-6">
+									<div className="backdrop-filter p-8 position-relative rounded-3">
+										<div className="bg-neutral-200 rounded-pill px-4 py-1 d-inline-block" style={{ width: '180px', height: '32px' }}></div>
+										<div className="bg-neutral-200 rounded my-3" style={{ width: '100%', height: '120px' }}></div>
+										<div className="bg-neutral-200 rounded mb-3" style={{ width: '80%', height: '24px' }}></div>
+										<div className="bg-neutral-200 rounded-4" style={{ width: '200px', height: '48px' }}></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				)}
+
 				<Swiper {...swiperOptions}
 					className="swiper slider-two"
 					modules={[Keyboard, Autoplay, Pagination, Navigation]}
+					style={{ display: loading ? 'none' : 'block' }}
 				>
 					<div className="swiper-wrapper">
 						{!loading && banners.length > 0 && (

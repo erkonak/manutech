@@ -19,11 +19,33 @@ export default function PostSupportDetailsPage() {
     if (loading) {
         return (
             <Layout>
-                <div className="text-center py-20">
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="visually-hidden">Yükleniyor...</span>
+                <section className="section-page-header py-10 fix position-relative">
+                    <div className="container position-relative z-1">
+                        <div className="text-start">
+                            <h3>{locale === 'tr' ? 'Post Desteği' : 'Post Support'}</h3>
+                            <div className="d-flex">
+                                <Link href="/">
+                                    <p className="mb-0 text-900">{locale === 'tr' ? 'Anasayfa' : 'Home'}</p>
+                                </Link>
+                                <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
+                                    <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <p className="text-primary mb-0">{locale === 'tr' ? 'Yükleniyor...' : 'Loading...'}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <img className="position-absolute bottom-0 start-0 end-0 top-0 z-0" src="/assets/imgs/page-header/bg-line.png" alt="infinia" />
+                </section>
+
+                <section className="section-post-support-details pt-80 pb-80" style={{ minHeight: '50vh' }}>
+                    <div className="container">
+                        <div className="text-center py-10">
+                            <div className="spinner-border text-primary" role="status">
+                                <span className="visually-hidden">{locale === 'tr' ? 'Yükleniyor...' : 'Loading...'}</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </Layout>
         )
     }
@@ -31,10 +53,28 @@ export default function PostSupportDetailsPage() {
     if (!data) {
         return (
             <Layout>
-                <div className="text-center py-20">
-                    <h3>{locale === 'tr' ? 'Post desteği bilgisi bulunamadı.' : 'Post support information not found.'}</h3>
-                    <Link href="/" className="btn btn-primary mt-4">{locale === 'tr' ? 'Anasayfaya Dön' : 'Back to Home'}</Link>
-                </div>
+                <section className="section-page-header py-10 fix position-relative">
+                    <div className="container position-relative z-1">
+                        <div className="text-start">
+                            <h3>{locale === 'tr' ? 'Post Desteği' : 'Post Support'}</h3>
+                            <div className="d-flex">
+                                <Link href="/">
+                                    <p className="mb-0 text-900">{locale === 'tr' ? 'Anasayfa' : 'Home'}</p>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    <img className="position-absolute bottom-0 start-0 end-0 top-0 z-0" src="/assets/imgs/page-header/bg-line.png" alt="infinia" />
+                </section>
+
+                <section className="section-post-support-details pt-80 pb-80" style={{ minHeight: '50vh' }}>
+                    <div className="container">
+                        <div className="text-center py-10">
+                            <h3>{locale === 'tr' ? 'Post desteği bilgisi bulunamadı.' : 'Post support information not found.'}</h3>
+                            <Link href="/" className="btn btn-primary mt-4">{locale === 'tr' ? 'Anasayfaya Dön' : 'Back to Home'}</Link>
+                        </div>
+                    </div>
+                </section>
             </Layout>
         )
     }
