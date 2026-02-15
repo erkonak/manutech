@@ -112,7 +112,7 @@ export default function Hero5() {
 												<div className="col-lg-6">
 													<div className="backdrop-filter p-8 position-relative rounded-3">
 														<div className="bg-white bg-opacity-50 border border-primary-soft d-inline-flex rounded-pill px-4 py-1">
-															<span className="tag-spacing fs-6 text-primary">🚀 {locale === 'en' ? 'Welcome' : locale === 'ar' ? 'مرحبا' : 'Hoş Geldiniz'}</span>
+															<span className="tag-spacing fs-6 text-primary">🚀 {locale === 'en' ? 'Welcome' : locale === 'ar' ? 'مرحبا' : 'Hoş Geldiniz!'}</span>
 														</div>
 														<h3 className="ds-3 my-3">
 															{t(banner, 'baslik')}
