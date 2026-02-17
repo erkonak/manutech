@@ -118,6 +118,11 @@ export default function Footer1() {
 								<span className="text-white opacity-50">
 									Copyright © {new Date().getFullYear()} {siteInfo?.firma_adi || "Manutech Solutions"}. {t.rights}
 								</span>
+                                <span className="text-white opacity-50 d-block mt-2">
+                                    {locale === 'en' ? 'Designed by ' : 'Bu web sitesi '}
+                                    <a href="https://eemre.tr/" target="_blank" rel="noopener noreferrer" className="text-white text-decoration-underline hover-up">Emre Erkonak</a>
+                                    {locale === 'en' ? '' : ' tarafından tasarlanmıştır'}
+                                </span>
 							</div>
 						</div>
 					</div>
