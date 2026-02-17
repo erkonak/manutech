@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useState, useEffect } from 'react'
 import { getBlogs } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
+import { useSiteInfo } from "@/context/SiteInfoContext"
 
 // API'den gelen veri yapısı
 interface Blog {
@@ -35,6 +36,7 @@ interface Blog {
 
 export default function BlogListingPage() {
     const { locale, t } = useLanguage()
+    const { siteInfo } = useSiteInfo()
     const [blogs, setBlogs] = useState<Blog[]>([])
     const [loading, setLoading] = useState(true)
 
@@ -90,6 +92,10 @@ export default function BlogListingPage() {
     }
 
     const tr = locale === 'en' ? translations.en : translations.tr
+
+    useEffect(() => {
+        document.title = `${tr.title} - ${siteInfo?.firma_adi || 'Manutech Solutions'}`
+    }, [locale, siteInfo, tr.title])
 
     return (
         <Layout>

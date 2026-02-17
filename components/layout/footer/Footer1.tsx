@@ -6,7 +6,7 @@ import { useSiteInfo } from '@/context/SiteInfoContext'
 import { useData } from '@/context/DataContext'
 
 export default function Footer1() {
-	const { locale } = useLanguage()
+	const { locale, t: tDynamic } = useLanguage()
 	const { siteInfo } = useSiteInfo()
 	const { solutions, postSupports } = useData()
 
@@ -94,8 +94,8 @@ export default function Footer1() {
 											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.solutions}</h3>
 											<div className="d-flex flex-column align-items-start">
 												{solutions.slice(0, 5).map((item) => (
-													<Link key={item.id} className="hover-effect text-white mb-2 fw-medium fs-6" href={`/yazilim-cozumleri/${item.slug}`}>
-														{item.baslik}
+													<Link key={item.id} className="hover-effect text-white mb-2 fw-medium fs-6" href={`/yazilim-cozumleri/${tDynamic(item, 'slug')}`}>
+														{tDynamic(item, 'baslik')}
 													</Link>
 												))}
 											</div>

@@ -6,15 +6,25 @@ import { useParams } from 'next/navigation'
 import { getPostSupport } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 import { useApi } from '@/hooks/useApi'
+import { useEffect } from "react"
+import { useSiteInfo } from "@/context/SiteInfoContext"
 
 export default function PostSupportDetailsPage() {
     const params = useParams()
     const slug = params.slug as string
     const { locale } = useLanguage()
+    const { siteInfo } = useSiteInfo()
 
     // useApi hook kullanımı
     const { data: response, loading } = useApi(() => getPostSupport(slug), { deps: [slug] });
     const data = response?.success ? response.data : null;
+
+    useEffect(() => {
+        if (data) {
+             const title = locale === 'tr' ? data.baslik_tr : (data.baslik_en || data.baslik_tr)
+             document.title = `${title} - ${siteInfo?.firma_adi || 'Manutech Solutions'}`
+        }
+    }, [data, locale, siteInfo])
 
     if (loading) {
         return (

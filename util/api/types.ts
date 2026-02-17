@@ -147,12 +147,15 @@ export interface Interview {
 export interface Solution {
     id: number;
     baslik: string;
+    baslik_en?: string;
     slug: string;
+    slug_en?: string;
     durum: string;
     created_at: string;
     updated_at: string;
     resim?: string;
     alt_baslik?: string;
+    alt_baslik_en?: string;
 }
 
 // --- Sub Solution ---

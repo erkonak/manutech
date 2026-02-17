@@ -7,7 +7,19 @@ import Services1 from "@/components/sections/Services1"
 import Testimonial1 from "@/components/sections/Testimonial1"
 import Blog1 from "@/components/sections/Blog1"
 
+import { useEffect } from "react"
+import { useLanguage } from "@/context/LanguageContext"
+import { useSiteInfo } from "@/context/SiteInfoContext"
+
 export default function Home() {
+    const { locale } = useLanguage()
+    const { siteInfo } = useSiteInfo()
+
+    useEffect(() => {
+        const title = locale === 'en' ? 'Home' : 'Anasayfa'
+        document.title = `${title} - ${siteInfo?.firma_adi || 'Manutech Solutions'}`
+    }, [locale, siteInfo])
+
 	return (
 		<>
 			<Layout headerStyle={5} footerStyle={1}>

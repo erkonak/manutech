@@ -6,6 +6,8 @@ import { useParams } from 'next/navigation'
 import { getSoftwareSolutionBySlug } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 import { useApi } from '@/hooks/useApi'
+import { useEffect } from "react"
+import { useSiteInfo } from "@/context/SiteInfoContext"
 
 export default function SoftwareDetailsPage() {
     const params = useParams()
@@ -16,6 +18,14 @@ export default function SoftwareDetailsPage() {
     // useApi hook kullanımı
     const { data: response, loading } = useApi(() => getSoftwareSolutionBySlug(slug), { deps: [slug] });
     const solution = response?.success ? response.data : null;
+    const { siteInfo } = useSiteInfo()
+
+    useEffect(() => {
+        if (solution) {
+            document.title = `${t(solution, 'baslik')} - ${siteInfo?.firma_adi || 'Manutech Solutions'}`
+        }
+    }, [solution, locale, siteInfo])
+    const categoryInfo = response?.success && response?.category ? response.category : null;
 
     const translations = {
         tr: {
@@ -51,9 +61,11 @@ export default function SoftwareDetailsPage() {
     if (loading) {
         return (
             <Layout>
-                <div className="text-center py-20">
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="visually-hidden">{tr.loading}</span>
+                <div className="section-padding" style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <div className="container text-center">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">{tr.loading}</span>
+                        </div>
                     </div>
                 </div>
             </Layout>
@@ -84,8 +96,8 @@ export default function SoftwareDetailsPage() {
                             <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
                                 <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                            <Link href={`/yazilim-cozumleri/${category}`}>
-                                <p className="mb-0 text-900 text-capitalize">{category?.replace('-', ' ')}</p>
+                            <Link href={`/yazilim-cozumleri/${categoryInfo ? t(categoryInfo, 'slug') : category}`}>
+                                <p className="mb-0 text-900 text-capitalize">{categoryInfo ? t(categoryInfo, 'baslik') : category?.replace('-', ' ')}</p>
                             </Link>
                             <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
                                 <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

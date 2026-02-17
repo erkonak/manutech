@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { getBlogBySlug, postBlogComment } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
+import { useSiteInfo } from "@/context/SiteInfoContext"
 import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Lightbox from "yet-another-react-lightbox"
@@ -15,6 +16,7 @@ export default function BlogDetailPage() {
     const params = useParams()
     const slug = params.slug as string
     const { locale, t } = useLanguage()
+    const { siteInfo } = useSiteInfo()
     const [blog, setBlog] = useState<any>(null)
     const [images, setImages] = useState<any[]>([])
     const [comments, setComments] = useState<any[]>([])
@@ -133,6 +135,12 @@ export default function BlogDetailPage() {
             fetchBlog()
         }
     }, [slug])
+
+    useEffect(() => {
+        if (blog) {
+             document.title = `${t(blog, 'baslik')} - ${siteInfo?.firma_adi || 'Manutech Solutions'}`
+        }
+    }, [blog, locale, siteInfo])
 
     const translations = {
         tr: {

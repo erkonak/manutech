@@ -8,9 +8,11 @@ import ThemeSwitch from '@/components/elements/ThemeSwitch'
 import Menu from '../Menu'
 import { useSiteInfo } from '@/context/SiteInfoContext'
 import LanguageSwitcher from '@/components/elements/LanguageSwitcher'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function Header5({ scroll, scrollDirection, isMobileMenu, handleMobileMenu, isSearch, handleSearch, isOffCanvas, handleOffCanvas }: any) {
 	const { siteInfo } = useSiteInfo()
+    const { locale } = useLanguage()
 	const [isMobile, setIsMobile] = useState<boolean>(false)
 	const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true)
 
@@ -103,7 +105,7 @@ export default function Header5({ scroll, scrollDirection, isMobileMenu, handleM
 							<LanguageSwitcher />
 							<ThemeSwitch />
 							<Link href="/iletisim" className="btn btn-gradient d-none d-md-block ms-3">
-								Teklif Alın
+								{locale === 'en' ? 'Get Quote' : 'Teklif Alın'}
 								<svg className="ms-2" xmlns="http://www.w3.org/2000/svg" width={19} height={18} viewBox="0 0 19 18" fill="none">
 									<g clipPath="url(#clip0_474_2370)">
 										<path className="fill-white" d="M13.5633 4.06331L12.7615 4.86512L16.3294 8.43305H0.5V9.56699H16.3294L12.7615 13.1349L13.5633 13.9367L18.5 8.99998L13.5633 4.06331Z" fill="white" />

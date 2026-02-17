@@ -6,9 +6,12 @@ import { getEducations } from '@/util/api'
 import type { Education } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 import { useApi } from '@/hooks/useApi'
+import { useEffect } from "react"
+import { useSiteInfo } from "@/context/SiteInfoContext"
 
 export default function CoursePage() {
     const { locale, t } = useLanguage()
+    const { siteInfo } = useSiteInfo()
 
     // useApi hook kullanımı (SWR desteği ile)
     const { data: response, loading } = useApi(getEducations, { cacheKey: 'educations' });
@@ -43,6 +46,10 @@ export default function CoursePage() {
     }
 
     const tr = locale === 'en' ? translations.en : translations.tr
+
+    useEffect(() => {
+        document.title = `${tr.title} - ${siteInfo?.firma_adi || 'Manutech Solutions'}`
+    }, [locale, siteInfo, tr.title])
 
     return (
         <Layout>

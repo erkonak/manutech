@@ -169,7 +169,8 @@ export async function getSoftwareSolutions(categorySlug?: string) {
         const subSolutionsResponse = await getSubSolutions(targetSolution.id);
         return {
             success: subSolutionsResponse?.status ?? false,
-            data: subSolutionsResponse?.data ?? []
+            data: subSolutionsResponse?.data ?? [],
+            category: targetSolution
         };
     }
 
@@ -193,7 +194,7 @@ export async function getSoftwareSolutionBySlug(slug: string) {
                 (s) => s.slug === slug || s.slug_en === slug
             );
             if (found) {
-                return { success: true, data: found };
+                return { success: true, data: found, category: solution };
             }
         }
     }

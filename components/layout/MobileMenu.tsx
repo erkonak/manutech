@@ -8,7 +8,7 @@ import { useData } from '@/context/DataContext'
 
 export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 	const [isAccordion, setIsAccordion] = useState(0)
-    const { locale } = useLanguage()
+    const { locale, t } = useLanguage()
     const { siteInfo } = useSiteInfo()
     const { solutions, postSupports } = useData()
 
@@ -76,7 +76,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 											<ul className="sub-menu" style={{ display: `${isAccordion == 1 ? "block" : "none"}` }}>
                                                 {solutions.map((item) => (
                                                     <li key={item.id}>
-                                                        <Link href={`/yazilim-cozumleri/${item.slug}`} onClick={handleMobileMenu}>{item.baslik}</Link>
+                                                        <Link href={`/yazilim-cozumleri/${t(item, 'slug')}`} onClick={handleMobileMenu}>{t(item, 'baslik')}</Link>
                                                     </li>
                                                 ))}
 											</ul>

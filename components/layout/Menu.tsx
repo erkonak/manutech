@@ -5,7 +5,7 @@ import { useLanguage } from "@/context/LanguageContext"
 import { useData } from "@/context/DataContext"
 
 export default function Menu() {
-    const { locale } = useLanguage()
+    const { locale, t } = useLanguage()
     const { solutions, postSupports } = useData()
 
     const menuItems = {
@@ -45,8 +45,8 @@ export default function Menu() {
                         <ul className="list-unstyled">
                             {solutions.map((item) => (
                                 <li key={item.id} className="position-relative z-1 border-bottom">
-                                    <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href={`/yazilim-cozumleri/${item.slug}`}>
-                                        <span className="ms-2">{item.baslik}</span>
+                                    <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href={`/yazilim-cozumleri/${t(item, 'slug')}`}>
+                                        <span className="ms-2">{t(item, 'baslik')}</span>
                                     </Link>
                                 </li>
                             ))}

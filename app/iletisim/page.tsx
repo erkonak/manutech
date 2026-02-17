@@ -2,7 +2,7 @@
 "use client"
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useLanguage } from '@/context/LanguageContext'
 import { sendContactForm } from '@/util/api'
 import './contact-styles.css'
@@ -184,6 +184,10 @@ export default function ContactPage() {
     }
 
     const tr = locale === 'en' ? translations.en : translations.tr
+
+    useEffect(() => {
+        document.title = `${tr.contact} - ${siteInfo?.firma_adi || 'Manutech Solutions'}`
+    }, [locale, siteInfo, tr.contact])
 
     return (
         <Layout>

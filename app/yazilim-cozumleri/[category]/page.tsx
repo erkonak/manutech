@@ -6,6 +6,8 @@ import { useParams } from 'next/navigation'
 import { getSoftwareSolutions } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 import { useApi } from '@/hooks/useApi'
+import { useEffect } from "react"
+import { useSiteInfo } from "@/context/SiteInfoContext"
 
 export default function SoftwareCategoryPage() {
     const params = useParams()
@@ -15,6 +17,14 @@ export default function SoftwareCategoryPage() {
     // useApi hook kullanımı
     const { data: response, loading } = useApi(() => getSoftwareSolutions(category), { deps: [category] });
     const solutions = response?.success && response?.data ? response.data : [];
+    const categoryInfo = response?.success && response?.category ? response.category : null;
+    const { siteInfo } = useSiteInfo()
+
+    useEffect(() => {
+        if (categoryInfo) {
+            document.title = `${t(categoryInfo, 'baslik')} - ${siteInfo?.firma_adi || 'Manutech Solutions'}`
+        }
+    }, [categoryInfo, locale, siteInfo])
 
     const translations = {
         tr: {
@@ -22,16 +32,14 @@ export default function SoftwareCategoryPage() {
             solutions_title: "Yazılım Çözümleri",
             loading: "Yükleniyor...",
             seeDetails: "Detayları Gör",
-            noProgram: "Bu kategoride henüz bir program bulunmamaktadır.",
-            suffix: " Çözümleri"
+            noProgram: "Bu kategoride henüz bir program bulunmamaktadır."
         },
         en: {
             home: "Home",
             solutions_title: "Software Solutions",
             loading: "Loading...",
             seeDetails: "See Details",
-            noProgram: "There are no programs in this category yet.",
-            suffix: " Solutions"
+            noProgram: "There are no programs in this category yet."
         }
     }
 
@@ -42,7 +50,7 @@ export default function SoftwareCategoryPage() {
             <section className="section-page-header py-10 fix position-relative">
                 <div className="container position-relative z-1">
                     <div className="text-start">
-                        <h3 className="text-capitalize">{category?.replace('-', ' ')}{tr.suffix}</h3>
+                        <h3 className="text-capitalize">{categoryInfo ? t(categoryInfo, 'baslik') : category?.replace('-', ' ')}</h3>
                         <div className="d-flex">
                             <Link href="/">
                                 <p className="mb-0 text-900">{tr.home}</p>
@@ -56,7 +64,7 @@ export default function SoftwareCategoryPage() {
                             <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
                                 <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                            <p className="text-primary mb-0 text-capitalize">{category?.replace('-', ' ')}</p>
+                            <p className="text-primary mb-0 text-capitalize">{categoryInfo ? t(categoryInfo, 'baslik') : category?.replace('-', ' ')}</p>
                         </div>
                     </div>
                 </div>
@@ -75,19 +83,23 @@ export default function SoftwareCategoryPage() {
                         <div className="row mt-6">
                             {solutions.length > 0 ? (
                                 solutions.map((item, index) => (
-                                    <div key={index} className="col-lg-4 mb-4">
-                                        <div className="p-2 rounded-4 shadow-1 bg-white hover-up h-100">
-                                            <div className="card-service bg-white border rounded-4 ps-4 pe-4">
-                                                <div className="ps-4 mb-3">
-                                                    <img src={item.resim || "/assets/imgs/service-1/icon-1.svg"} alt={t(item, 'baslik')} style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
+                                    <div key={index} className="col-lg-4 col-md-6 mb-4">
+                                        <div className="card border-0 rounded-4 shadow-1 hover-up h-100">
+                                            <div className="card-body p-5 d-flex flex-column">
+                                                <div className="mb-4">
+                                                    <div className="d-inline-flex align-items-center justify-content-center bg-primary-soft rounded-4 p-3">
+                                                        <img src={item.resim || "/assets/imgs/service-1/icon-1.svg"} alt={t(item, 'baslik')} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                                                    </div>
                                                 </div>
-                                                <h6 className="ps-4 my-3">{t(item, 'baslik')}</h6>
-                                                <p className="ps-4 mb-6 flex-grow-1">{t(item, 'alt_baslik')}</p>
-                                                <Link href={`/yazilim-cozumleri/${category}/${item.slug}`} className="rounded-pill border icon-shape d-inline-flex gap-3 icon-learn-more mt-auto">
-                                                    <svg className="arrow" xmlns="http://www.w3.org/2000/svg" width={18} height={10} viewBox="0 0 18 10" fill="none">
-                                                        <path className="fill-dark" d="M13.0633 0.0634766L12.2615 0.86529L15.8294 4.43321H0V5.56716H15.8294L12.2615 9.13505L13.0633 9.93686L18 5.00015L13.0633 0.0634766Z" fill="#111827" />
+                                                <h5 className="mb-3 text-900 fw-bold">{t(item, 'baslik')}</h5>
+                                                <p className="text-600 mb-5 flex-grow-1" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                                                    {t(item, 'alt_baslik')}
+                                                </p>
+                                                <Link href={`/yazilim-cozumleri/${category}/${t(item, 'slug')}`} className="btn btn-link text-primary p-0 d-inline-flex align-items-center fw-bold text-decoration-none mt-auto">
+                                                    {tr.seeDetails}
+                                                    <svg className="ms-2" xmlns="http://www.w3.org/2000/svg" width={18} height={10} viewBox="0 0 18 10" fill="none">
+                                                        <path d="M13.0633 0.0634766L12.2615 0.86529L15.8294 4.43321H0V5.56716H15.8294L12.2615 9.13505L13.0633 9.93686L18 5.00015L13.0633 0.0634766Z" fill="currentColor" />
                                                     </svg>
-                                                    <span className="fw-bold fs-7 text-900">{tr.seeDetails}</span>
                                                 </Link>
                                             </div>
                                         </div>
