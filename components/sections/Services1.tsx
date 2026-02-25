@@ -78,7 +78,7 @@ export default function Services1() {
                     </div>
                     <div className="row mt-6 position-relative justify-content-center">
                         <div className="col-lg-6">
-                            <div className="p-2 mt-lg-8 rounded-4 shadow-1 bg-white position-relative z-1 hover-up" data-aos="fade-zoom-in" data-aos-delay={100}>
+                            <div className="p-2 mt-5 rounded-4 shadow-1 bg-white position-relative z-1 hover-up" data-aos="fade-zoom-in" data-aos-delay={100}>
                                 <div className="card-service bg-white p-6 border rounded-4">
                                     <div className="icon-shape icon-lg rounded-circle bg-primary-soft mb-3">
                                         <i className="bi bi-laptop fs-3 text-primary"></i>
