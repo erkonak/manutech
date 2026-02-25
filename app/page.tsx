@@ -26,7 +26,7 @@ export default function Home() {
 				<Hero1 />
 				{/* <LogoCloud1 /> */}
 				<Services1 />
-				<Testimonial1 />
+				{/* <Testimonial1 /> */}
 				<Blog1 />
 			</Layout>
 		</>

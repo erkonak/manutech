@@ -82,15 +82,15 @@ export default function Footer1() {
 								</div>
 								<div className="col-lg-8">
 									<div className="row">
-										<div className="col-lg-4 col-md-4 col-6">
+										<div className="col-lg-3 col-md-3 col-6">
 											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.company}</h3>
 											<div className="d-flex flex-column align-items-start">
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/blog">{t.blog}</Link>
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/roportajlar">{t.interviews}</Link>
+												{/* <Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/roportajlar">{t.interviews}</Link> */}
 												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/iletisim">{t.contact}</Link>
 											</div>
 										</div>
-										<div className="col-lg-4 col-md-4 col-6">
+										<div className="col-lg-5 col-md-5 col-6">
 											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.solutions}</h3>
 											<div className="d-flex flex-column align-items-start">
 												{solutions.slice(0, 5).map((item) => (

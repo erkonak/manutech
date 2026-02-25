@@ -103,9 +103,9 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 										<li className="nav-item">
 											<Link href="/blog">{m.blog}</Link>
 										</li>
-										<li className="nav-item">
+										{/* <li className="nav-item">
 											<Link href="/roportajlar">{m.interviews}</Link>
-										</li>
+										</li> */}
 										<li className="nav-item">
 											<Link href="/iletisim">{m.contact}</Link>
 										</li>

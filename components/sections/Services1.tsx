@@ -1,12 +1,36 @@
 
 "use client"
 import Link from "next/link"
+import { useState, useEffect } from "react"
+import { getSolutions, getPostSupports } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 import { useSiteInfo } from '@/context/SiteInfoContext'
 
 export default function Services1() {
     const { locale, t } = useLanguage()
     const { siteInfo } = useSiteInfo()
+    const [firstSolutionSlug, setFirstSolutionSlug] = useState<string>('')
+    const [firstPostSlug, setFirstPostSlug] = useState<string>('')
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const solutionsResponse = await getSolutions()
+                if (solutionsResponse && solutionsResponse.status && solutionsResponse.data.length > 0) {
+                    setFirstSolutionSlug(solutionsResponse.data[0].slug)
+                }
+
+                const postSupportsResponse = await getPostSupports()
+                if (postSupportsResponse && postSupportsResponse.status && postSupportsResponse.data.length > 0) {
+                    const firstPost = postSupportsResponse.data[0]
+                    setFirstPostSlug(locale === 'en' ? (firstPost.slug_en || firstPost.slug_tr) : firstPost.slug_tr)
+                }
+            } catch (error) {
+                console.error("Hizmetler verisi çekilirken hata:", error)
+            }
+        }
+        fetchData()
+    }, [locale])
 
     const translations = {
         tr: {
@@ -61,7 +85,7 @@ export default function Services1() {
                                     </div>
                                     <h6 className="my-3">{tr.software}</h6>
                                     <p className="mb-6">{tr.softwareDesc}</p>
-                                    <Link href="/yazilim-cozumleri/cad" className="rounded-pill border icon-shape d-inline-flex gap-3 icon-learn-more">
+                                    <Link href={firstSolutionSlug ? `/yazilim-cozumleri/${firstSolutionSlug}` : "/yazilim-cozumleri"} className="rounded-pill border icon-shape d-inline-flex gap-3 icon-learn-more">
                                         <span className="fw-bold fs-7 text-900">{tr.readMore}</span>
                                         <i className="bi bi-arrow-right"></i>
                                     </Link>
@@ -74,7 +98,7 @@ export default function Services1() {
                                     </div>
                                     <h6 className="my-3">{tr.post}</h6>
                                     <p className="mb-6">{tr.postDesc}</p>
-                                    <Link href="/post-destegi/solidcam" className="rounded-pill border icon-shape d-inline-flex gap-3 icon-learn-more">
+                                    <Link href={firstPostSlug ? `/post-destegi/${firstPostSlug}` : "/post-destegi"} className="rounded-pill border icon-shape d-inline-flex gap-3 icon-learn-more">
                                         <span className="fw-bold fs-7 text-900">{tr.readMore}</span>
                                         <i className="bi bi-arrow-right"></i>
                                     </Link>
