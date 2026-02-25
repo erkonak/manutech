@@ -296,19 +296,12 @@ export default function BlogDetailPage() {
                             <div className="d-flex align-items-center justify-content-between mt-7 py-3 border-top border-bottom">
                                 <div className="d-flex align-items-center position-relative z-1">
                                     <div className="icon-shape rounded-circle border border-2 border-white">
-                                        <img className="rounded-circle" src="/assets/imgs/blog-4/avatar-1.png" alt="author" />
+                                        <img className="rounded-circle" src={blog.ky?.yazar_profil_resmi || "/assets/imgs/blog-4/avatar-1.png"} alt="author" style={{ width: '70px', height: '70px' }} />
                                     </div>
                                     <div className="ms-3">
                                         <h6 className="fs-7 m-0">{blog.yazar || blog.ky?.ad_soyad}</h6>
-                                        <p className="mb-0 fs-8">{blog.tarih}</p>
+                                        {/* <p className="mb-0 fs-8">{blog.tarih}</p> */}
                                     </div>
-                                </div>
-                                <div className="d-flex align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-                                        <path d="M12 19.25C16.0041 19.25 19.25 16.0041 19.25 12C19.25 7.99594 16.0041 4.75 12 4.75C7.99594 4.75 4.75 7.99594 4.75 12C4.75 16.0041 7.99594 19.25 12 19.25Z" stroke="#111827" strokeWidth="1.5" />
-                                        <path d="M12 8V12L14 14" stroke="#111827" strokeWidth="1.5" />
-                                    </svg>
-                                    <span className="ms-2 fs-7 text-900">5 {tr.minsRead}</span>
                                 </div>
                             </div>
 

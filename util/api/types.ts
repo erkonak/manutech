@@ -85,6 +85,7 @@ export interface Blog {
     baslik_en: string | null;
     baslik_ar: string | null;
     yazar: string;
+    yazar_profil_resmi?: string;
     slug: string;
     slug_en: string;
     slug_ar: string;
