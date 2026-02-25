@@ -148,7 +148,7 @@ export default function PageCaseStudyDetails() {
 										<Link href="#" className="fw-bold btn text-start bg-white mb-3 fs-6 d-flex align-items-center justify-content-between text-primary hover-up w-100">
 											<span>Get 15 Days Free Trial</span>
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.4177 5.41772L16.3487 6.48681L21.1059 11.244H0V12.756H21.1059L16.3487 17.5132L17.4177 18.5822L24 12L17.4177 5.41772Z" fill="#6D4DF2" />
+												<path d="M17.4177 5.41772L16.3487 6.48681L21.1059 11.244H0V12.756H21.1059L16.3487 17.5132L17.4177 18.5822L24 12L17.4177 5.41772Z" fill="#1a245c" />
 											</svg>
 										</Link>
 									</div>

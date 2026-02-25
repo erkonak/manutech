@@ -237,8 +237,8 @@ export default function PageContact2() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -258,8 +258,8 @@ export default function PageContact2() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -279,8 +279,8 @@ export default function PageContact2() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -300,8 +300,8 @@ export default function PageContact2() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -321,8 +321,8 @@ export default function PageContact2() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -342,8 +342,8 @@ export default function PageContact2() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -363,8 +363,8 @@ export default function PageContact2() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -384,8 +384,8 @@ export default function PageContact2() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>

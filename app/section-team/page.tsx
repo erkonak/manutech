@@ -378,8 +378,8 @@ export default function SectionTeam() {
 														<span className="fs-7 text-white me-auto">Co-Founder</span>
 														<div className="arrow-icon bg-white-keep icon-shape icon-sm rounded-circle">
 															<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-																<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 															</svg>
 														</div>
 													</div>
@@ -400,8 +400,8 @@ export default function SectionTeam() {
 														<span className="fs-7 text-white me-auto">Software Engineer</span>
 														<div className="arrow-icon bg-white-keep icon-shape icon-sm rounded-circle">
 															<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-																<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 															</svg>
 														</div>
 													</div>
@@ -422,8 +422,8 @@ export default function SectionTeam() {
 														<span className="fs-7 text-white me-auto">Product Manager</span>
 														<div className="arrow-icon bg-white-keep icon-shape icon-sm rounded-circle">
 															<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-																<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 															</svg>
 														</div>
 													</div>
@@ -444,8 +444,8 @@ export default function SectionTeam() {
 														<span className="fs-7 text-white me-auto">UX/UI Designer</span>
 														<div className="arrow-icon bg-white-keep icon-shape icon-sm rounded-circle">
 															<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-																<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 															</svg>
 														</div>
 													</div>
@@ -466,8 +466,8 @@ export default function SectionTeam() {
 														<span className="fs-7 text-white me-auto">DevOps Engineer</span>
 														<div className="arrow-icon bg-white-keep icon-shape icon-sm rounded-circle">
 															<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-																<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 															</svg>
 														</div>
 													</div>
@@ -488,8 +488,8 @@ export default function SectionTeam() {
 														<span className="fs-7 text-white me-auto">Data Analyst</span>
 														<div className="arrow-icon bg-white-keep icon-shape icon-sm rounded-circle">
 															<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-																<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 															</svg>
 														</div>
 													</div>
@@ -510,8 +510,8 @@ export default function SectionTeam() {
 														<span className="fs-7 text-white me-auto">Sales Executive</span>
 														<div className="arrow-icon bg-white-keep icon-shape icon-sm rounded-circle">
 															<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-																<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 															</svg>
 														</div>
 													</div>
@@ -532,8 +532,8 @@ export default function SectionTeam() {
 														<span className="fs-7 text-white me-auto">Marketing Specialist</span>
 														<div className="arrow-icon bg-white-keep icon-shape icon-sm rounded-circle">
 															<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-																<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+																<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 															</svg>
 														</div>
 													</div>
@@ -575,7 +575,7 @@ export default function SectionTeam() {
 											<span className="d-flex justify-content-between">
 												<span className="fs-6 text-600 me-auto">Co-Founder</span>
 												<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 												</svg>
 											</span>
 										</Link>
@@ -593,7 +593,7 @@ export default function SectionTeam() {
 											<span className="d-flex justify-content-between">
 												<span className="fs-6 text-600 me-auto">Chief Finance Officer</span>
 												<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 												</svg>
 											</span>
 										</Link>
@@ -611,7 +611,7 @@ export default function SectionTeam() {
 											<span className="d-flex justify-content-between">
 												<span className="fs-6 text-600 me-auto">VP Sales and Marketing </span>
 												<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 												</svg>
 											</span>
 										</Link>
@@ -632,7 +632,7 @@ export default function SectionTeam() {
 											<span className="d-flex justify-content-between">
 												<span className="fs-6 text-600 me-auto">Chief Marketing Officer</span>
 												<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 												</svg>
 											</span>
 										</Link>
@@ -650,7 +650,7 @@ export default function SectionTeam() {
 											<span className="d-flex justify-content-between">
 												<span className="fs-6 text-600 me-auto">Administrator </span>
 												<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 												</svg>
 											</span>
 										</Link>
@@ -668,7 +668,7 @@ export default function SectionTeam() {
 											<span className="d-flex justify-content-between">
 												<span className="fs-6 text-600 me-auto">Tax Consultant</span>
 												<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 												</svg>
 											</span>
 										</Link>
@@ -686,7 +686,7 @@ export default function SectionTeam() {
 											<span className="d-flex justify-content-between">
 												<span className="fs-6 text-600 me-auto">Amelia Earhart</span>
 												<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+													<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 												</svg>
 											</span>
 										</Link>
@@ -725,8 +725,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -746,8 +746,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -767,8 +767,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -788,8 +788,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -809,8 +809,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -830,8 +830,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -851,8 +851,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -872,8 +872,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -933,8 +933,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -954,8 +954,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -975,8 +975,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -996,8 +996,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -1017,8 +1017,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -1038,8 +1038,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -1059,8 +1059,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -1080,8 +1080,8 @@ export default function SectionTeam() {
 										</div>
 										<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle border text-end ms-auto mt-auto">
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 									</div>
@@ -1137,8 +1137,8 @@ export default function SectionTeam() {
 												<span className="fs-7 text-white me-auto">Co-Founder</span>
 												<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-														<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -1159,8 +1159,8 @@ export default function SectionTeam() {
 												<span className="fs-7 text-white me-auto">Software Engineer</span>
 												<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-														<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -1181,8 +1181,8 @@ export default function SectionTeam() {
 												<span className="fs-7 text-white me-auto">Product Manager</span>
 												<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-														<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -1203,8 +1203,8 @@ export default function SectionTeam() {
 												<span className="fs-7 text-white me-auto">UX/UI Designer</span>
 												<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-														<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -1225,8 +1225,8 @@ export default function SectionTeam() {
 												<span className="fs-7 text-white me-auto">DevOps Engineer</span>
 												<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-														<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -1247,8 +1247,8 @@ export default function SectionTeam() {
 												<span className="fs-7 text-white me-auto">Data Analyst</span>
 												<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-														<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -1269,8 +1269,8 @@ export default function SectionTeam() {
 												<span className="fs-7 text-white me-auto">Sales Executive</span>
 												<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-														<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -1291,8 +1291,8 @@ export default function SectionTeam() {
 												<span className="fs-7 text-white me-auto">Marketing Specialist</span>
 												<div className="arrow-icon bg-white icon-shape icon-sm rounded-circle">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-														<path d="M17.25 15.25V6.75H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.25V6.75H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>

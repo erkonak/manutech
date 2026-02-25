@@ -125,7 +125,7 @@ export default function PageElements() {
 											<div className="alert-content d-flex align-items-center">
 												<svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" fill="none">
 													<g clipPath="url(#clip0_695_93004)">
-														<path d="M8.9817 1.56601C8.88271 1.39358 8.73998 1.25031 8.56791 1.15069C8.39584 1.05106 8.20053 0.998596 8.0017 0.998596C7.80287 0.998596 7.60756 1.05106 7.43549 1.15069C7.26343 1.25031 7.12069 1.39358 7.0217 1.56601L0.164702 13.233C-0.292298 14.011 0.255702 15 1.1447 15H14.8577C15.7467 15 16.2957 14.01 15.8377 13.233L8.9817 1.56601ZM7.9997 5.00001C8.5347 5.00001 8.9537 5.46201 8.8997 5.99501L8.5497 9.50201C8.53794 9.63978 8.4749 9.76813 8.37306 9.86165C8.27121 9.95517 8.13797 10.0071 7.9997 10.0071C7.86143 10.0071 7.72819 9.95517 7.62635 9.86165C7.5245 9.76813 7.46146 9.63978 7.4497 9.50201L7.0997 5.99501C7.08713 5.86925 7.10105 5.74224 7.14055 5.62218C7.18005 5.50212 7.24426 5.39166 7.32905 5.29792C7.41383 5.20419 7.51731 5.12925 7.63282 5.07794C7.74833 5.02663 7.87331 5.00008 7.9997 5.00001ZM8.0017 11C8.26692 11 8.52127 11.1054 8.70881 11.2929C8.89634 11.4804 9.0017 11.7348 9.0017 12C9.0017 12.2652 8.89634 12.5196 8.70881 12.7071C8.52127 12.8947 8.26692 13 8.0017 13C7.73649 13 7.48213 12.8947 7.2946 12.7071C7.10706 12.5196 7.0017 12.2652 7.0017 12C7.0017 11.7348 7.10706 11.4804 7.2946 11.2929C7.48213 11.1054 7.73649 11 8.0017 11Z" fill="#6D4DF2" />
+														<path d="M8.9817 1.56601C8.88271 1.39358 8.73998 1.25031 8.56791 1.15069C8.39584 1.05106 8.20053 0.998596 8.0017 0.998596C7.80287 0.998596 7.60756 1.05106 7.43549 1.15069C7.26343 1.25031 7.12069 1.39358 7.0217 1.56601L0.164702 13.233C-0.292298 14.011 0.255702 15 1.1447 15H14.8577C15.7467 15 16.2957 14.01 15.8377 13.233L8.9817 1.56601ZM7.9997 5.00001C8.5347 5.00001 8.9537 5.46201 8.8997 5.99501L8.5497 9.50201C8.53794 9.63978 8.4749 9.76813 8.37306 9.86165C8.27121 9.95517 8.13797 10.0071 7.9997 10.0071C7.86143 10.0071 7.72819 9.95517 7.62635 9.86165C7.5245 9.76813 7.46146 9.63978 7.4497 9.50201L7.0997 5.99501C7.08713 5.86925 7.10105 5.74224 7.14055 5.62218C7.18005 5.50212 7.24426 5.39166 7.32905 5.29792C7.41383 5.20419 7.51731 5.12925 7.63282 5.07794C7.74833 5.02663 7.87331 5.00008 7.9997 5.00001ZM8.0017 11C8.26692 11 8.52127 11.1054 8.70881 11.2929C8.89634 11.4804 9.0017 11.7348 9.0017 12C9.0017 12.2652 8.89634 12.5196 8.70881 12.7071C8.52127 12.8947 8.26692 13 8.0017 13C7.73649 13 7.48213 12.8947 7.2946 12.7071C7.10706 12.5196 7.0017 12.2652 7.0017 12C7.0017 11.7348 7.10706 11.4804 7.2946 11.2929C7.48213 11.1054 7.73649 11 8.0017 11Z" fill="#1a245c" />
 													</g>
 													<defs>
 														<clipPath>
@@ -136,8 +136,8 @@ export default function PageElements() {
 												<div className="pe-10 ps-3">A simple primary alert—check it out!</div>
 											</div>
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none">
-												<path d="M17.25 6.75L6.75 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M6.75 6.75L17.25 17.25" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M17.25 6.75L6.75 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M6.75 6.75L17.25 17.25" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 										<div className="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
@@ -295,8 +295,8 @@ export default function PageElements() {
 											<span className="bg-primary fs-9 fw-bold rounded-pill px-2 py-1 text-white">New</span>
 											<span className="fs-7 fw-medium text-primary mx-2">Free Lifetime Update</span>
 											<svg xmlns="http://www.w3.org/2000/svg" width={18} height={19} viewBox="0 0 18 19" fill="none">
-												<path d="M10.3125 5.5625L14.4375 9.5L10.3125 13.4375" stroke="#6342EC" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-												<path d="M14.25 9.5H3.5625" stroke="#6342EC" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M10.3125 5.5625L14.4375 9.5L10.3125 13.4375" stroke="#121940" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
+												<path d="M14.25 9.5H3.5625" stroke="#121940" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
 											</svg>
 										</div>
 										<div className="mb-3 align-items-center justify-content-center bg-primary-soft border border-2 border-white d-inline-flex rounded-pill px-4 py-2">

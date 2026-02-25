@@ -89,8 +89,8 @@ export default function Blog4() {
 												</div>
 												<div className="icon-shape icon-md bg-white rounded-circle border">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={25} viewBox="0 0 24 25" fill="none">
-														<path d="M17.25 15.5322V7.03223H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7.28223L6.75 17.5322" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.5322V7.03223H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7.28223L6.75 17.5322" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -119,8 +119,8 @@ export default function Blog4() {
 												</div>
 												<div className="icon-shape icon-md bg-white rounded-circle border">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={25} viewBox="0 0 24 25" fill="none">
-														<path d="M17.25 15.5322V7.03223H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7.28223L6.75 17.5322" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.5322V7.03223H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7.28223L6.75 17.5322" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -149,8 +149,8 @@ export default function Blog4() {
 												</div>
 												<div className="icon-shape icon-md bg-white rounded-circle border">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={25} viewBox="0 0 24 25" fill="none">
-														<path d="M17.25 15.5322V7.03223H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7.28223L6.75 17.5322" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.5322V7.03223H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7.28223L6.75 17.5322" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -179,8 +179,8 @@ export default function Blog4() {
 												</div>
 												<div className="icon-shape icon-md bg-white rounded-circle border">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={25} viewBox="0 0 24 25" fill="none">
-														<path d="M17.25 15.5322V7.03223H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7.28223L6.75 17.5322" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.5322V7.03223H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7.28223L6.75 17.5322" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -209,8 +209,8 @@ export default function Blog4() {
 												</div>
 												<div className="icon-shape icon-md bg-white rounded-circle border">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={25} viewBox="0 0 24 25" fill="none">
-														<path d="M17.25 15.5322V7.03223H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7.28223L6.75 17.5322" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.5322V7.03223H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7.28223L6.75 17.5322" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>
@@ -239,8 +239,8 @@ export default function Blog4() {
 												</div>
 												<div className="icon-shape icon-md bg-white rounded-circle border">
 													<svg xmlns="http://www.w3.org/2000/svg" width={24} height={25} viewBox="0 0 24 25" fill="none">
-														<path d="M17.25 15.5322V7.03223H8.75" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-														<path d="M17 7.28223L6.75 17.5322" stroke="#6D4DF2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17.25 15.5322V7.03223H8.75" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+														<path d="M17 7.28223L6.75 17.5322" stroke="#1a245c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 													</svg>
 												</div>
 											</div>

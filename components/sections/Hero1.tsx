@@ -13,8 +13,8 @@ export default function Hero1() {
 									<span className="bg-primary fs-9 fw-bold rounded-pill px-2 py-1 text-white">New</span>
 									<span className="fs-7 fw-medium text-primary mx-2">Free Lifetime Update</span>
 									<svg xmlns="http://www.w3.org/2000/svg" width={18} height={19} viewBox="0 0 18 19" fill="none">
-										<path d="M10.3125 5.5625L14.4375 9.5L10.3125 13.4375" stroke="#6342EC" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-										<path d="M14.25 9.5H3.5625" stroke="#6342EC" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
+										<path d="M10.3125 5.5625L14.4375 9.5L10.3125 13.4375" stroke="#121940" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
+										<path d="M14.25 9.5H3.5625" stroke="#121940" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
 									</svg>
 								</Link>
 								<h3 className="ds-3 mt-4 mb-5" data-aos="fade-zoom-in" data-aos-delay={0}>Boost your project's speed and efficiency.</h3>
@@ -75,8 +75,8 @@ export default function Hero1() {
 									<span className="bg-primary fs-9 fw-bold rounded-pill px-2 py-1 text-white">Get</span>
 									<span className="fs-7 fw-medium text-primary mx-2">Free Update</span>
 									<svg xmlns="http://www.w3.org/2000/svg" width={18} height={19} viewBox="0 0 18 19" fill="none">
-										<path d="M10.3125 5.5625L14.4375 9.5L10.3125 13.4375" stroke="#6D4DF2" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
-										<path d="M14.25 9.5H3.5625" stroke="#6D4DF2" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
+										<path d="M10.3125 5.5625L14.4375 9.5L10.3125 13.4375" stroke="#1a245c" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
+										<path d="M14.25 9.5H3.5625" stroke="#1a245c" strokeWidth="1.125" strokeLinecap="round" strokeLinejoin="round" />
 									</svg>
 								</Link>
 							</div>

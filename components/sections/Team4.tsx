@@ -33,7 +33,7 @@ export default function Team4() {
 										<span className="d-flex justify-content-between">
 											<span className="fs-6 text-600 me-auto">Co-Founder</span>
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 											</svg>
 										</span>
 									</Link>
@@ -51,7 +51,7 @@ export default function Team4() {
 										<span className="d-flex justify-content-between">
 											<span className="fs-6 text-600 me-auto">Chief Finance Officer</span>
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 											</svg>
 										</span>
 									</Link>
@@ -69,7 +69,7 @@ export default function Team4() {
 										<span className="d-flex justify-content-between">
 											<span className="fs-6 text-600 me-auto">VP Sales and Marketing </span>
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 											</svg>
 										</span>
 									</Link>
@@ -90,7 +90,7 @@ export default function Team4() {
 										<span className="d-flex justify-content-between">
 											<span className="fs-6 text-600 me-auto">Chief Marketing Officer</span>
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 											</svg>
 										</span>
 									</Link>
@@ -108,7 +108,7 @@ export default function Team4() {
 										<span className="d-flex justify-content-between">
 											<span className="fs-6 text-600 me-auto">Administrator </span>
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 											</svg>
 										</span>
 									</Link>
@@ -126,7 +126,7 @@ export default function Team4() {
 										<span className="d-flex justify-content-between">
 											<span className="fs-6 text-600 me-auto">Tax Consultant</span>
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 											</svg>
 										</span>
 									</Link>
@@ -144,7 +144,7 @@ export default function Team4() {
 										<span className="d-flex justify-content-between">
 											<span className="fs-6 text-600 me-auto">Amelia Earhart</span>
 											<svg xmlns="http://www.w3.org/2000/svg" width={24} height={14} viewBox="0 0 24 14" fill="#007BFF">
-												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#6d4df2" />
+												<path d="M17.4177 0.417969L16.3487 1.48705L21.1059 6.24429H0V7.75621H21.1059L16.3487 12.5134L17.4177 13.5825L24 7.0002L17.4177 0.417969Z" fill="#1a245c" />
 											</svg>
 										</span>
 									</Link>
