@@ -14,6 +14,8 @@ import type {
     Interview,
     Solution,
     SubSolution,
+    ProductionSolution,
+    SubProductionSolution,
     PostSupport,
     Category,
     ContactFormData,
@@ -163,7 +165,7 @@ export async function getSoftwareSolutions(categorySlug?: string) {
     const solutions = solutionsResponse.data;
 
     if (categorySlug) {
-        const targetSolution = solutions.find(s => s.slug === categorySlug);
+        const targetSolution = solutions.find(s => s.slug === categorySlug || s.slug_en === categorySlug);
         if (!targetSolution) return { success: false, data: [] };
 
         const subSolutionsResponse = await getSubSolutions(targetSolution.id);
@@ -189,6 +191,80 @@ export async function getSoftwareSolutionBySlug(slug: string) {
 
     for (const solution of solutionsResponse.data) {
         const subsResponse = await getSubSolutions(solution.id);
+        if (subsResponse?.status) {
+            const found = subsResponse.data.find(
+                (s) => s.slug === slug || s.slug_en === slug
+            );
+            if (found) {
+                return { success: true, data: found, category: solution };
+            }
+        }
+    }
+
+    return { success: false, data: null };
+}
+
+// ============================================
+// Production Solutions
+// ============================================
+
+export async function getProductionSolutions(): Promise<ApiResponse<ProductionSolution[]> | null> {
+    const response = await apiGet<ApiResponse<ProductionSolution[]>>('production-solutions');
+
+    if (response?.status) {
+        setToCache(CACHE_KEYS.PRODUCTION_SOLUTIONS, response, CACHE_TTL.LONG);
+    }
+
+    return response;
+}
+
+export async function getSubProductionSolutions(solutionId: number | string): Promise<ApiResponse<SubProductionSolution[]> | null> {
+    const cacheKey = `sub-production-solutions-${solutionId}`;
+    const response = await apiGet<ApiResponse<SubProductionSolution[]>>(`sub-production-solutions?production_solution_id=${solutionId}`);
+
+    if (response?.status) {
+        setToCache(cacheKey, response, CACHE_TTL.LONG);
+    }
+
+    return response;
+}
+
+/**
+ * Kategoriye göre üretim çözümlerini getir
+ */
+export async function getProdSolutions(categorySlug?: string) {
+    const solutionsResponse = await getProductionSolutions();
+    if (!solutionsResponse?.status) return { success: false, data: [] };
+
+    const solutions = solutionsResponse.data;
+
+    if (categorySlug) {
+        const targetSolution = solutions.find(s => s.slug === categorySlug || s.slug_en === categorySlug);
+        if (!targetSolution) return { success: false, data: [] };
+
+        const subSolutionsResponse = await getSubProductionSolutions(targetSolution.id);
+        return {
+            success: subSolutionsResponse?.status ?? false,
+            data: subSolutionsResponse?.data ?? [],
+            category: targetSolution
+        };
+    }
+
+    return {
+        success: true,
+        data: solutions
+    };
+}
+
+/**
+ * Slug'a göre üretim çözümü detayı getir
+ */
+export async function getProdSolutionBySlug(slug: string) {
+    const solutionsResponse = await getProductionSolutions();
+    if (!solutionsResponse?.status) return { success: false, data: null };
+
+    for (const solution of solutionsResponse.data) {
+        const subsResponse = await getSubProductionSolutions(solution.id);
         if (subsResponse?.status) {
             const found = subsResponse.data.find(
                 (s) => s.slug === slug || s.slug_en === slug

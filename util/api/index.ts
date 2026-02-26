@@ -16,6 +16,8 @@ export type {
     Interview,
     Solution,
     SubSolution,
+    ProductionSolution,
+    SubProductionSolution,
     PostSupport,
     Category,
     ContactFormData,
@@ -38,6 +40,10 @@ export {
     getSubSolutions,
     getSoftwareSolutions,
     getSoftwareSolutionBySlug,
+    getProductionSolutions,
+    getSubProductionSolutions,
+    getProdSolutions,
+    getProdSolutionBySlug,
     getPostSupports,
     getPostSupport
 } from './services';

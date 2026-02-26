@@ -6,12 +6,13 @@ import { useData } from "@/context/DataContext"
 
 export default function Menu() {
     const { locale, t } = useLanguage()
-    const { solutions, postSupports } = useData()
+    const { solutions, productionSolutions, postSupports } = useData()
 
     const menuItems = {
         tr: {
             home: "Anasayfa",
             software: "Yazılım Çözümleri",
+            production: "Üretim Çözümleri",
             post: "Post Desteği",
             training: "Eğitim",
             blog: "Blog",
@@ -21,6 +22,7 @@ export default function Menu() {
         en: {
             home: "Home",
             software: "Software Solutions",
+            production: "Production Solutions",
             post: "Post Support",
             training: "Training",
             blog: "Blog",
@@ -46,6 +48,22 @@ export default function Menu() {
                             {solutions.map((item) => (
                                 <li key={item.id} className="position-relative z-1 border-bottom">
                                     <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href={`/yazilim-cozumleri/${t(item, 'slug')}`}>
+                                        <span className="ms-2">{t(item, 'baslik')}</span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </li>
+                <li className="nav-item dropdown menu-item-has-children">
+                    <Link className="nav-link fw-bold d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {m.production}
+                    </Link>
+                    <div className="dropdown-menu fix">
+                        <ul className="list-unstyled">
+                            {productionSolutions.map((item) => (
+                                <li key={item.id} className="position-relative z-1 border-bottom">
+                                    <Link className="dropdown-item position-relative z-1 d-flex align-items-start" href={`/uretim-cozumleri/${t(item, 'slug')}`}>
                                         <span className="ms-2">{t(item, 'baslik')}</span>
                                     </Link>
                                 </li>

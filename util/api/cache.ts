@@ -96,6 +96,7 @@ export const CACHE_KEYS = {
     BLOGS: 'blogs',
     CATEGORIES: 'categories',
     SOLUTIONS: 'solutions',
+    PRODUCTION_SOLUTIONS: 'production-solutions',
     POST_SUPPORTS: 'post-supports',
     EDUCATIONS: 'educations',
     INTERVIEWS: 'interviews'

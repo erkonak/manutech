@@ -179,6 +179,12 @@ export interface SubSolution {
     features?: (string | { title: string })[];
 }
 
+// --- Production Solution ---
+export interface ProductionSolution extends Solution {}
+
+// --- Sub Production Solution ---
+export interface SubProductionSolution extends SubSolution {}
+
 // --- Post Support ---
 export interface PostSupport {
     id: number;

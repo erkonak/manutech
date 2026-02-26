@@ -1,13 +1,17 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getSolutions, getPostSupports, getFromCache, CACHE_KEYS } from '@/util/api';
-import type { Solution, PostSupport } from '@/util/api';
+import { getSolutions, getProductionSolutions, getPostSupports, getFromCache, CACHE_KEYS } from '@/util/api';
+import type { Solution, ProductionSolution, PostSupport } from '@/util/api';
 
 interface DataContextType {
     // Solutions (Menüler için)
     solutions: Solution[];
     solutionsLoading: boolean;
+
+    // Production Solutions (Menüler için)
+    productionSolutions: ProductionSolution[];
+    productionSolutionsLoading: boolean;
 
     // Post Supports (Menüler için)
     postSupports: PostSupport[];
@@ -15,6 +19,7 @@ interface DataContextType {
 
     // Refetch fonksiyonları
     refetchSolutions: () => Promise<void>;
+    refetchProductionSolutions: () => Promise<void>;
     refetchPostSupports: () => Promise<void>;
 }
 
@@ -29,6 +34,10 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Solutions state
     const [solutions, setSolutions] = useState<Solution[]>([]);
     const [solutionsLoading, setSolutionsLoading] = useState(true);
+
+    // Production Solutions state
+    const [productionSolutions, setProductionSolutions] = useState<ProductionSolution[]>([]);
+    const [productionSolutionsLoading, setProductionSolutionsLoading] = useState(true);
 
     // Post Supports state
     const [postSupports, setPostSupports] = useState<PostSupport[]>([]);
@@ -57,6 +66,28 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     };
 
+    // Production Solutions fetch
+    const fetchProductionSolutions = async () => {
+        // SWR: Önce cache'den veriyi al ve göster
+        const cached = getFromCache<any>(CACHE_KEYS.PRODUCTION_SOLUTIONS);
+        if (cached) {
+            setProductionSolutions(cached.data);
+            setProductionSolutionsLoading(false);
+        }
+
+        // Arka planda güncel veriyi çek
+        try {
+            const response = await getProductionSolutions();
+            if (response?.status && response.data) {
+                setProductionSolutions(response.data);
+            }
+        } catch (error) {
+            console.error('Production Solutions güncellenirken hata:', error);
+        } finally {
+            setProductionSolutionsLoading(false);
+        }
+    };
+
     // Post Supports fetch
     const fetchPostSupports = async () => {
         // SWR: Önce cache'den veriyi al ve göster
@@ -82,15 +113,19 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // İlk yüklemede verileri çek
     useEffect(() => {
         fetchSolutions();
+        fetchProductionSolutions();
         fetchPostSupports();
     }, []);
 
     const value: DataContextType = {
         solutions,
         solutionsLoading,
+        productionSolutions,
+        productionSolutionsLoading,
         postSupports,
         postSupportsLoading,
         refetchSolutions: fetchSolutions,
+        refetchProductionSolutions: fetchProductionSolutions,
         refetchPostSupports: fetchPostSupports
     };
 

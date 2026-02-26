@@ -10,7 +10,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 	const [isAccordion, setIsAccordion] = useState(0)
     const { locale, t } = useLanguage()
     const { siteInfo } = useSiteInfo()
-    const { solutions, postSupports } = useData()
+    const { solutions, productionSolutions, postSupports } = useData()
 
 	const handleAccordion = (key: any) => {
 		setIsAccordion(prevState => prevState === key ? null : key)
@@ -20,6 +20,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
         tr: {
             home: "Anasayfa",
             software: "Yazılım Çözümleri",
+            production: "Üretim Çözümleri",
             post: "Post Desteği",
             training: "Eğitim",
             blog: "Blog",
@@ -29,6 +30,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
         en: {
             home: "Home",
             software: "Software Solutions",
+            production: "Production Solutions",
             post: "Post Support",
             training: "Training",
             blog: "Blog",
@@ -76,17 +78,30 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 											<ul className="sub-menu" style={{ display: `${isAccordion == 1 ? "block" : "none"}` }}>
                                                 {solutions.map((item) => (
                                                     <li key={item.id}>
-                                                        <Link href={`/yazilim-cozumleri/${t(item, 'slug')}`} onClick={handleMobileMenu}>{t(item, 'baslik')}</Link>
-                                                    </li>
-                                                ))}
+                                                         <Link href={`/yazilim-cozumleri/${t(item, 'slug')}`} onClick={handleMobileMenu}>{t(item, 'baslik')}</Link>
+                                                     </li>
+                                                 ))}
 											</ul>
 										</li>
 										<li className={`has-children ${isAccordion === 2 ? "active" : ""}`}>
 											<span className="menu-expand" onClick={() => handleAccordion(2)}>
 												<i className="arrow-small-down"></i>
 											</span>
-											<Link href="#">{m.post}</Link>
+											<Link href="#">{m.production}</Link>
 											<ul className="sub-menu" style={{ display: `${isAccordion == 2 ? "block" : "none"}` }}>
+                                                {productionSolutions.map((item) => (
+                                                    <li key={item.id}>
+                                                         <Link href={`/uretim-cozumleri/${t(item, 'slug')}`} onClick={handleMobileMenu}>{t(item, 'baslik')}</Link>
+                                                     </li>
+                                                 ))}
+											</ul>
+										</li>
+										<li className={`has-children ${isAccordion === 3 ? "active" : ""}`}>
+											<span className="menu-expand" onClick={() => handleAccordion(3)}>
+												<i className="arrow-small-down"></i>
+											</span>
+											<Link href="#">{m.post}</Link>
+											<ul className="sub-menu" style={{ display: `${isAccordion == 3 ? "block" : "none"}` }}>
                                                 {postSupports.map((item) => (
                                                     <li key={item.id}>
                                                         <Link href={`/post-destegi/${locale === 'tr' ? item.slug_tr : (item.slug_en || item.slug_tr)}`} onClick={handleMobileMenu}>

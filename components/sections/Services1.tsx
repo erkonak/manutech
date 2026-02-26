@@ -2,7 +2,7 @@
 "use client"
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { getSolutions, getPostSupports } from '@/util/api'
+import { getSolutions, getProductionSolutions, getPostSupports } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 import { useSiteInfo } from '@/context/SiteInfoContext'
 
@@ -10,6 +10,7 @@ export default function Services1() {
     const { locale, t } = useLanguage()
     const { siteInfo } = useSiteInfo()
     const [firstSolutionSlug, setFirstSolutionSlug] = useState<string>('')
+    const [firstProdSolutionSlug, setFirstProdSolutionSlug] = useState<string>('')
     const [firstPostSlug, setFirstPostSlug] = useState<string>('')
 
     useEffect(() => {
@@ -18,6 +19,11 @@ export default function Services1() {
                 const solutionsResponse = await getSolutions()
                 if (solutionsResponse && solutionsResponse.status && solutionsResponse.data.length > 0) {
                     setFirstSolutionSlug(solutionsResponse.data[0].slug)
+                }
+
+                const prodSolutionsResponse = await getProductionSolutions()
+                if (prodSolutionsResponse && prodSolutionsResponse.status && prodSolutionsResponse.data.length > 0) {
+                    setFirstProdSolutionSlug(prodSolutionsResponse.data[0].slug)
                 }
 
                 const postSupportsResponse = await getPostSupports()
@@ -39,6 +45,8 @@ export default function Services1() {
             desc: "İmalat ve tasarımı birleştiren uçtan uca çözümlerimizle tanışın.",
             software: "Yazılım Çözümleri",
             softwareDesc: "CAD/CAM, Simülasyon ve PLM alanlarında dünya lideri yazılımlar.",
+            production: "Üretim Çözümleri",
+            productionDesc: "Üretim süreçlerinizi optimize eden ileri teknoloji imalat çözümleri.",
             post: "Post Desteği",
             postDesc: "SolidCAM, Mastercam ve NX CAM için profesyonel post işlemci desteği.",
             training: "Eğitim Hizmetleri",
@@ -51,6 +59,8 @@ export default function Services1() {
             desc: "Meet our end-to-end solutions combining manufacturing and design.",
             software: "Software Solutions",
             softwareDesc: "World-leading software in CAD/CAM, Simulation, and PLM.",
+            production: "Production Solutions",
+            productionDesc: "Advanced manufacturing solutions optimizing your production processes.",
             post: "Post Support",
             postDesc: "Professional post-processor support for SolidCAM, Mastercam, and NX CAM.",
             training: "Training Services",
@@ -77,6 +87,7 @@ export default function Services1() {
                         </p>
                     </div>
                     <div className="row mt-6 position-relative justify-content-center">
+                        {/* Yazılım Çözümleri */}
                         <div className="col-lg-6">
                             <div className="p-2 mt-5 rounded-4 shadow-1 bg-white position-relative z-1 hover-up" data-aos="fade-zoom-in" data-aos-delay={100}>
                                 <div className="card-service bg-white p-6 border rounded-4">
@@ -91,6 +102,27 @@ export default function Services1() {
                                     </Link>
                                 </div>
                             </div>
+                        </div>
+
+                        {/* Üretim Çözümleri */}
+                        <div className="col-lg-6">
+                            <div className="p-2 mt-5 rounded-4 shadow-1 bg-white position-relative z-1 hover-up" data-aos="fade-zoom-in" data-aos-delay={150}>
+                                <div className="card-service bg-white p-6 border rounded-4">
+                                    <div className="icon-shape icon-lg rounded-circle bg-primary-soft mb-3">
+                                        <i className="bi bi-cpu fs-3 text-primary"></i>
+                                    </div>
+                                    <h6 className="my-3">{tr.production}</h6>
+                                    <p className="mb-6">{tr.productionDesc}</p>
+                                    <Link href={firstProdSolutionSlug ? `/uretim-cozumleri/${firstProdSolutionSlug}` : "/uretim-cozumleri"} className="rounded-pill border icon-shape d-inline-flex gap-3 icon-learn-more">
+                                        <span className="fw-bold fs-7 text-900">{tr.readMore}</span>
+                                        <i className="bi bi-arrow-right"></i>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Post Desteği */}
+                        <div className="col-lg-6">
                             <div className="p-2 mt-5 rounded-4 shadow-1 bg-white position-relative z-1 hover-up" data-aos="fade-zoom-in" data-aos-delay={200}>
                                 <div className="card-service bg-white p-6 border rounded-3">
                                     <div className="icon-shape icon-lg rounded-circle bg-primary-soft mb-3">
@@ -105,6 +137,8 @@ export default function Services1() {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Eğitim Hizmetleri */}
                         <div className="col-lg-6">
                             <div className="p-2 mt-5 rounded-4 shadow-1 bg-white position-relative z-1 hover-up" data-aos="fade-zoom-in" data-aos-delay={300}>
                                 <div className="card-service bg-white p-6 border rounded-3">
@@ -119,7 +153,6 @@ export default function Services1() {
                                     </Link>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

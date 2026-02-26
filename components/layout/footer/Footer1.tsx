@@ -8,13 +8,14 @@ import { useData } from '@/context/DataContext'
 export default function Footer1() {
 	const { locale, t: tDynamic } = useLanguage()
 	const { siteInfo } = useSiteInfo()
-	const { solutions, postSupports } = useData()
+	const { solutions, productionSolutions, postSupports } = useData()
 
 	const translations = {
 		tr: {
 			description: "Üretim ve tasarım süreçlerinizde verimliliği artıran, maliyetleri düşüren ve yenilikçi çözümler sunan teknoloji ortağınız.",
 			company: "Kurumsal",
 			solutions: "Yazılım Çözümleri",
+			production: "Üretim Çözümleri",
 			post: "Post Destekleri",
 			training: "Eğitim",
 			contact: "İletişim",
@@ -28,6 +29,7 @@ export default function Footer1() {
 			description: "Your technology partner providing innovative solutions that increase efficiency and reduce costs in your production and design processes.",
 			company: "Corporate",
 			solutions: "Software Solutions",
+			production: "Production Solutions",
 			post: "Post Support",
 			training: "Training",
 			contact: "Contact",
@@ -48,7 +50,7 @@ export default function Footer1() {
 					<div className="container-fluid bgft-1">
 						<div className="container position-relative z-2">
 							<div className="row py-90">
-								<div className="col-lg-4 pe-10">
+								<div className="col-lg-3 col-md-6 col-12">
 									<Link href="/">
 										{siteInfo?.logo_dark ? (
 											<img src={siteInfo.logo_dark} alt={siteInfo.firma_adi || "Logo"} style={{ maxHeight: '50px', width: siteInfo.logo_w ? `${siteInfo.logo_w}px` : 'auto', height: siteInfo.logo_h ? `${siteInfo.logo_h}px` : 'auto' }} />
@@ -80,35 +82,43 @@ export default function Footer1() {
 										)}
 									</div>
 								</div>
-								<div className="col-lg-8">
+								<div className="col-lg-9 col-md-6 col-12">
 									<div className="row">
-										<div className="col-lg-3 col-md-3 col-6">
+										{/* <div className="col-lg-2 col-md-3 col-6">
 											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.company}</h3>
 											<div className="d-flex flex-column align-items-start">
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/blog">{t.blog}</Link>
-												{/* <Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/roportajlar">{t.interviews}</Link> */}
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/iletisim">{t.contact}</Link>
+												<Link className="hover-effect text-white mb-2 fw-medium fs-6 text-wrap" href="/blog">{t.blog}</Link>
+												<Link className="hover-effect text-white mb-2 fw-medium fs-6 text-wrap" href="/iletisim">{t.contact}</Link>
 											</div>
-										</div>
-										<div className="col-lg-5 col-md-5 col-6">
-											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.solutions}</h3>
+										</div> */}
+										<div className="col-lg-4 col-md-4 col-12">
+											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5 text-wrap">{t.solutions}</h3>
 											<div className="d-flex flex-column align-items-start">
 												{solutions.slice(0, 5).map((item) => (
-													<Link key={item.id} className="hover-effect text-white mb-2 fw-medium fs-6" href={`/yazilim-cozumleri/${tDynamic(item, 'slug')}`}>
+													<Link key={item.id} className="hover-effect text-white mb-2 fw-medium fs-6 text-wrap" href={`/yazilim-cozumleri/${tDynamic(item, 'slug')}`}>
 														{tDynamic(item, 'baslik')}
 													</Link>
 												))}
 											</div>
 										</div>
-										<div className="col-lg-4 col-md-4 col-6">
-											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5">{t.post}</h3>
+										<div className="col-lg-4 col-md-4 col-12">
+											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5 text-wrap">{t.production}</h3>
+											<div className="d-flex flex-column align-items-start">
+												{productionSolutions.slice(0, 5).map((item) => (
+													<Link key={item.id} className="hover-effect text-white mb-2 fw-medium fs-6 text-wrap" href={`/uretim-cozumleri/${tDynamic(item, 'slug')}`}>
+														{tDynamic(item, 'baslik')}
+													</Link>
+												))}
+											</div>
+										</div>
+										<div className="col-lg-4 col-md-4 col-12">
+											<h3 className="text-white opacity-50 fs-6 fw-black text-uppercase pb-3 pt-5 text-wrap">{t.post}</h3>
 											<div className="d-flex flex-column align-items-start">
 												{postSupports.slice(0, 5).map((item) => (
-													<Link key={item.id} className="hover-effect text-white mb-2 fw-medium fs-6" href={`/post-destegi/${locale === 'tr' ? item.slug_tr : (item.slug_en || item.slug_tr)}`}>
+													<Link key={item.id} className="hover-effect text-white mb-2 fw-medium fs-6 text-wrap" href={`/post-destegi/${locale === 'tr' ? item.slug_tr : (item.slug_en || item.slug_tr)}`}>
 														{locale === 'tr' ? item.baslik_tr : (item.baslik_en || item.baslik_tr)}
 													</Link>
 												))}
-												<Link className="hover-effect text-white mb-2 fw-medium fs-6" href="/egitim">{t.training}</Link>
 											</div>
 										</div>
 									</div>
