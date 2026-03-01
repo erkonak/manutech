@@ -10,6 +10,9 @@ import { useEffect } from "react"
 import { useSiteInfo } from "@/context/SiteInfoContext"
 import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useState } from "react"
+import Lightbox from "yet-another-react-lightbox"
+import "yet-another-react-lightbox/styles.css"
 
 export default function ProductionDetailsPage() {
     const params = useParams()
@@ -24,6 +27,13 @@ export default function ProductionDetailsPage() {
     // Alt çözüm resimlerini getir
     const { data: imagesResponse } = useApi(() => solution ? getSubProductionSolutionImages(solution.id) : Promise.resolve(null), { deps: [solution?.id] });
     const images = imagesResponse?.status ? imagesResponse.data : [];
+
+    const [isOpen, setIsOpen] = useState(false)
+    const [photoIndex, setPhotoIndex] = useState(0)
+
+    const lightboxImages = images && images.length > 0
+        ? images.map((img: any) => ({ src: img.resim }))
+        : solution?.resim ? [{ src: solution.resim }] : [];
 
     const { siteInfo } = useSiteInfo()
 
@@ -135,13 +145,17 @@ export default function ProductionDetailsPage() {
                                         navigation={true}
                                         className="rounded-3 overflow-hidden shadow-sm"
                                     >
-                                        {images.map((img: any) => (
+                                        {images.map((img: any, index: number) => (
                                             <SwiperSlide key={img.id}>
                                                 <img
                                                     src={img.resim}
                                                     alt={t(solution, 'baslik')}
-                                                    className="w-100 h-auto"
-                                                    style={{ maxHeight: '500px', objectFit: 'contain', backgroundColor: '#f8f9fa' }}
+                                                    className="w-100 h-auto cursor-pointer"
+                                                    onClick={() => {
+                                                        setPhotoIndex(index)
+                                                        setIsOpen(true)
+                                                    }}
+                                                    style={{ maxHeight: '400px', objectFit: 'contain', backgroundColor: '#f8f9fa' }}
                                                 />
                                             </SwiperSlide>
                                         ))}
@@ -150,13 +164,21 @@ export default function ProductionDetailsPage() {
                             ) : (
                                 solution.resim && (
                                     <img
-                                        className="rounded-3 img-fluid mb-5 w-100 shadow-sm"
+                                        className="rounded-3 img-fluid mb-5 w-100 shadow-sm cursor-pointer"
                                         src={solution.resim}
                                         alt={t(solution, 'baslik')}
-                                        style={{ maxHeight: '450px', objectFit: 'contain', backgroundColor: '#f8f9fa' }}
+                                        onClick={() => setIsOpen(true)}
+                                        style={{ maxHeight: '400px', objectFit: 'contain', backgroundColor: '#f8f9fa' }}
                                     />
                                 )
                             )}
+
+                            <Lightbox
+                                open={isOpen}
+                                close={() => setIsOpen(false)}
+                                index={photoIndex}
+                                slides={lightboxImages}
+                            />
                             <div className="content">
                                 <h4>{t(solution, 'alt_baslik')}</h4>
                                 <div className="mt-4" dangerouslySetInnerHTML={{ __html: t(solution, 'icerik') }} />
