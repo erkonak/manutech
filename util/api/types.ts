@@ -97,6 +97,7 @@ export interface Blog {
     kapak: string | null;
     k: BlogCategory;
     ky: BlogAuthor;
+    vitrin?: string;
 }
 
 export interface BlogComment {

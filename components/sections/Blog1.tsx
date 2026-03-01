@@ -15,14 +15,16 @@ export default function Blog1() {
         async function fetchBlogs() {
             try {
                 const response = await getBlogs()
-                // Check if response has status: true and data object with pagination
+                let allBlogs: Blog[] = []
+
                 if (response?.status && response.data && Array.isArray(response.data.data)) {
-                    // Take first 3 blogs from the data array inside pagination object
-                    setBlogs(response.data.data.slice(0, 3))
+                    allBlogs = response.data.data
                 } else if (response?.data && Array.isArray(response.data)) {
-                    // Fallback for direct array response
-                    setBlogs((response.data as unknown as Blog[]).slice(0, 3))
+                    allBlogs = response.data as unknown as Blog[]
                 }
+
+                const filteredBlogs = allBlogs.filter(blog => blog.vitrin == "1");
+                setBlogs(filteredBlogs)
             } catch (error) {
                 console.error("Blog yüklenirken hata:", error)
             } finally {
@@ -32,7 +34,6 @@ export default function Blog1() {
         fetchBlogs()
     }, [])
 
-    // Blog için doğru slug'ı getir - Ana sayfada da lokalizasyon önemli
     const getSlug = (blogItem: Blog) => {
        if (locale === 'en' && blogItem.slug_en) return blogItem.slug_en;
        if (locale === 'ar' && blogItem.slug_ar) return blogItem.slug_ar;
@@ -58,7 +59,7 @@ export default function Blog1() {
 
     const tr = locale === 'en' ? translations.en : translations.tr
 
-    if (loading) return null // Don't show anything while loading on home page to avoid CLS or generic loaders
+    if (loading) return null
 
     return (
         <>
