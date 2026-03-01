@@ -74,7 +74,11 @@ export default function ContactPage() {
                     text: locale === 'en' ? 'Your message has been sent successfully.' : 'Mesajınız başarıyla iletildi.',
                     icon: 'success',
                     confirmButtonText: locale === 'en' ? 'OK!' : 'Tamam!',
-                    confirmButtonColor: '#1a245c'
+                    confirmButtonColor: '#1a245c',
+                    customClass: {
+                        popup: 'rounded-4',
+                        confirmButton: 'rounded-pill px-5'
+                    }
                 })
             } else {
                 const rawMsg = response?.message || response?.error || '';
@@ -85,7 +89,11 @@ export default function ContactPage() {
                     text: errorMessage,
                     icon: 'error',
                     confirmButtonText: locale === 'en' ? 'OK!' : 'Tamam!',
-                    confirmButtonColor: '#1a245c'
+                    confirmButtonColor: '#1a245c',
+                    customClass: {
+                        popup: 'rounded-4',
+                        confirmButton: 'rounded-pill px-5'
+                    }
                 })
             }
         } catch (err: any) {
@@ -97,7 +105,11 @@ export default function ContactPage() {
                 text: errorMessage,
                 icon: 'error',
                 confirmButtonText: locale === 'en' ? 'OK!' : 'Tamam!',
-                confirmButtonColor: '#1a245c'
+                confirmButtonColor: '#1a245c',
+                customClass: {
+                    popup: 'rounded-4',
+                    confirmButton: 'rounded-pill px-5'
+                }
             })
         } finally {
             setLoading(false)
