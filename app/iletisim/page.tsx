@@ -191,7 +191,7 @@ export default function ContactPage() {
 
     return (
         <Layout>
-            <section className="section-page-header py-10 fix position-relative">
+            <section className="section-page-header py-6 fix position-relative">
                 <div className="container position-relative z-1">
                     <div className="text-start">
                         <h3>{tr.contact}</h3>

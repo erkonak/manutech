@@ -117,7 +117,7 @@ export default function BlogListingPage() {
                 <img className="position-absolute bottom-0 start-0 end-0 top-0 z-0" src="/assets/imgs/page-header/bg-line.png" alt="bg" />
             </section>
 
-            <section className="section-blog-6 section-padding border-bottom">
+            <section className="section-blog-6 border-bottom">
                 <div className="container">
                     <div className="row align-items-end mb-8">
                         <div className="col">

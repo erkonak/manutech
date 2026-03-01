@@ -40,7 +40,7 @@ export default function Menu() {
                     <Link className="nav-link fw-bold d-flex align-items-center" href="/">{m.home}</Link>
                 </li>
                 <li className="nav-item dropdown menu-item-has-children">
-                    <Link className="nav-link fw-bold d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link className="nav-link fw-bold d-flex align-items-center" href="/yazilim-cozumleri" role="button">
                         {m.software}
                     </Link>
                     <div className="dropdown-menu fix">
@@ -56,7 +56,7 @@ export default function Menu() {
                     </div>
                 </li>
                 <li className="nav-item dropdown menu-item-has-children">
-                    <Link className="nav-link fw-bold d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link className="nav-link fw-bold d-flex align-items-center" href="/uretim-cozumleri" role="button">
                         {m.production}
                     </Link>
                     <div className="dropdown-menu fix">
@@ -72,7 +72,7 @@ export default function Menu() {
                     </div>
                 </li>
                 <li className="nav-item dropdown menu-item-has-children">
-                    <Link className="nav-link fw-bold d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link className="nav-link fw-bold d-flex align-items-center" href="/post-destegi" role="button">
                         {m.post}
                     </Link>
                     <div className="dropdown-menu fix">

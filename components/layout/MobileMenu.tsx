@@ -74,7 +74,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 											<span className="menu-expand" onClick={() => handleAccordion(1)}>
 												<i className="arrow-small-down"></i>
 											</span>
-											<Link href="#">{m.software}</Link>
+											<Link href="/yazilim-cozumleri" onClick={handleMobileMenu}>{m.software}</Link>
 											<ul className="sub-menu" style={{ display: `${isAccordion == 1 ? "block" : "none"}` }}>
                                                 {solutions.map((item) => (
                                                     <li key={item.id}>
@@ -87,7 +87,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 											<span className="menu-expand" onClick={() => handleAccordion(2)}>
 												<i className="arrow-small-down"></i>
 											</span>
-											<Link href="#">{m.production}</Link>
+											<Link href="/uretim-cozumleri" onClick={handleMobileMenu}>{m.production}</Link>
 											<ul className="sub-menu" style={{ display: `${isAccordion == 2 ? "block" : "none"}` }}>
                                                 {productionSolutions.map((item) => (
                                                     <li key={item.id}>
@@ -100,7 +100,7 @@ export default function MobileMenu({ isMobileMenu, handleMobileMenu }: any) {
 											<span className="menu-expand" onClick={() => handleAccordion(3)}>
 												<i className="arrow-small-down"></i>
 											</span>
-											<Link href="#">{m.post}</Link>
+											<Link href="/post-destegi" onClick={handleMobileMenu}>{m.post}</Link>
 											<ul className="sub-menu" style={{ display: `${isAccordion == 3 ? "block" : "none"}` }}>
                                                 {postSupports.map((item) => (
                                                     <li key={item.id}>

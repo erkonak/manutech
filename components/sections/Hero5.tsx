@@ -85,7 +85,7 @@ export default function Hero5() {
 						<div className="container position-relative z-2">
 							<div className="row">
 								<div className="col-lg-6">
-									<div className="backdrop-filter p-8 position-relative rounded-3">
+									<div className="backdrop-filter p-8 position-relative rounded-3" style={{ background: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: 'none', boxShadow: 'none' }}>
 										<div className="bg-neutral-200 rounded-pill px-4 py-1 d-inline-block" style={{ width: '180px', height: '32px' }}></div>
 										<div className="bg-neutral-200 rounded my-3" style={{ width: '100%', height: '120px' }}></div>
 										<div className="bg-neutral-200 rounded mb-3" style={{ width: '80%', height: '24px' }}></div>
@@ -110,13 +110,10 @@ export default function Hero5() {
 										<div className="container position-relative z-2">
 											<div className="row">
 												<div className="col-lg-6">
-													<div className="backdrop-filter p-8 position-relative rounded-3">
-														<div className="bg-white bg-opacity-50 border border-primary-soft d-inline-flex rounded-pill px-4 py-1">
-															<span className="tag-spacing fs-6 text-primary">🚀 {locale === 'en' ? 'Welcome' : locale === 'ar' ? 'مرحبا' : 'Hoş Geldiniz!'}</span>
-														</div>
-														<h3 className="ds-3 my-3">
+													<div className="backdrop-filter p-7 position-relative rounded-3" style={{ background: 'rgba(255, 255, 255, 0.34)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: 'none', boxShadow: 'none' }}>
+														<h4 className="ds-5 my-3">
 															{t(banner, 'baslik')}
-														</h3>
+														</h4>
 														<p className="fs-5 text-900">
 															{t(banner, 'aciklama')}
 														</p>
@@ -149,7 +146,7 @@ export default function Hero5() {
 										<div className="container position-relative z-2">
 											<div className="row">
 												<div className="col-lg-6">
-													<div className="backdrop-filter p-8 position-relative rounded-3">
+													<div className="backdrop-filter p-8 position-relative rounded-3" style={{ background: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: 'none', boxShadow: 'none' }}>
 														<div className="bg-white bg-opacity-50 border border-primary-soft d-inline-flex rounded-pill px-4 py-1">
 															<span className="tag-spacing fs-6 text-primary">🚀 Manutech Solutions</span>
 														</div>
@@ -186,7 +183,7 @@ export default function Hero5() {
 										<div className="container position-relative z-2">
 											<div className="row">
 												<div className="col-lg-6">
-													<div className="backdrop-filter p-8 position-relative rounded-3">
+													<div className="backdrop-filter p-8 position-relative rounded-3" style={{ background: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: 'none', boxShadow: 'none' }}>
 														<div className="bg-white bg-opacity-50 border border-primary-soft d-inline-flex rounded-pill px-4 py-1">
 															<span className="tag-spacing fs-6 text-primary">🚀 Manutech Solutions</span>
 														</div>

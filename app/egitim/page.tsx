@@ -8,6 +8,7 @@ import { useLanguage } from '@/context/LanguageContext'
 import { useApi } from '@/hooks/useApi'
 import { useEffect } from "react"
 import { useSiteInfo } from "@/context/SiteInfoContext"
+import Swal from 'sweetalert2'
 
 export default function CoursePage() {
     const { locale, t } = useLanguage()
@@ -27,21 +28,27 @@ export default function CoursePage() {
             home: "Anasayfa",
             title: "Eğitimlerimiz",
             breadcrumb: "Eğitim",
-            udemyTitle: "Udemy Eğitimlerimiz",
-            udemySubtitle: "Yazılım çözümlerimiz için hazırladığımız kapsamlı eğitim setlerine Udemy üzerinden ulaşabilirsiniz.",
+            onlineTitle: "Online Eğitimlerimiz",
+            onlineSubtitle: "Yazılım çözümlerimiz için hazırladığımız kapsamlı eğitim setlerine Udemy üzerinden ulaşabilirsiniz.",
             loading: "Yükleniyor...",
             goToCourse: "Eğitime Git",
-            noCourse: "Henüz eğitim linki eklenmiş bir program bulunmamaktadır."
+            noCourse: "Henüz eğitim linki eklenmiş bir program bulunmamaktadır.",
+            comingSoonTitle: "Hazırlık Aşamasında",
+            comingSoonText: "Eğitimlerimiz hazırlık aşamasındadır, çok yakında hizmete açılacaktır.",
+            okText: "Tamam"
         },
         en: {
             home: "Home",
             title: "Our Courses",
             breadcrumb: "Course",
-            udemyTitle: "Our Udemy Courses",
-            udemySubtitle: "You can access our comprehensive course sets prepared for our software solutions via Udemy.",
+            onlineTitle: "Online Courses",
+            onlineSubtitle: "You can access our comprehensive course sets prepared for our software solutions via Udemy.",
             loading: "Loading...",
             goToCourse: "Go to Course",
-            noCourse: "There are no programs with Course links yet."
+            noCourse: "There are no programs with Course links yet.",
+            comingSoonTitle: "Under Construction",
+            comingSoonText: "Our courses are currently in the preparation phase and will be available very soon.",
+            okText: "OK"
         }
     }
 
@@ -50,6 +57,21 @@ export default function CoursePage() {
     useEffect(() => {
         document.title = `${tr.title} - ${siteInfo?.firma_adi || 'Manutech Solutions'}`
     }, [locale, siteInfo, tr.title])
+
+    const handleComingSoon = (e: React.MouseEvent) => {
+        e.preventDefault()
+        Swal.fire({
+            title: tr.comingSoonTitle,
+            text: tr.comingSoonText,
+            icon: 'info',
+            confirmButtonText: tr.okText,
+            confirmButtonColor: '#1a245c', // Tema rengine uygun
+            customClass: {
+                popup: 'rounded-4',
+                confirmButton: 'rounded-pill px-5'
+            }
+        })
+    }
 
     return (
         <Layout>
@@ -71,11 +93,11 @@ export default function CoursePage() {
                 <img className="position-absolute bottom-0 start-0 end-0 top-0 z-0" src="/assets/imgs/page-header/bg-line.png" alt="bg" />
             </section>
 
-            <section className="section-padding">
+            <section className="section">
                 <div className="container">
                     <div className="text-center mb-8">
-                        <h3 className="ds-4">{tr.udemyTitle}</h3>
-                        <p className="fs-5 text-600">{tr.udemySubtitle}</p>
+                        <h3 className="ds-4">{tr.onlineTitle}</h3>
+                        <p className="fs-5 text-600">{tr.onlineSubtitle}</p>
                     </div>
 
                     {loading ? (
@@ -99,10 +121,16 @@ export default function CoursePage() {
                                             <div className="p-4 flex-grow-1 d-flex flex-column">
                                                 <h5 className="mb-3">{t(item, 'baslik')}</h5>
                                                 <p className="text-600 fs-7 mb-4 flex-grow-1">{t(item, 'aciklama')}</p>
-                                                <Link href={item.udemy_url || '#'} target="_blank" className="btn btn-gradient w-100 rounded-pill">
-                                                    {tr.goToCourse}
-                                                    <i className="bi bi-box-arrow-up-right ms-2"></i>
-                                                </Link>
+                                                <div className="text-center">
+                                                    <Link
+                                                        href="#"
+                                                        onClick={handleComingSoon}
+                                                        className="btn btn-gradient w-80 py-2 rounded-pill"
+                                                    >
+                                                        {tr.goToCourse}
+                                                        <i className="bi bi-info-circle ms-2"></i>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
