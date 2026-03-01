@@ -7,6 +7,7 @@ import { useLanguage } from '@/context/LanguageContext'
 import { sendContactForm } from '@/util/api'
 import './contact-styles.css'
 import { useSiteInfo } from '@/context/SiteInfoContext'
+import Swal from 'sweetalert2'
 
 export default function ContactPage() {
     const { locale } = useLanguage()
@@ -22,19 +23,19 @@ export default function ContactPage() {
         firma: ''
     })
     const [loading, setLoading] = useState(false)
-    const [success, setSuccess] = useState(false)
-    const [error, setError] = useState('')
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
-        setError('')
-        setSuccess(false)
 
-        // API Messages Translation Map
         const getLocalizedApiMessage = (msg: string) => {
             if (!msg) return null;
-            if (locale === 'en') {
+            if (locale === 'tr') {
+                const map: { [key: string]: string } = {
+                    'Too Many Attempts.': 'Çok fazla deneme yapıldı. Lütfen daha sonra tekrar deneyiniz.',
+                };
+                return map[msg] || msg;
+            }if (locale === 'en') {
                 const map: { [key: string]: string } = {
                     'Lütfen formu eksiksiz doldurunuz.': 'Please fill in all required fields.',
                     'Mesajınız başarıyla iletildi. En kısa sürede dönüş sağlanacaktır.': 'Your message has been sent successfully. We will get back to you as soon as possible.',
@@ -46,11 +47,10 @@ export default function ContactPage() {
         }
 
         try {
-            // Map frontend form fields to API expected field names
             const apiData = {
                 ad_soyad: formData.name,
                 mail: formData.email,
-                telefon: formData.phone, // API'ye boşluklu formatta gönderiliyor
+                telefon: formData.phone,
                 konu: formData.subject,
                 mesaj: formData.message,
                 firma: formData.company
@@ -58,9 +58,7 @@ export default function ContactPage() {
 
             const response = await sendContactForm(apiData)
 
-            // Check if the response indicates success
             if (response && response.status === true) {
-                setSuccess(true)
                 setFormData({
                     name: '',
                     company: '',
@@ -70,27 +68,37 @@ export default function ContactPage() {
                     message: '',
                     firma: ''
                 })
-                // Auto-hide success message after 5 seconds
-                setTimeout(() => setSuccess(false), 5000)
 
-                // Scroll to top of the form for mobile users
-                formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                Swal.fire({
+                    title: locale === 'en' ? 'Success!' : 'Başarılı!',
+                    text: locale === 'en' ? 'Your message has been sent successfully.' : 'Mesajınız başarıyla iletildi.',
+                    icon: 'success',
+                    confirmButtonText: locale === 'en' ? 'OK!' : 'Tamam!',
+                    confirmButtonColor: '#1a245c'
+                })
             } else {
-                // Handle API error messages
                 const rawMsg = response?.message || response?.error || '';
                 const errorMessage = getLocalizedApiMessage(rawMsg) || (locale === 'en' ? 'An error occurred. Please try again.' : 'Bir hata oluştu. Lütfen tekrar deneyiniz.')
-                setError(errorMessage)
 
-                // Scroll to top of the form for mobile users
-                formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                Swal.fire({
+                    title: locale === 'en' ? 'Error!' : 'Hata!',
+                    text: errorMessage,
+                    icon: 'error',
+                    confirmButtonText: locale === 'en' ? 'OK!' : 'Tamam!',
+                    confirmButtonColor: '#1a245c'
+                })
             }
         } catch (err: any) {
             console.error('Contact form error:', err)
             const errorMessage = err?.message || (locale === 'en' ? 'An error occurred. Please try again.' : 'Bir hata oluştu. Lütfen tekrar deneyiniz.')
-            setError(errorMessage)
 
-            // Scroll to top of the form for mobile users
-            formContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            Swal.fire({
+                title: locale === 'en' ? 'Error!' : 'Hata!',
+                text: errorMessage,
+                icon: 'error',
+                confirmButtonText: locale === 'en' ? 'OK!' : 'Tamam!',
+                confirmButtonColor: '#1a245c'
+            })
         } finally {
             setLoading(false)
         }
@@ -134,6 +142,8 @@ export default function ContactPage() {
             phone: "Telefon",
             workingHours: "Çalışma Saatleri",
             hours: "Pzt - Cum: 09:00 - 18:00",
+            mainOffice: "Merkez Ofis",
+            branch: "Şube",
             formTitle: "Bize Mesaj Gönderin",
             name: "Adınız Soyadınız",
             company: "Firma Adı",
@@ -163,6 +173,8 @@ export default function ContactPage() {
             phone: "Phone",
             workingHours: "Working Hours",
             hours: "Mon - Fri: 09:00 - 18:00",
+            mainOffice: "Main Office",
+            branch: "Branch",
             formTitle: "Send Us a Message",
             name: "Full Name",
             company: "Company Name",
@@ -229,10 +241,38 @@ export default function ContactPage() {
                                     </div>
                                 </div>
                                 <div className="ps-5">
-                                    <h6 className="text-white">{tr.office}</h6>
+                                    <h6 className="text-white">{tr.mainOffice}</h6>
                                     <p className="text-white mb-0">{siteInfo?.adres || tr.address}</p>
                                 </div>
                             </div>
+
+                            {siteInfo?.adres2 && (
+                                <div className="d-flex pt-3 pb-3 align-items-center">
+                                    <div className="bg-white-keep icon-flip position-relative icon-shape icon-xxl rounded-3">
+                                        <div className="icon d-flex align-items-center justify-content-center">
+                                            <i className="bi bi-geo-alt-fill text-primary fs-2"></i>
+                                        </div>
+                                    </div>
+                                    <div className="ps-5">
+                                        <h6 className="text-white">İstanbul {tr.branch}</h6>
+                                        <p className="text-white mb-0">{siteInfo.adres2}</p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {siteInfo?.adres3 && (
+                                <div className="d-flex pt-3 pb-3 align-items-center">
+                                    <div className="bg-white-keep icon-flip position-relative icon-shape icon-xxl rounded-3">
+                                        <div className="icon d-flex align-items-center justify-content-center">
+                                            <i className="bi bi-geo-alt-fill text-primary fs-2"></i>
+                                        </div>
+                                    </div>
+                                    <div className="ps-5">
+                                        <h6 className="text-white">Sakarya {tr.branch}</h6>
+                                        <p className="text-white mb-0">{siteInfo.adres3}</p>
+                                    </div>
+                                </div>
+                            )}
                             <div className="d-flex pt-3 pb-3 align-items-center">
                                 <div className="bg-white-keep icon-flip position-relative icon-shape icon-xxl rounded-3">
                                     <div className="icon d-flex align-items-center justify-content-center">
@@ -263,14 +303,7 @@ export default function ContactPage() {
                             <div className="position-relative">
                                 <div ref={formContainerRef} className="position-relative z-2 p-3 p-md-5 p-lg-8 rounded-3 bg-primary">
                                     <h3 className="text-white mb-4">{tr.formTitle}</h3>
-                                    {success && (
-                                        <div className="alert alert-success mb-4">{tr.success}</div>
-                                    )}
-                                    {error && (
-                                        <div className="alert alert-danger mb-4">{error}</div>
-                                    )}
-                                    {!success && (
-                                        <form onSubmit={handleSubmit}>
+                                    <form onSubmit={handleSubmit}>
                                             <div className="row mt-5">
                                                 <div className="col-md-6 mb-4">
                                                     <div className="input-group d-flex align-items-center">
@@ -364,7 +397,6 @@ export default function ContactPage() {
                                                 </div>
                                             </div>
                                         </form>
-                                    )}
                                 </div>
                                 <div className="z-0 bg-primary-dark rectangle-bg z-1 rounded-3" />
                             </div>
@@ -374,20 +406,52 @@ export default function ContactPage() {
             </section>
 
             <section className="section-map">
-                <div>
-                    <div className="border shadow-sm" style={{ height: '400px' }}>
-                        {siteInfo?.harita_iframe ? (
-                            <div dangerouslySetInnerHTML={{ __html: siteInfo.harita_iframe }} style={{ width: '100%', height: '100%' }} />
-                        ) : (
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.6504900115626!2d29.02053177651817!3d40.99042897135252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab8631627c02b%3A0x8e831637e1087814!2zS2FkxLFrw7Y5LCDEsHN0YW5idWw!5e0!3m2!1str!2str!4v1705663673620!5m2!1str!2str"
-                                width="100%"
-                                height="100%"
-                                style={{ border: 0 }}
-                                allowFullScreen
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                            ></iframe>
+                <div className="container-fluid">
+                    <div className="row g-4 my-1">
+                        {/* Merkez Ofis Haritası */}
+                        <div className={`${(siteInfo?.harita_iframe2 || siteInfo?.harita_iframe3) ? (siteInfo?.harita_iframe2 && siteInfo?.harita_iframe3 ? 'col-lg-4' : 'col-lg-6') : 'col-12'}`}>
+                            <div className="text-center mb-3">
+                                <h6 className="fw-bold">{tr.mainOffice}</h6>
+                            </div>
+                            <div className="border shadow-sm rounded-3 overflow-hidden" style={{ height: '450px' }}>
+                                {siteInfo?.harita_iframe ? (
+                                    <div dangerouslySetInnerHTML={{ __html: siteInfo.harita_iframe }} style={{ width: '100%', height: '100%' }} className="map-container" />
+                                ) : (
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.6504900115626!2d29.02053177651817!3d40.99042897135252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab8631627c02b%3A0x8e831637e1087814!2zS2FkxLFrw7Y5LCDEsHN0YW5idWw!5e0!3m2!1str!2str!4v1705663673620!5m2!1str!2str"
+                                        width="100%"
+                                        height="100%"
+                                        style={{ border: 0 }}
+                                        allowFullScreen
+                                        loading="lazy"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                    ></iframe>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Şube 1 Haritası */}
+                        {siteInfo?.harita_iframe2 && (
+                            <div className={`${siteInfo?.harita_iframe3 ? 'col-lg-4' : 'col-lg-6'}`}>
+                                <div className="text-center mb-3">
+                                    <h6 className="fw-bold"> İstanbul {tr.branch}</h6>
+                                </div>
+                                <div className="border shadow-sm rounded-3 overflow-hidden" style={{ height: '450px' }}>
+                                    <div dangerouslySetInnerHTML={{ __html: siteInfo.harita_iframe2 }} style={{ width: '100%', height: '100%' }} className="map-container" />
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Şube 2 Haritası */}
+                        {siteInfo?.harita_iframe3 && (
+                            <div className={`${siteInfo?.harita_iframe2 ? 'col-lg-4' : 'col-lg-6'}`}>
+                                <div className="text-center mb-3">
+                                    <h6 className="fw-bold">Sakarya {tr.branch}</h6>
+                                </div>
+                                <div className="border shadow-sm rounded-3 overflow-hidden" style={{ height: '450px' }}>
+                                    <div dangerouslySetInnerHTML={{ __html: siteInfo.harita_iframe3 }} style={{ width: '100%', height: '100%' }} className="map-container" />
+                                </div>
+                            </div>
                         )}
                     </div>
                 </div>
