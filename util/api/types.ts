@@ -180,6 +180,12 @@ export interface SubSolution {
     features?: (string | { title: string })[];
 }
 
+export interface SubSolutionImage {
+    id: number;
+    sub_solution_id: number;
+    resim: string;
+}
+
 // --- Production Solution ---
 export interface ProductionSolution extends Solution {}
 

@@ -3,11 +3,13 @@
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
 import { useParams } from 'next/navigation'
-import { getProdSolutionBySlug } from '@/util/api'
+import { getProdSolutionBySlug, getSubProductionSolutionImages } from '@/util/api'
 import { useLanguage } from '@/context/LanguageContext'
 import { useApi } from '@/hooks/useApi'
 import { useEffect } from "react"
 import { useSiteInfo } from "@/context/SiteInfoContext"
+import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 export default function ProductionDetailsPage() {
     const params = useParams()
@@ -18,6 +20,11 @@ export default function ProductionDetailsPage() {
     // useApi hook kullanımı
     const { data: response, loading } = useApi(() => getProdSolutionBySlug(slug), { deps: [slug] });
     const solution = response?.success ? response.data : null;
+
+    // Alt çözüm resimlerini getir
+    const { data: imagesResponse } = useApi(() => solution ? getSubProductionSolutionImages(solution.id) : Promise.resolve(null), { deps: [solution?.id] });
+    const images = imagesResponse?.status ? imagesResponse.data : [];
+
     const { siteInfo } = useSiteInfo()
 
     useEffect(() => {
@@ -113,7 +120,43 @@ export default function ProductionDetailsPage() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8">
-                            <img className="rounded-3 img-fluid mb-5 w-100" src={solution.resim || "/assets/imgs/services-details/img-1.png"} alt={t(solution, 'baslik')} style={{ maxHeight: '450px', objectFit: 'contain' }} />
+                            {images && images.length > 0 ? (
+                                <div className="mb-5">
+                                    <Swiper
+                                        modules={[Keyboard, Autoplay, Pagination, Navigation]}
+                                        slidesPerView={1}
+                                        spaceBetween={30}
+                                        loop={images.length > 1}
+                                        autoplay={{
+                                            delay: 5000,
+                                            disableOnInteraction: false,
+                                        }}
+                                        pagination={{ clickable: true }}
+                                        navigation={true}
+                                        className="rounded-3 overflow-hidden shadow-sm"
+                                    >
+                                        {images.map((img: any) => (
+                                            <SwiperSlide key={img.id}>
+                                                <img
+                                                    src={img.resim}
+                                                    alt={t(solution, 'baslik')}
+                                                    className="w-100 h-auto"
+                                                    style={{ maxHeight: '500px', objectFit: 'contain', backgroundColor: '#f8f9fa' }}
+                                                />
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
+                                </div>
+                            ) : (
+                                solution.resim && (
+                                    <img
+                                        className="rounded-3 img-fluid mb-5 w-100 shadow-sm"
+                                        src={solution.resim}
+                                        alt={t(solution, 'baslik')}
+                                        style={{ maxHeight: '450px', objectFit: 'contain', backgroundColor: '#f8f9fa' }}
+                                    />
+                                )
+                            )}
                             <div className="content">
                                 <h4>{t(solution, 'alt_baslik')}</h4>
                                 <div className="mt-4" dangerouslySetInnerHTML={{ __html: t(solution, 'icerik') }} />

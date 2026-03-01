@@ -14,6 +14,7 @@ import type {
     Interview,
     Solution,
     SubSolution,
+    SubSolutionImage,
     ProductionSolution,
     SubProductionSolution,
     PostSupport,
@@ -153,6 +154,14 @@ export async function getSubSolutions(solutionId: number | string): Promise<ApiR
     }
 
     return response;
+}
+
+export async function getSubSolutionImages(subSolutionId: number | string): Promise<ApiResponse<SubSolutionImage[]>> {
+    return await apiGet<ApiResponse<SubSolutionImage[]>>(`sub-solution-images?sub_solution_id=${subSolutionId}`) || { status: false, data: [] };
+}
+
+export async function getSubProductionSolutionImages(subSolutionId: number | string): Promise<ApiResponse<SubSolutionImage[]>> {
+    return await apiGet<ApiResponse<SubSolutionImage[]>>(`sub-production-solution-images?sub_solution_id=${subSolutionId}`) || { status: false, data: [] };
 }
 
 /**
