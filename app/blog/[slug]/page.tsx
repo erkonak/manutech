@@ -11,6 +11,7 @@ import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Lightbox from "yet-another-react-lightbox"
 import "yet-another-react-lightbox/styles.css"
+import PageHeader from "@/components/layout/PageHeader"
 
 export default function BlogDetailPage() {
     const params = useParams()
@@ -242,46 +243,24 @@ export default function BlogDetailPage() {
 
     return (
         <Layout>
+            <PageHeader
+                title={t(blog, 'baslik')}
+                slug="blog"
+                py={6}
+            >
+                <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
+                    <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <Link href="/blog">
+                    <p className="mb-0 text-900">{locale === 'en' ? 'Blog' : 'Blog'}</p>
+                </Link>
+                <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
+                    <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <p className="text-primary mb-0">{t(blog, 'baslik')}</p>
+            </PageHeader>
+
             <section>
-                 {/* Standard Theme Image - Not Full Width */}
-                 {/* Container is used to limit width, similar to theme blog details page */}
-                <div className="container pt-4">
-                    <div className="row justify-content-center">
-                         <div className="col-12">
-                            {/* Slider Section */}
-                            <div className="position-relative group-slider rounded-4 overflow-hidden" style={{maxHeight:'500px'}}>
-                                <Swiper {...swiperOptions}
-                                    modules={[Autoplay, Navigation, Pagination]}
-                                    className="mySwiper position-relative h-100"
-                                >
-                                    {sliderImages.map((img, idx) => (
-                                        <SwiperSlide key={idx}>
-                                            <div className="w-100 h-100 position-relative">
-                                                <img
-                                                    className="w-100 h-100"
-                                                    src={img.url}
-                                                    alt={t(blog, 'baslik')}
-                                                    style={{ objectFit: 'cover', maxHeight: '500px' }}
-                                                />
-                                            </div>
-                                        </SwiperSlide>
-                                    ))}
-
-                                    {/* Navigation Buttons */}
-                                    <div className="swiper-button-prev d-none d-lg-flex shadow-2 position-absolute top-50 translate-middle-y bg-white ms-lg-7">
-                                        <i className="bi bi-arrow-left" />
-                                    </div>
-                                    <div className="swiper-button-next d-none d-lg-flex shadow-2 position-absolute top-50 translate-middle-y bg-white me-lg-7">
-                                        <i className="bi bi-arrow-right" />
-                                    </div>
-                                    <div className="swiper-pagination mb-8" />
-                                </Swiper>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div className="container mt-10">
                     <div className="row">
                         <div className="col-md-8 mx-auto">

@@ -21,7 +21,8 @@ import type {
     Category,
     ContactFormData,
     ContactFormResponse,
-    BlogCommentData
+    BlogCommentData,
+    PageBanner
 } from './types';
 
 // ============================================
@@ -313,4 +314,12 @@ export async function getPostSupport(slug: string) {
         success: !!found,
         data: found || null
     };
+}
+
+// ============================================
+// Page Banners
+// ============================================
+
+export async function getPageBanner(sayfa: string): Promise<ApiResponse<PageBanner> | null> {
+    return apiGet<ApiResponse<PageBanner>>(`sayfa-banner?sayfa=${sayfa}`);
 }

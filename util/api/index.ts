@@ -22,7 +22,8 @@ export type {
     Category,
     ContactFormData,
     ContactFormResponse,
-    BlogCommentData
+    BlogCommentData,
+    PageBanner
 } from './types';
 
 // Services (API fonksiyonları)
@@ -47,7 +48,8 @@ export {
     getProdSolutions,
     getProdSolutionBySlug,
     getPostSupports,
-    getPostSupport
+    getPostSupport,
+    getPageBanner
 } from './services';
 
 // Cache utilities (gerekirse doğrudan kullanım için)

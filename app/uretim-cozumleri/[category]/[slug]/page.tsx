@@ -9,6 +9,7 @@ import { useApi } from '@/hooks/useApi'
 import { useEffect } from "react"
 import { useSiteInfo } from "@/context/SiteInfoContext"
 import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules'
+import PageHeader from "@/components/layout/PageHeader"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { useState } from "react"
 import Lightbox from "yet-another-react-lightbox"
@@ -102,29 +103,22 @@ export default function ProductionDetailsPage() {
 
     return (
         <Layout>
-            <section className="section-page-header py-10 fix position-relative">
-                <div className="container position-relative z-1">
-                    <div className="text-start">
-                        <h3>{t(solution, 'baslik')}</h3>
-                        <div className="d-flex">
-                            <Link href="/">
-                                <p className="mb-0 text-900">{tr.home}</p>
-                            </Link>
-                            <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
-                                <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                            <Link href={`/uretim-cozumleri/${categoryInfo ? t(categoryInfo, 'slug') : category}`}>
-                                <p className="mb-0 text-900 text-capitalize">{categoryInfo ? t(categoryInfo, 'baslik') : category?.replace('-', ' ')}</p>
-                            </Link>
-                            <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
-                                <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                            <p className="text-primary mb-0">{t(solution, 'baslik')}</p>
-                        </div>
-                    </div>
-                </div>
-                <img className="position-absolute bottom-0 start-0 end-0 top-0 z-0" src="/assets/imgs/page-header/bg-line.png" alt="bg" />
-            </section>
+            <PageHeader
+                title={t(solution, 'baslik')}
+                slug="uretim-cozumleri"
+                py={10}
+            >
+                <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
+                    <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <Link href={`/uretim-cozumleri/${categoryInfo ? t(categoryInfo, 'slug') : category}`}>
+                    <p className="mb-0 text-900 text-capitalize">{categoryInfo ? t(categoryInfo, 'baslik') : category?.replace('-', ' ')}</p>
+                </Link>
+                <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
+                    <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <p className="text-primary mb-0">{t(solution, 'baslik')}</p>
+            </PageHeader>
 
             <section className="section-services-details pt-80 pb-80">
                 <div className="container">

@@ -245,3 +245,14 @@ export interface BlogCommentData {
     eposta: string;
     yorum: string;
 }
+
+// --- Page Banner ---
+export interface PageBanner {
+    id: number;
+    sayfa: string;
+    resim: string;
+    durum: number;
+    sira: number;
+    created_at: string;
+    updated_at: string;
+}

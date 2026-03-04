@@ -7,6 +7,7 @@ import { useLanguage } from '@/context/LanguageContext'
 import { useApi } from '@/hooks/useApi'
 import { useEffect } from "react"
 import { useSiteInfo } from "@/context/SiteInfoContext"
+import PageHeader from "@/components/layout/PageHeader"
 
 export default function PostSupportPage() {
     const { locale, t } = useLanguage()
@@ -47,23 +48,12 @@ export default function PostSupportPage() {
 
     return (
         <Layout>
-            <section className="section-page-header py-6 fix position-relative">
-                <div className="container position-relative z-1">
-                    <div className="text-start">
-                        <h3>{tr.title}</h3>
-                        <div className="d-flex">
-                            <Link href="/">
-                                <p className="mb-0 text-900">{tr.home}</p>
-                            </Link>
-                            <svg className="mx-3 mt-1" xmlns="http://www.w3.org/2000/svg" width={8} height={13} viewBox="0 0 8 13" fill="none">
-                                <path className="stroke-dark" d="M1 1.5L6.5 6.75L1 12" stroke="#111827" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                            <p className="text-primary mb-0">{tr.breadcrumb}</p>
-                        </div>
-                    </div>
-                </div>
-                <img className="position-absolute bottom-0 start-0 end-0 top-0 z-0" src="/assets/imgs/page-header/bg-line.png" alt="bg" />
-            </section>
+            <PageHeader
+                title={tr.title}
+                breadcrumb={tr.breadcrumb}
+                slug="post-destegi"
+                py={6}
+            />
 
             <section className="section">
                 <div className="container">
